@@ -1,5 +1,5 @@
 import React, { useRef, useState } from 'react';
-import { Upload, FileText, Lock, Plus, Trash2, ArrowRight, Loader2 } from 'lucide-react';
+import { Upload, FileText, Lock, Plus, Trash2, ArrowRight, Loader2, Sparkles } from 'lucide-react';
 import { SAMPLE_RECEIPTS } from '../../data/sampleReceipts';
 
 export default function UploadStep({
@@ -99,7 +99,7 @@ export default function UploadStep({
             </p>
           </div>
 
-          <div className="pt-1">
+          <div className="pt-1 flex flex-col items-center space-y-2">
             <button
               type="button"
               disabled={isExtracting}
@@ -108,6 +108,14 @@ export default function UploadStep({
             >
               Choose File from Device
             </button>
+
+            {/* Powered by Claude Indicator */}
+            <div className="inline-flex items-center space-x-1.5 px-2.5 py-1 rounded-full bg-slate-100 text-slate-700 text-[11px] font-semibold border border-slate-200">
+              <Sparkles className="w-3.5 h-3.5 text-emerald-600" />
+              <span>Powered by Claude</span>
+              <span className="text-slate-300">•</span>
+              <span className="text-slate-500 font-normal">Anthropic Vision API</span>
+            </div>
           </div>
         </div>
       </div>
@@ -200,7 +208,7 @@ export default function UploadStep({
       <div className="p-3 rounded-lg bg-slate-100/70 border border-slate-200 flex items-start space-x-2.5 text-xs text-slate-600">
         <Lock className="w-4 h-4 text-slate-500 flex-shrink-0 mt-0.5" />
         <div>
-          <span className="font-semibold text-slate-800">100% Private & Safe:</span> Your receipt is read securely. We never store your full bank account or card number, and sensitive numbers are masked.
+          <span className="font-semibold text-slate-800">Private & Secure:</span> Receipts are read by Claude and never stored on our servers. Your banking credentials are never requested, and sensitive account numbers are automatically masked.
         </div>
       </div>
 

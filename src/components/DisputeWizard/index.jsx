@@ -5,7 +5,7 @@ import IssueStep from './IssueStep';
 import DraftStep from './DraftStep';
 import { ISSUE_TYPES } from '../../data/sampleReceipts';
 import { findProvider } from '../../data/providers';
-import { extractReceiptWithClaude, generateLocalComplaint } from '../../utils/claudeService';
+import { extractReceiptWithClaude, generateLocalComplaint, generateComplaintWithClaude } from '../../utils/claudeService';
 import { saveDispute, getUserProfile, saveUserProfile } from '../../utils/storage';
 import { Check } from 'lucide-react';
 
@@ -99,9 +99,10 @@ export default function DisputeWizard({
   };
 
   useEffect(() => {
+    let isMounted = true;
     if (currentStep === 4 && uploadedReceipts.length > 0) {
       const transactions = uploadedReceipts.map((r) => r.extractedData);
-      const generated = generateLocalComplaint({
+      generateComplaintWithClaude({
         transactions,
         issueType: selectedIssue,
         extraNotes,
@@ -109,11 +110,18 @@ export default function DisputeWizard({
         userName: userProfile.name || "Account Holder",
         userEmail: userProfile.email || "",
         userPhone: userProfile.phone || "",
-        provider: matchedProvider
+        provider: matchedProvider,
+        apiKey
+      }).then((generated) => {
+        if (isMounted && generated) {
+          setComplaint(generated);
+        }
       });
-      setComplaint(generated);
     }
-  }, [currentStep, tone, uploadedReceipts, selectedIssue, extraNotes, userProfile, matchedProvider.id]);
+    return () => {
+      isMounted = false;
+    };
+  }, [currentStep, tone, uploadedReceipts, selectedIssue, extraNotes, userProfile, matchedProvider.id, apiKey]);
 
   const handleMarkAsSent = () => {
     saveUserProfile(userProfile);

@@ -235,10 +235,57 @@ Complainant`;
   return { subject, body };
 }
 
-// Client-side extraction caller with Claude API or smart heuristic fallback
+// Generate complaint via live Claude API or fallback to local template generator
+export async function generateComplaintWithClaude({ transactions, issueType, extraNotes, tone = "firm", userName = "Account Holder", userEmail = "", userPhone = "", provider, apiKey = "" }) {
+  const effectiveKey = (apiKey && apiKey.trim()) || (typeof import.meta !== "undefined" && import.meta.env?.VITE_ANTHROPIC_API_KEY && import.meta.env.VITE_ANTHROPIC_API_KEY.trim()) || "";
+
+  if (effectiveKey && effectiveKey.startsWith("sk-ant-")) {
+    try {
+      const prompt = buildComplaintPrompt({ transactions, issueType, extraNotes, tone, userName, userEmail, userPhone, provider });
+      const response = await fetch("https://api.anthropic.com/v1/messages", {
+        method: "POST",
+        headers: {
+          "x-api-key": effectiveKey,
+          "anthropic-version": "2023-06-01",
+          "content-type": "application/json",
+          "anthropic-dangerous-direct-browser-access": "true",
+          "dangerously-allow-browser": "true"
+        },
+        body: JSON.stringify({
+          model: CLAUDE_MODELS.DEFAULT,
+          max_tokens: 1500,
+          messages: [
+            {
+              role: "user",
+              content: prompt
+            }
+          ]
+        })
+      });
+
+      if (response.ok) {
+        const data = await response.json();
+        const contentText = data.content?.[0]?.text || "{}";
+        const cleanJsonStr = contentText.replace(/```json/g, "").replace(/```/g, "").trim();
+        const parsed = JSON.parse(cleanJsonStr);
+        if (parsed.subject && parsed.body) {
+          return parsed;
+        }
+      }
+    } catch (err) {
+      console.warn("Claude API complaint generation failed, using local template:", err);
+    }
+  }
+
+  return generateLocalComplaint({ transactions, issueType, extraNotes, tone, userName, userEmail, userPhone, provider });
+}
+
+// Extraction caller with real Claude Messages API or smart heuristic fallback
 export async function extractReceiptWithClaude({ imageFile, apiKey = "" }) {
-  // If an API key is provided and valid format (sk-ant-...)
-  if (apiKey && apiKey.trim().startsWith("sk-ant-")) {
+  const effectiveKey = (apiKey && apiKey.trim()) || (typeof import.meta !== "undefined" && import.meta.env?.VITE_ANTHROPIC_API_KEY && import.meta.env.VITE_ANTHROPIC_API_KEY.trim()) || "";
+
+  // If a valid Claude API key is provided (sk-ant-...)
+  if (effectiveKey && effectiveKey.startsWith("sk-ant-")) {
     try {
       const base64Data = await fileToBase64(imageFile);
       const mediaType = imageFile.type || "image/jpeg";
@@ -246,10 +293,11 @@ export async function extractReceiptWithClaude({ imageFile, apiKey = "" }) {
       const response = await fetch("https://api.anthropic.com/v1/messages", {
         method: "POST",
         headers: {
-          "x-api-key": apiKey.trim(),
+          "x-api-key": effectiveKey,
           "anthropic-version": "2023-06-01",
           "content-type": "application/json",
-          "dangerously-allow-browser": "true" // Client-side direct call flag for Claude browser calls
+          "anthropic-dangerous-direct-browser-access": "true",
+          "dangerously-allow-browser": "true"
         },
         body: JSON.stringify({
           model: CLAUDE_MODELS.DEFAULT,
@@ -280,12 +328,12 @@ export async function extractReceiptWithClaude({ imageFile, apiKey = "" }) {
       if (response.ok) {
         const data = await response.json();
         const contentText = data.content?.[0]?.text || "{}";
-        // Parse JSON from text
         const cleanJsonStr = contentText.replace(/```json/g, "").replace(/```/g, "").trim();
         const parsed = JSON.parse(cleanJsonStr);
         return { success: true, source: "claude-api", data: parsed };
       } else {
-        console.warn("Claude API returned non-200, falling back to smart extractor", await response.text());
+        const errText = await response.text();
+        console.warn("Claude API returned non-200, falling back to smart local extractor:", errText);
       }
     } catch (err) {
       console.warn("Claude API call failed (CORS or network), using smart local extractor:", err);

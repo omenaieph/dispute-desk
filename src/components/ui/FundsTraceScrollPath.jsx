@@ -121,14 +121,14 @@ export default function FundsTraceScrollPath({ onStartDispute }) {
             <div className="w-full sm:w-5/12 order-2 sm:order-1 bg-slate-950/90 border border-slate-800 rounded-2xl p-4 sm:p-5 shadow-lg backdrop-blur-sm">
               <div className="flex items-center space-x-2 text-amber-400 text-xs font-bold uppercase tracking-wider mb-2">
                 <Clock className="w-4 h-4 flex-shrink-0" />
-                <span>Stage 3: 48-Hour Bank Legal Clock Starts</span>
+                <span>Stage 3: 48-Hour Resolution Window Starts</span>
               </div>
-              <h3 className="text-base font-bold text-white">The Bank Has 48 Hours to Act</h3>
+              <h3 className="text-base font-bold text-white">Typical 48-Hour Resolution Window</h3>
               <p className="text-xs text-slate-400 mt-1 leading-relaxed">
-                Your formal complaint lands in the bank's dispute desk, copying the Central Bank consumer protection team. A 48-hour countdown begins.
+                Your formal complaint lands in the bank's dispute desk with complete transaction parameters and regulatory escalation references.
               </p>
               <div className="mt-3 p-2 rounded bg-slate-900 border border-slate-800 text-[11px] font-mono text-amber-300">
-                Rule: Central Bank Consumer Protection Guidelines
+                Window: 24–48h Industry Standard (CBN / NFOSA Guidelines)
               </div>
             </div>
 
@@ -159,8 +159,8 @@ export default function FundsTraceScrollPath({ onStartDispute }) {
                 With the exact session proof and regulatory escalation attached, the bank resolves the issue. Your money returns safely to your balance.
               </p>
               <div className="mt-3 pt-2 border-t border-slate-800 flex items-center justify-between text-xs">
-                <span className="font-mono text-emerald-400 font-bold">+₦45,000.00 REFUNDED</span>
-                <span className="text-[10px] text-slate-400">Case Resolved</span>
+                <span className="font-mono text-emerald-400 font-bold">Goal: Refund Credited to Balance</span>
+                <span className="text-[10px] text-slate-400">Resolution Complete</span>
               </div>
             </div>
           </div>

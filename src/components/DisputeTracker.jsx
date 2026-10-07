@@ -100,11 +100,11 @@ export default function DisputeTracker({ disputes, setDisputes, onStartNewDisput
     const amount = `${primaryTx.currency === "ZAR" ? "R" : "₦"}${primaryTx.amount || "0.00"}`;
     const sentDate = dispute.sentAt ? new Date(dispute.sentAt).toLocaleDateString("en-GB") : "earlier";
 
-    const subject = `URGENT FOLLOW-UP: SLA Breached on Disputed ${dispute.issueType?.label || "Transaction"} [${amount}] — Ref: ${ref}`;
+    const subject = `URGENT FOLLOW-UP: Resolution Window Elapsed on Disputed ${dispute.issueType?.label || "Transaction"} [${amount}] — Ref: ${ref}`;
     const body = `ATTENTION: DISPUTE RESOLUTION UNIT, ${p.name || "PROVIDER"}
 Copy: Internal Escalation Supervisor
 
-RE: NOTICE OF SLA BREACH & SECOND FORMAL DEMAND
+RE: FOLLOW-UP ON UNRESOLVED TRANSACTION
 DISPUTE ID: ${dispute.id}
 PRIMARY REFERENCE: ${ref}
 
@@ -112,7 +112,7 @@ Dear Support Team,
 
 I refer to my formal dispute submitted on ${sentDate} regarding the failed transaction of ${amount} (Reference: ${ref}).
 
-Under statutory resolution regulations (${reg?.statutoryRef}), this matter was required to be investigated and resolved within ${p.slaLabel || "48 hours"}. That window has now lapsed without credit or satisfactory explanation.
+In accordance with applicable resolution guidelines (${reg?.statutoryRef}), the typical resolution window for this matter (${p.slaLabel || "48 hours"}) has now elapsed without credit or satisfactory explanation.
 
 Please be advised that this case is now queued for immediate regulatory escalation to:
 • Authority: ${reg?.name}
@@ -143,11 +143,11 @@ Contact: ${dispute.userEmail || ""} ${dispute.userPhone || ""}`;
 EMAIL: ${reg?.email}
 COPY: ${p.supportEmail || "Provider"}
 
-PETITION FOR REGULATORY INTERVENTION: STATUTORY TIMELINE DEFAULT
+PETITION FOR REGULATORY ESCALATION: UNRESOLVED TRANSACTION DISPUTE
 
 Dear Consumer Protection Directorate / Ombudsman,
 
-I hereby lodge an official consumer grievance against ${p.name || "the financial institution"} for failure to resolve an uncredited failed transaction and breach of mandatory resolution timelines.
+I hereby lodge an official consumer grievance against ${p.name || "the financial institution"} regarding an uncredited failed transaction that remains unresolved past the standard resolution timeframe.
 
 1. COMPLAINANT PARTICULARS:
 • Full Name: ${dispute.userName}
@@ -166,7 +166,7 @@ I hereby lodge an official consumer grievance against ${p.name || "the financial
 • Current Status: Debited without value delivery
 
 4. GROUNDS FOR REGULATORY INTERVENTION:
-I formally logged a dispute with ${p.name} on ${dispute.sentAt ? new Date(dispute.sentAt).toLocaleDateString("en-GB") : "N/A"}. The statutory resolution window (${p.slaLabel || "48 hours"}) has lapsed without refund, violating ${reg?.statutoryRef}.
+I formally logged a dispute with ${p.name} on ${dispute.sentAt ? new Date(dispute.sentAt).toLocaleDateString("en-GB") : "N/A"}. The typical resolution window (${p.slaLabel || "48 hours"}) has elapsed without refund, referenced against ${reg?.statutoryRef}.
 
 5. PRAYERS / RELIEF SOUGHT:
 I respectfully request that the Directorate:
@@ -220,10 +220,10 @@ ${dispute.userName}`;
             <span>Your Tracked Complaints</span>
           </div>
           <h2 className="text-xl sm:text-2xl font-bold text-slate-900 tracking-tight">
-            Complaint Tracker & Bank Deadlines
+            Complaint Tracker & Resolution Windows
           </h2>
           <p className="text-sm text-slate-600 mt-1">
-            Keep an eye on the bank's countdown timer. If they miss their deadline, send an urgent reminder or report them to the Central Bank with one click.
+            Keep track of typical bank resolution windows. If your case remains unresolved past the standard window, send a follow-up or report to consumer protection guidelines with one click.
           </p>
         </div>
 
@@ -264,7 +264,7 @@ ${dispute.userName}`;
             filter === 'breached' ? 'bg-white text-rose-700 shadow-2xs' : 'text-slate-600 hover:text-slate-900'
           }`}
         >
-          🚨 Bank Missed Deadline
+          🚨 Past Expected Window
         </button>
         <button
           type="button"
@@ -364,11 +364,11 @@ ${dispute.userName}`;
                       </span>
                     ) : deadline.isOverdue ? (
                       <span className="inline-flex items-center px-2.5 py-0.5 rounded-full bg-rose-50 text-rose-800 border border-rose-300 font-bold text-[11px]">
-                        <AlertOctagon className="w-3.5 h-3.5 mr-1 text-rose-600" /> DEADLINE MISSED ({deadline.text})
+                        <AlertOctagon className="w-3.5 h-3.5 mr-1 text-rose-600" /> PAST TARGET WINDOW ({deadline.text})
                       </span>
                     ) : (
                       <span className="inline-flex items-center px-2.5 py-0.5 rounded-full bg-sky-50 text-sky-800 border border-sky-200 font-semibold text-[11px]">
-                        <Clock className="w-3.5 h-3.5 mr-1 text-sky-600" /> Bank Has {deadline.text}
+                        <Clock className="w-3.5 h-3.5 mr-1 text-sky-600" /> {deadline.text} in target window
                       </span>
                     )}
 
@@ -381,7 +381,7 @@ ${dispute.userName}`;
 
                   {!isResolved && (
                     <span className="text-[11px] text-slate-500">
-                      Bank's Legal Deadline: <span className="font-semibold text-slate-700">{p.slaLabel || "48 Hours"}</span>
+                      Target Resolution Window: <span className="font-semibold text-slate-700">{p.slaLabel || "48 Hours"}</span>
                     </span>
                   )}
                 </div>
@@ -559,7 +559,7 @@ ${dispute.userName}`;
               return (
                 <div className="space-y-4">
                   <div className="p-3 bg-amber-50 border border-amber-200 rounded-lg text-xs text-amber-800">
-                    <strong>Official Regulatory Escalation:</strong> This formal report is addressed directly to <strong>{reg?.name}</strong> ({reg?.email}), reporting that the bank failed to resolve your issue within the legal deadline.
+                    <strong>Official Regulatory Escalation:</strong> This formal notice is addressed to <strong>{reg?.name}</strong> ({reg?.email}), reporting that the institution has not resolved the dispute within the expected window.
                   </div>
 
                   <div className="bg-slate-50 rounded-lg p-3 border border-slate-200 space-y-2">

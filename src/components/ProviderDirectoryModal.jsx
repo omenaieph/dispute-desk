@@ -40,7 +40,7 @@ export default function ProviderDirectoryModal({ isOpen, onClose, selectedCountr
               </h3>
             </div>
             <p className="text-xs text-slate-500 mt-0.5">
-              Verified customer dispute inboxes, WhatsApp support routes, and legal resolution deadlines.
+              Verified customer dispute inboxes, WhatsApp support routes, and typical resolution response windows.
             </p>
           </div>
 
@@ -127,7 +127,7 @@ export default function ProviderDirectoryModal({ isOpen, onClose, selectedCountr
                 </div>
 
                 <span className="text-[10px] px-2 py-0.5 rounded-full bg-slate-100 text-slate-700 font-semibold border border-slate-200">
-                  Legal Deadline: {provider.slaLabel}
+                  Typical Window: {provider.slaLabel}
                 </span>
               </div>
 

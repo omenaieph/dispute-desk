@@ -158,7 +158,7 @@ export default function InteractiveHeroWidget({ onSelectSample }) {
           {/* Quick Action Button */}
           <div className="mt-4 pt-3 border-t border-slate-100 flex flex-col sm:flex-row sm:items-center justify-between gap-2.5">
             <span className="text-xs text-slate-500 font-medium">
-              Bank's Legal Deadline: <strong className="text-slate-800">48 Hours to refund you</strong>
+              Typical Resolution Window: <strong className="text-slate-800">24–48 Hours (CBN Guidelines / Industry Standard)</strong>
             </span>
             <button
               type="button"

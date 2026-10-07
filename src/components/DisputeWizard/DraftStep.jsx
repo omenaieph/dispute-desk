@@ -83,7 +83,7 @@ export default function DraftStep({
             Review Your Formal Dispute Letter
           </h2>
           <p className="text-sm text-slate-600 mt-1">
-            Addressed to {provider?.name || "the bank's"} dispute unit with official banking rules and a legal 48-hour response deadline.
+            Addressed to {provider?.name || "the bank's"} dispute unit with complete transaction forensics and a typical 48-hour response window.
           </p>
         </div>
 
@@ -151,13 +151,13 @@ export default function DraftStep({
           </div>
           <div>
             <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider block">
-              Bank Legal Deadline
+              Target Resolution Window
             </span>
             <span className="text-xs font-bold text-emerald-800 block mt-0.5">
-              {provider?.slaLabel || "48 Hours"} Max
+              {provider?.slaLabel || "48 Hours"} Window
             </span>
             <span className="text-[11px] text-slate-500 block">
-              {regulator?.shortName} Mandate
+              {regulator?.shortName} Guidelines
             </span>
           </div>
         </div>

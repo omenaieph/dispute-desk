@@ -52,17 +52,17 @@ export default function BentoGrid({ onStartDispute }) {
             </div>
           </div>
 
-          {/* Card 2: Live SLA Engine (5 cols) */}
+          {/* Card 2: Expected Resolution Window (5 cols) */}
           <div className="md:col-span-5 bg-slate-50 border border-slate-200 rounded-2xl p-4 sm:p-6 flex flex-col justify-between shadow-2xs hover:border-slate-300 transition-all">
             <div>
               <div className="w-9 h-9 rounded-lg bg-sky-100 text-sky-800 flex items-center justify-center mb-3">
                 <Clock className="w-5 h-5 stroke-[2.2]" />
               </div>
               <h3 className="text-base font-bold text-slate-900">
-                Live Bank Deadline Timer
+                Resolution Window Countdown
               </h3>
               <p className="text-xs text-slate-600 mt-1 leading-relaxed">
-                Banks can't delay forever. The Central Bank gives them 48 to 72 hours to resolve failed transfers. We count down every hour until your refund is due.
+                Under Central Bank guidelines and standard operating procedures, banks aim to resolve inter-bank transfer claims within 48 to 72 hours. We help you track that window hour by hour.
               </p>
             </div>
 
@@ -70,14 +70,14 @@ export default function BentoGrid({ onStartDispute }) {
             <div className="mt-5 p-3.5 bg-white rounded-xl border border-slate-200/80 flex items-center justify-between">
               <div>
                 <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider block">
-                  Refund Countdown
+                  Refund Window
                 </span>
                 <span className="text-sm font-bold text-slate-900 font-mono">
                   14h 22m Remaining
                 </span>
               </div>
               <span className="text-[11px] font-semibold text-sky-800 bg-sky-50 px-2 py-0.5 rounded border border-sky-200">
-                48h Legal Deadline
+                Typical 48h Window
               </span>
             </div>
           </div>
@@ -89,10 +89,10 @@ export default function BentoGrid({ onStartDispute }) {
                 <ShieldAlert className="w-5 h-5 stroke-[2.2]" />
               </div>
               <h3 className="text-base font-bold text-slate-900">
-                One-Click Report to Central Bank (CBN)
+                Pre-Written Regulatory Escalation
               </h3>
               <p className="text-xs text-slate-600 mt-1 leading-relaxed">
-                If your bank ignores the deadline or drags its feet, you get a pre-written petition sent straight to the Central Bank of Nigeria or Banking Ombudsman.
+                If the bank fails to respond within the expected window, you get a pre-formatted petition ready to send directly to the Central Bank or Banking Ombudsman.
               </p>
             </div>
 
@@ -103,22 +103,22 @@ export default function BentoGrid({ onStartDispute }) {
               </div>
               <div className="flex flex-col sm:flex-row sm:justify-between text-slate-700 gap-0.5">
                 <span className="text-slate-500">🇿🇦 Banking Ombud:</span>
-                <strong className="text-emerald-700 break-all">info@nfosa.co.za</strong>
+                <strong className="text-emerald-700 break-all">info@nfosa.co.za (nfosa.co.za)</strong>
               </div>
             </div>
           </div>
 
-          {/* Card 4: Client-side Privacy Vault (7 cols) */}
+          {/* Card 4: Claude Privacy Vault (7 cols) */}
           <div className="md:col-span-7 bg-slate-50 border border-slate-200 rounded-2xl p-4 sm:p-6 flex flex-col justify-between shadow-2xs hover:border-slate-300 transition-all">
             <div>
               <div className="w-9 h-9 rounded-lg bg-slate-200 text-slate-800 flex items-center justify-center mb-3">
                 <Lock className="w-5 h-5 stroke-[2.2]" />
               </div>
               <h3 className="text-base font-bold text-slate-900">
-                Your Account Details Stay 100% Private
+                Receipts Read by Claude, Never Stored
               </h3>
               <p className="text-xs text-slate-600 mt-1 leading-relaxed">
-                We never save your receipts, statements, or banking logins on any server. Your account numbers are automatically masked so nobody can misuse your details.
+                Your receipt is sent directly to Claude's vision model for text extraction and is never stored on our database. Account numbers are automatically masked to the last 4 digits.
               </p>
             </div>
 

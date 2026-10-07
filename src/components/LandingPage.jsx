@@ -11,7 +11,6 @@ import {
 import { PROVIDERS } from '../data/providers';
 import { SAMPLE_RECEIPTS } from '../data/sampleReceipts';
 import Marquee from './ui/Marquee';
-import RecentResolutionsTicker from './ui/RecentResolutionsTicker';
 import InteractiveHeroWidget from './ui/InteractiveHeroWidget';
 import BeforeAfterCompare from './ui/BeforeAfterCompare';
 import BentoGrid from './ui/BentoGrid';
@@ -68,19 +67,19 @@ export default function LandingPage({ onStartDispute, onSelectSample, onOpenDire
   const faqs = [
     {
       q: "Why do bank customer care reps take so long to resolve failed transfers?",
-      a: "When you send a message like 'I transferred money and my friend didn't receive it', bank reps can't do anything without the hidden technical tracking code (called a Session ID or RRN). Most people don't know where to find this number on their receipt. Dispute Desk finds this code for you and writes an official letter that quotes the bank's legal deadline to refund you."
+      a: "When you send a message like 'I transferred money and my friend didn't receive it', bank reps can't do anything without technical tracking numbers (like a Session ID or RRN). Most people don't know where to find this number on their receipt. Dispute Desk extracts this code for you and writes a clear, complete complaint that quotes standard banking resolution windows."
     },
     {
       q: "Is my personal bank account information safe?",
-      a: "100% safe. We never ask for your bank password, PIN, or BVN. Receipts are scanned privately on your own device and never saved to any database. Your account numbers are always masked (like 'ending in ***4192') so your privacy is protected."
+      a: "Yes. We never ask for your bank password, PIN, or BVN. Receipts are processed via Claude's vision model and never stored on our database. Your account numbers are automatically masked (like 'ending in ***4192') so your privacy is protected."
     },
     {
-      q: "What happens if my bank doesn't refund me before the deadline?",
-      a: "By law, banks have 48 to 72 hours to resolve failed transfers. Dispute Desk tracks this deadline hour by hour. If your bank ignores you or delays, you get a one-click button to report them directly to the Central Bank of Nigeria (cpd@cbn.gov.ng) or the South African Banking Ombudsman (info@nfosa.co.za)."
+      q: "What happens if my bank doesn't refund me within the expected window?",
+      a: "Under regulatory frameworks like the CBN Consumer Protection Guidelines and the South African Code of Banking Practice, banks target 48 to 72 hours for inter-bank dispute resolution. Dispute Desk tracks this expected response window. If the bank fails to respond, you can escalate your case directly to the relevant regulatory ombudsman (cpd@cbn.gov.ng for Nigeria, or info@nfosa.co.za / nfosa.co.za for South Africa)."
     },
     {
       q: "Which banks and mobile apps does this work with?",
-      a: "Over 16 major banks and payment apps across Nigeria and South Africa, including OPay, Moniepoint, PalmPay, Kuda, GTBank, Zenith, Access, FirstBank, UBA, Stanbic IBTC, Capitec, FNB, TymeBank, Nedbank, Standard Bank, and Discovery Bank."
+      a: "Major banks and payment apps across Nigeria and South Africa, including OPay, Moniepoint, PalmPay, Kuda, GTBank, Zenith, Access, FirstBank, UBA, Stanbic IBTC, Capitec, FNB, TymeBank, Nedbank, Standard Bank, and Discovery Bank."
     },
     {
       q: "Do I have to pay to use Dispute Desk?",
@@ -94,9 +93,14 @@ export default function LandingPage({ onStartDispute, onSelectSample, onOpenDire
       <section className="relative overflow-hidden pt-10 pb-16 border-b border-slate-200 bg-[radial-gradient(#e2e8f0_1px,transparent_1px)] [background-size:24px_24px]">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-3xl mx-auto">
-            {/* Live Resolutions Ticker Pill */}
+            {/* Mission & Claude Indicator */}
             <div className="mb-5 flex justify-center">
-              <RecentResolutionsTicker />
+              <div className="inline-flex items-center space-x-2 px-3.5 py-1 rounded-full text-xs font-semibold bg-emerald-50 text-emerald-850 border border-emerald-200 shadow-2xs">
+                <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+                <span>Advocate for Failed African Fintech Debits</span>
+                <span className="text-slate-300">•</span>
+                <span className="text-emerald-700 font-medium">Powered by Claude</span>
+              </div>
             </div>
 
             {/* Creative Stylish Headline */}
@@ -159,10 +163,10 @@ export default function LandingPage({ onStartDispute, onSelectSample, onOpenDire
                 <CheckCircle2 className="w-4 h-4 text-emerald-600 mr-1.5" /> Takes under 60 seconds
               </span>
               <span className="flex items-center">
-                <CheckCircle2 className="w-4 h-4 text-emerald-600 mr-1.5" /> Direct to real bank dispute teams (not bots)
+                <CheckCircle2 className="w-4 h-4 text-emerald-600 mr-1.5" /> Formatted for real bank dispute teams
               </span>
               <span className="flex items-center">
-                <CheckCircle2 className="w-4 h-4 text-emerald-600 mr-1.5" /> Backed by Central Bank refund deadlines
+                <CheckCircle2 className="w-4 h-4 text-emerald-600 mr-1.5" /> Referenced against Central Bank dispute guidelines
               </span>
             </div>
           </div>
@@ -195,7 +199,7 @@ export default function LandingPage({ onStartDispute, onSelectSample, onOpenDire
                 Full Coverage
               </span>
               <h2 className="mt-1 text-2xl font-extrabold text-slate-900 tracking-tight">
-                Verified Banks, Fintechs & Regulatory Authorities
+                Supported Banks, Fintechs & Regulatory Ombudsmen
               </h2>
             </div>
             <button
@@ -203,7 +207,7 @@ export default function LandingPage({ onStartDispute, onSelectSample, onOpenDire
               onClick={onOpenDirectory}
               className="text-xs font-semibold text-emerald-700 hover:text-emerald-800 flex items-center"
             >
-              <span>View complete directory with SLA terms</span>
+              <span>View complete directory with response windows</span>
               <ArrowRight className="w-3.5 h-3.5 ml-1" />
             </button>
           </div>
@@ -231,7 +235,7 @@ export default function LandingPage({ onStartDispute, onSelectSample, onOpenDire
                 </h4>
               </div>
               <p className="text-xs text-slate-600 leading-relaxed">
-                Mandates immediate reversal for intra-bank transfers and a maximum of 48–72 hours for inter-bank NIP transfers under the Consumer Protection Regulations 2019.
+                Guidelines target immediate reversal for intra-bank transfers and 48–72 hours for inter-bank NIP transfers under the CBN Consumer Protection Framework (Circular on Failed Transactions).
               </p>
               <div className="text-[11px] font-mono text-emerald-700 font-semibold">
                 Official Escalation: cpd@cbn.gov.ng
@@ -246,10 +250,10 @@ export default function LandingPage({ onStartDispute, onSelectSample, onOpenDire
                 </h4>
               </div>
               <p className="text-xs text-slate-600 leading-relaxed">
-                Enforces the South African Code of Banking Practice, requiring institutions to resolve payment dispensation claims within mandatory investigation windows.
+                The National Financial Ombud Scheme South Africa (NFOSA — nfosa.co.za) investigates unresolved banking disputes under the SA Code of Banking Practice when institutions fail to resolve customer claims within standard windows.
               </p>
               <div className="text-[11px] font-mono text-emerald-700 font-semibold">
-                Official Escalation: info@nfosa.co.za
+                Official Escalation: info@nfosa.co.za (nfosa.co.za)
               </div>
             </div>
           </div>
@@ -304,7 +308,7 @@ export default function LandingPage({ onStartDispute, onSelectSample, onOpenDire
             Don't let your money stay stuck.
           </h2>
           <p className="text-sm sm:text-base text-slate-400 max-w-xl mx-auto">
-            Take 60 seconds to draft a firm, verified complaint that banks cannot ignore.
+            Take 60 seconds to draft a clear, complete complaint that’s hard to ignore.
           </p>
           <div className="pt-2">
             <button

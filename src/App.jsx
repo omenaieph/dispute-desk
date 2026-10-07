@@ -174,10 +174,10 @@ export default function App() {
 
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 mt-4 pt-4 border-t border-slate-100 flex flex-col sm:flex-row items-center justify-between gap-2 text-[11px] text-slate-400 text-center sm:text-left">
           <p>
-            Complies with Central Bank of Nigeria (CBN) Consumer Protection Regulations 2019 & SA National Financial Ombud Scheme guidelines.
+            Referenced against Central Bank of Nigeria (CBN) Consumer Protection Framework & SA National Financial Ombud Scheme (NFOSA, nfosa.co.za) guidance.
           </p>
           <p>
-            Client-side forensic parsing · Zero remote database storage · Account numbers masked to last 4 digits
+            Receipts are read by Claude and never stored on our servers · Account numbers masked to last 4 digits
           </p>
         </div>
       </footer>

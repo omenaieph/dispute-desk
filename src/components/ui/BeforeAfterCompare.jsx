@@ -13,7 +13,7 @@ export default function BeforeAfterCompare({ onStartDispute }) {
             The difference between waiting weeks and getting your money back
           </h2>
           <p className="mt-2 text-sm text-slate-600">
-            Normal support chats get ignored because reps can't trace your money. Dispute Desk writes an official formal complaint that bank managers take seriously.
+            Normal support chats get delayed because reps can't trace your money without key identifiers. Dispute Desk formats a clear, complete complaint that gives the bank everything they need.
           </p>
         </div>
 
@@ -54,7 +54,7 @@ export default function BeforeAfterCompare({ onStartDispute }) {
 
             <div className="mt-6 pt-3 border-t border-rose-100 text-xs text-rose-700 font-medium flex items-center">
               <AlertCircle className="w-4 h-4 mr-1.5 flex-shrink-0" />
-              <span>Result: Vague message gets lost. Weeks of anxiety and useless back-and-forth.</span>
+              <span>Result: Vague message gets lost in queues. Weeks of anxiety and repetitive bot responses.</span>
             </div>
           </div>
 
@@ -64,10 +64,10 @@ export default function BeforeAfterCompare({ onStartDispute }) {
               <div className="flex items-center justify-between pb-3 border-b border-emerald-100">
                 <div className="flex items-center space-x-2 text-emerald-800">
                   <CheckCircle2 className="w-5 h-5 flex-shrink-0 text-emerald-600" />
-                  <span className="font-bold text-sm">Dispute Desk Official Notice</span>
+                  <span className="font-bold text-sm">Dispute Desk Formatted Notice</span>
                 </div>
                 <span className="text-[11px] font-semibold text-emerald-800 bg-emerald-50 px-2 py-0.5 rounded border border-emerald-200">
-                  Priority Action
+                  Ready for Action
                 </span>
               </div>
 
@@ -83,13 +83,13 @@ export default function BeforeAfterCompare({ onStartDispute }) {
                   <br />
                   Tracking / Session ID: <span className="text-emerald-300 break-all">100004241006143218009214</span>
                   <br />
-                  Under CBN regulations, banks must reverse failed transfers within 48 hours. If not reversed by Thursday, this complaint escalates directly to regulatory investigation.
+                  Referencing Central Bank guidelines on failed electronic transactions (target 48–72h resolution). If unaddressed within this window, this dispute will be escalated to the Consumer Protection Department.
                 </p>
 
                 <div className="mt-2 p-2 rounded bg-slate-950 border border-slate-800 flex items-center justify-between text-[10px]">
-                  <span className="text-slate-400">Response Deadline:</span>
+                  <span className="text-slate-400">Resolution Target:</span>
                   <span className="text-emerald-400 font-bold flex items-center">
-                    <Clock className="w-3 h-3 mr-1" /> 48 Hours Live Countdown
+                    <Clock className="w-3 h-3 mr-1" /> 48 Hours Expected Window
                   </span>
                 </div>
               </div>
@@ -98,7 +98,7 @@ export default function BeforeAfterCompare({ onStartDispute }) {
             <div className="mt-6 pt-3 border-t border-emerald-100 text-xs text-emerald-800 font-medium flex items-center justify-between">
               <span className="flex items-center">
                 <CheckCircle2 className="w-4 h-4 mr-1.5 flex-shrink-0 text-emerald-600" />
-                Result: Your issue jumps the queue. Handled directly by senior dispute reps.
+                Result: A clear, complete complaint that's hard to ignore, giving reps the exact technical data they need to trace your money.
               </span>
             </div>
           </div>

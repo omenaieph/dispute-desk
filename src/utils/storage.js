@@ -148,9 +148,18 @@ export function deleteDispute(id) {
 export function getStoredSettings() {
   try {
     const raw = localStorage.getItem(STORAGE_KEYS.SETTINGS);
-    return raw ? JSON.parse(raw) : { apiKey: "", country: "NG", proxyUrl: "" };
+    const parsed = raw ? JSON.parse(raw) : {};
+    return {
+      apiKey: parsed.apiKey || (typeof import.meta !== "undefined" && import.meta.env?.VITE_ANTHROPIC_API_KEY) || "",
+      country: parsed.country || "NG",
+      proxyUrl: parsed.proxyUrl || ""
+    };
   } catch {
-    return { apiKey: "", country: "NG", proxyUrl: "" };
+    return {
+      apiKey: (typeof import.meta !== "undefined" && import.meta.env?.VITE_ANTHROPIC_API_KEY) || "",
+      country: "NG",
+      proxyUrl: ""
+    };
   }
 }
 
