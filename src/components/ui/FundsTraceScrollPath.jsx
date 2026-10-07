@@ -28,13 +28,13 @@ export default function FundsTraceScrollPath({ onStartDispute }) {
         <div className="text-center max-w-2xl mx-auto mb-16">
           <div className="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-slate-800 border border-slate-700 text-xs text-emerald-400 font-medium mb-3">
             <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
-            <span>Forensic Settlement Trace</span>
+            <span>How Your Money Gets Recovered</span>
           </div>
           <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight">
-            Follow the path of your <span className="text-emerald-400">stuck funds</span>
+            Follow the path of your <span className="text-emerald-400">stuck money</span>
           </h2>
           <p className="mt-3 text-sm sm:text-base text-slate-400">
-            Scroll down to watch how Dispute Desk tracks your transaction from payment switch failure to statutory reversal.
+            Scroll down to see what happens when a transfer fails and how Dispute Desk gets your money back into your account.
           </p>
         </div>
 
@@ -73,14 +73,14 @@ export default function FundsTraceScrollPath({ onStartDispute }) {
             <div className="sm:w-5/12 bg-slate-950/90 border border-slate-800 rounded-2xl p-5 shadow-lg backdrop-blur-sm">
               <div className="flex items-center space-x-2 text-rose-400 text-xs font-bold uppercase tracking-wider mb-2">
                 <AlertCircle className="w-4 h-4 flex-shrink-0" />
-                <span>Stage 1: The Stuck Debit</span>
+                <span>Stage 1: Money Left Your Account</span>
               </div>
-              <h3 className="text-base font-bold text-white">Funds leave your account</h3>
+              <h3 className="text-base font-bold text-white">Funds debited, but not received</h3>
               <p className="text-xs text-slate-400 mt-1 leading-relaxed">
-                You receive a debit alert of ₦45,000, but the recipient's bank account receives zero credit. The money is lodged in interbank transit.
+                You receive a debit alert of ₦45,000, but the person you sent it to never receives a dime. Your money is stuck in transit between banks.
               </p>
               <div className="mt-3 p-2 rounded bg-slate-900 border border-slate-800 text-[11px] font-mono text-slate-300">
-                Status: Debited at Origin / Uncredited
+                Status: Debited from you / Not delivered
               </div>
             </div>
 
@@ -104,11 +104,11 @@ export default function FundsTraceScrollPath({ onStartDispute }) {
             <div className="sm:w-5/12 bg-slate-950/90 border border-slate-800 rounded-2xl p-5 shadow-lg backdrop-blur-sm">
               <div className="flex items-center space-x-2 text-cyan-400 text-xs font-bold uppercase tracking-wider mb-2">
                 <Search className="w-4 h-4 flex-shrink-0" />
-                <span>Stage 2: Switch Forensic Scan</span>
+                <span>Stage 2: We Find the Tracking Code</span>
               </div>
-              <h3 className="text-base font-bold text-white">Session ID & Trace Locked</h3>
+              <h3 className="text-base font-bold text-white">Session ID & Reference Number Found</h3>
               <p className="text-xs text-slate-400 mt-1 leading-relaxed">
-                Dispute Desk extracts the 24-digit NIP Session ID or terminal STAN code from your screenshot. Without this code, banks discard complaints.
+                Dispute Desk reads the 24-digit Session ID or reference code from your receipt screenshot. Without this code, bank support usually ignores complaints.
               </p>
               <div className="mt-3 p-2 rounded bg-slate-900 border border-slate-800 text-[11px] font-mono text-cyan-300 truncate">
                 Session: 100004241006143218009214
@@ -121,14 +121,14 @@ export default function FundsTraceScrollPath({ onStartDispute }) {
             <div className="sm:w-5/12 bg-slate-950/90 border border-slate-800 rounded-2xl p-5 shadow-lg backdrop-blur-sm">
               <div className="flex items-center space-x-2 text-amber-400 text-xs font-bold uppercase tracking-wider mb-2">
                 <Clock className="w-4 h-4 flex-shrink-0" />
-                <span>Stage 3: Legal Reversal Mandate</span>
+                <span>Stage 3: 48-Hour Bank Legal Clock Starts</span>
               </div>
-              <h3 className="text-base font-bold text-white">48-Hour Statutory Clock</h3>
+              <h3 className="text-base font-bold text-white">The Bank Has 48 Hours to Act</h3>
               <p className="text-xs text-slate-400 mt-1 leading-relaxed">
-                The formal complaint lands in the verified dispute desk inbox, CC'ing the Central Bank of Nigeria Consumer Protection Dept. A 48h timer begins.
+                Your formal complaint lands in the bank's dispute desk, copying the Central Bank consumer protection team. A 48-hour countdown begins.
               </p>
               <div className="mt-3 p-2 rounded bg-slate-900 border border-slate-800 text-[11px] font-mono text-amber-300">
-                Rule: CBN Consumer Regulations 2019
+                Rule: Central Bank Consumer Protection Guidelines
               </div>
             </div>
 
@@ -152,11 +152,11 @@ export default function FundsTraceScrollPath({ onStartDispute }) {
             <div className="sm:w-5/12 bg-gradient-to-br from-slate-900 to-emerald-950/40 border border-emerald-500/40 rounded-2xl p-5 shadow-xl backdrop-blur-sm">
               <div className="flex items-center space-x-2 text-emerald-400 text-xs font-bold uppercase tracking-wider mb-2">
                 <CheckCircle2 className="w-4 h-4 flex-shrink-0" />
-                <span>Stage 4: Reversal Credited</span>
+                <span>Stage 4: Money Refunded to Your Account</span>
               </div>
-              <h3 className="text-base font-bold text-white">Money Back in Your Account</h3>
+              <h3 className="text-base font-bold text-white">Full Refund Credited</h3>
               <p className="text-xs text-slate-300 mt-1 leading-relaxed">
-                Faced with verified session proof and regulatory escalation risk, the bank processes the reversal voucher. Funds return safely to your balance.
+                With the exact session proof and regulatory escalation attached, the bank resolves the issue. Your money returns safely to your balance.
               </p>
               <div className="mt-3 pt-2 border-t border-slate-800 flex items-center justify-between text-xs">
                 <span className="font-mono text-emerald-400 font-bold">+₦45,000.00 REFUNDED</span>
@@ -173,7 +173,7 @@ export default function FundsTraceScrollPath({ onStartDispute }) {
             onClick={onStartDispute}
             className="px-7 py-3.5 rounded-xl text-sm font-bold bg-emerald-500 hover:bg-emerald-400 text-slate-950 transition-all shadow-lg shadow-emerald-500/20 inline-flex items-center space-x-2"
           >
-            <span>Start Tracking Your Stuck Funds</span>
+            <span>Recover Your Stuck Money Now</span>
             <ArrowRight className="w-4 h-4" />
           </button>
         </div>

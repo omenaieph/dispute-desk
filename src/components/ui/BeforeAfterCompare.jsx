@@ -10,10 +10,10 @@ export default function BeforeAfterCompare({ onStartDispute }) {
             Why It Works
           </span>
           <h2 className="mt-1 text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">
-            The difference between waiting weeks and getting resolved
+            The difference between waiting weeks and getting your money back
           </h2>
           <p className="mt-2 text-sm text-slate-600">
-            Banks treat vague support messages as inquiries. They treat Dispute Desk letters as regulatory compliance notices.
+            Normal support chats get ignored because reps can't trace your money. Dispute Desk writes an official formal complaint that bank managers take seriously.
           </p>
         </div>
 
@@ -24,10 +24,10 @@ export default function BeforeAfterCompare({ onStartDispute }) {
               <div className="flex items-center justify-between pb-3 border-b border-rose-100">
                 <div className="flex items-center space-x-2 text-rose-700">
                   <XCircle className="w-5 h-5 flex-shrink-0" />
-                  <span className="font-bold text-sm">Regular Support Email / Chat</span>
+                  <span className="font-bold text-sm">Normal Support Email or Bot Chat</span>
                 </div>
                 <span className="text-[11px] font-semibold text-rose-600 bg-rose-50 px-2 py-0.5 rounded border border-rose-200">
-                  Ignored or Delayed
+                  Delayed or Ignored
                 </span>
               </div>
 
@@ -36,25 +36,25 @@ export default function BeforeAfterCompare({ onStartDispute }) {
                 {/* User message */}
                 <div className="bg-slate-100 rounded-xl rounded-tr-none p-3 text-slate-800 ml-6">
                   <p className="font-semibold text-slate-900 mb-0.5">You:</p>
-                  "Good day please, I was debited ₦45,000 since yesterday afternoon and recipient didn't get it. Please help reverse my money."
+                  "Good day, I was debited ₦45,000 yesterday and the person didn't receive it. Please help reverse my money."
                 </div>
 
                 {/* Bank automated bot reply */}
                 <div className="bg-rose-50/60 border border-rose-100 rounded-xl rounded-tl-none p-3 text-slate-700 mr-6">
-                  <p className="font-bold text-rose-800 mb-0.5">Bank Support Bot:</p>
-                  "Thank you for reaching out! Ticket #99104 is queued. Due to heavy traffic, our settlement team will investigate within 7–14 business days."
+                  <p className="font-bold text-rose-800 mb-0.5">Automated Bank Bot:</p>
+                  "Thank you for contacting us! Ticket #99104 is queued. Due to high volume, our team will investigate within 7–14 business days."
                 </div>
 
                 {/* 5 days later */}
                 <div className="p-2.5 rounded-lg bg-slate-50 border border-slate-200 text-center text-[11px] text-slate-500 font-mono">
-                  ⏳ 5 days passed with no update • Recipient still unpaid
+                  ⏳ 5 days pass with no update • Recipient still unpaid
                 </div>
               </div>
             </div>
 
             <div className="mt-6 pt-3 border-t border-rose-100 text-xs text-rose-700 font-medium flex items-center">
               <AlertCircle className="w-4 h-4 mr-1.5 flex-shrink-0" />
-              <span>Result: Vague claim discarded. Weeks of anxiety and follow-ups.</span>
+              <span>Result: Vague message gets lost. Weeks of anxiety and useless back-and-forth.</span>
             </div>
           </div>
 
@@ -64,32 +64,32 @@ export default function BeforeAfterCompare({ onStartDispute }) {
               <div className="flex items-center justify-between pb-3 border-b border-emerald-100">
                 <div className="flex items-center space-x-2 text-emerald-800">
                   <CheckCircle2 className="w-5 h-5 flex-shrink-0 text-emerald-600" />
-                  <span className="font-bold text-sm">Dispute Desk Statutory Docket</span>
+                  <span className="font-bold text-sm">Dispute Desk Official Notice</span>
                 </div>
                 <span className="text-[11px] font-semibold text-emerald-800 bg-emerald-50 px-2 py-0.5 rounded border border-emerald-200">
-                  Legally Binding SLA
+                  Priority Action
                 </span>
               </div>
 
               {/* Letter Preview */}
               <div className="mt-4 bg-slate-900 text-white rounded-xl p-4 text-xs font-mono space-y-2">
                 <div className="flex items-center justify-between text-[11px] pb-1 border-b border-slate-800">
-                  <span className="text-emerald-400 font-bold">TO: Internal Disputes & Legal Desk</span>
-                  <span className="text-cyan-300">CC: cpd@cbn.gov.ng</span>
+                  <span className="text-emerald-400 font-bold">DIRECT TO: Bank's Dispute & Reversals Desk</span>
+                  <span className="text-cyan-300">CC: Central Bank (cpd@cbn.gov.ng)</span>
                 </div>
 
                 <p className="text-slate-200 text-[11px] leading-relaxed pt-1">
-                  <strong>SUBJECT: FORMAL DISPUTE NOTICE</strong> [₦45,000.00]
+                  <strong>SUBJECT: FORMAL TRANSACTION DISPUTE</strong> [₦45,000.00]
                   <br />
-                  Session ID: <span className="text-emerald-300">100004241006143218009214</span>
+                  Tracking / Session ID: <span className="text-emerald-300">100004241006143218009214</span>
                   <br />
-                  Under CBN Consumer Protection Directive 2019, failure to reverse by Thursday 14:00 triggers statutory regulatory penalties.
+                  Under CBN regulations, banks must reverse failed transfers within 48 hours. If not reversed by Thursday, this complaint escalates directly to regulatory investigation.
                 </p>
 
                 <div className="mt-2 p-2 rounded bg-slate-950 border border-slate-800 flex items-center justify-between text-[10px]">
-                  <span className="text-slate-400">Statutory Countdown:</span>
+                  <span className="text-slate-400">Response Deadline:</span>
                   <span className="text-emerald-400 font-bold flex items-center">
-                    <Clock className="w-3 h-3 mr-1" /> 48 Hours Live SLA
+                    <Clock className="w-3 h-3 mr-1" /> 48 Hours Live Countdown
                   </span>
                 </div>
               </div>
@@ -98,7 +98,7 @@ export default function BeforeAfterCompare({ onStartDispute }) {
             <div className="mt-6 pt-3 border-t border-emerald-100 text-xs text-emerald-800 font-medium flex items-center justify-between">
               <span className="flex items-center">
                 <CheckCircle2 className="w-4 h-4 mr-1.5 flex-shrink-0 text-emerald-600" />
-                Result: Prioritized resolution & automated ombudsman escalation.
+                Result: Your issue jumps the queue. Handled directly by senior dispute reps.
               </span>
             </div>
           </div>

@@ -17,6 +17,47 @@ import BeforeAfterCompare from './ui/BeforeAfterCompare';
 import BentoGrid from './ui/BentoGrid';
 import FundsTraceScrollPath from './ui/FundsTraceScrollPath';
 
+function StylishReceiptIcon({ className = "w-6 h-7" }) {
+  return (
+    <svg
+      viewBox="0 0 28 34"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      className={className}
+    >
+      {/* Paper drop shadow */}
+      <path
+        d="M3 2.5C3 1.67157 3.67157 1 4.5 1H23.5C24.3284 1 25 1.67157 25 2.5V31.5L22 29.5L18.5 31.5L15 29.5L11.5 31.5L8 29.5L4.5 31.5L3 30V2.5Z"
+        fill="#0F172A"
+        fillOpacity="0.08"
+        transform="translate(1, 1)"
+      />
+      {/* Paper body */}
+      <path
+        d="M3 2.5C3 1.67157 3.67157 1 4.5 1H23.5C24.3284 1 25 1.67157 25 2.5V31.5L22 29.5L18.5 31.5L15 29.5L11.5 31.5L8 29.5L4.5 31.5L3 30V2.5Z"
+        fill="#FFFFFF"
+        stroke="#0F172A"
+        strokeWidth="1.75"
+        strokeLinejoin="round"
+      />
+      {/* Bank header bar (Emerald) */}
+      <rect x="6" y="4.5" width="9" height="2.5" rx="1" fill="#10B981" />
+      <circle cx="21" cy="5.75" r="1.25" fill="#94A3B8" />
+      {/* Perforated receipt dashed line */}
+      <line x1="5.5" y1="10" x2="22.5" y2="10" stroke="#CBD5E1" strokeWidth="1.25" strokeDasharray="2 2" strokeLinecap="round" />
+      {/* Transaction lines */}
+      <line x1="6" y1="14" x2="16" y2="14" stroke="#334155" strokeWidth="1.5" strokeLinecap="round" />
+      <line x1="19" y1="14" x2="22" y2="14" stroke="#0F172A" strokeWidth="1.5" strokeLinecap="round" />
+      <line x1="6" y1="17.5" x2="13" y2="17.5" stroke="#64748B" strokeWidth="1.25" strokeLinecap="round" />
+      <line x1="18" y1="17.5" x2="22" y2="17.5" stroke="#64748B" strokeWidth="1.25" strokeLinecap="round" />
+      <line x1="6" y1="21" x2="11" y2="21" stroke="#94A3B8" strokeWidth="1.25" strokeLinecap="round" />
+      {/* Green circular success stamp with checkmark */}
+      <circle cx="19" cy="22" r="4.25" fill="#10B981" stroke="#FFFFFF" strokeWidth="1.5" />
+      <path d="M17.2 22L18.4 23.2L20.8 20.8" stroke="#FFFFFF" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
+  );
+}
+
 export default function LandingPage({ onStartDispute, onSelectSample, onOpenDirectory }) {
   const [openFaq, setOpenFaq] = useState(null);
 
@@ -26,24 +67,24 @@ export default function LandingPage({ onStartDispute, onSelectSample, onOpenDire
 
   const faqs = [
     {
-      q: "Why do banks and fintechs ignore my regular customer care emails?",
-      a: "Customer care inboxes receive millions of vague emails like 'my money didn't deliver'. Without the interbank session ID, RRN trace, or terminal STAN, customer reps cannot locate switch logs. Dispute Desk extracts forensic proof and formats it into statutory complaint letters with regulatory references that banks are legally required to resolve."
+      q: "Why do bank customer care reps take so long to resolve failed transfers?",
+      a: "When you send a message like 'I transferred money and my friend didn't receive it', bank reps can't do anything without the hidden technical tracking code (called a Session ID or RRN). Most people don't know where to find this number on their receipt. Dispute Desk finds this code for you and writes an official letter that quotes the bank's legal deadline to refund you."
     },
     {
-      q: "Is my personal banking data and account information secure?",
-      a: "100% secure. Dispute Desk processes receipts entirely in-memory on your device. We do not store your receipts, statements, or identity on remote databases. All account numbers and PANs are strictly masked to the last 4 digits (e.g. ending ***4192)."
+      q: "Is my personal bank account information safe?",
+      a: "100% safe. We never ask for your bank password, PIN, or BVN. Receipts are scanned privately on your own device and never saved to any database. Your account numbers are always masked (like 'ending in ***4192') so your privacy is protected."
     },
     {
-      q: "What happens if the bank fails to reverse my money before their SLA expires?",
-      a: "Dispute Desk tracks response deadlines down to the hour. If the institution breaches their mandatory resolution window (e.g., 48–72 hours under CBN regulations in Nigeria or 20 days under the SA Code of Banking Practice), Dispute Desk unlocks a one-tap petition directly to the Central Bank of Nigeria (cpd@cbn.gov.ng) or the South African National Financial Ombud Scheme (info@nfosa.co.za)."
+      q: "What happens if my bank doesn't refund me before the deadline?",
+      a: "By law, banks have 48 to 72 hours to resolve failed transfers. Dispute Desk tracks this deadline hour by hour. If your bank ignores you or delays, you get a one-click button to report them directly to the Central Bank of Nigeria (cpd@cbn.gov.ng) or the South African Banking Ombudsman (info@nfosa.co.za)."
     },
     {
-      q: "Which banks and fintech apps are currently supported?",
-      a: "We support over 16 major institutions across Nigeria and South Africa, including OPay, Moniepoint, PalmPay, Kuda, GTBank, Zenith, Access, FirstBank, UBA, Stanbic IBTC, Capitec, FNB, TymeBank, Nedbank, Standard Bank, and Discovery Bank."
+      q: "Which banks and mobile apps does this work with?",
+      a: "Over 16 major banks and payment apps across Nigeria and South Africa, including OPay, Moniepoint, PalmPay, Kuda, GTBank, Zenith, Access, FirstBank, UBA, Stanbic IBTC, Capitec, FNB, TymeBank, Nedbank, Standard Bank, and Discovery Bank."
     },
     {
-      q: "Does Dispute Desk charge any fees to file a complaint?",
-      a: "Dispute Desk v1 is completely free for everyday consumers and small merchants seeking resolution for stuck transactions."
+      q: "Do I have to pay to use Dispute Desk?",
+      a: "No, Dispute Desk is completely free for everyday people looking to recover their stuck funds."
     }
   ];
 
@@ -58,14 +99,36 @@ export default function LandingPage({ onStartDispute, onSelectSample, onOpenDire
               <RecentResolutionsTicker />
             </div>
 
-            {/* Headline */}
-            <h1 className="text-4xl sm:text-5xl md:text-6xl font-extrabold text-slate-900 tracking-tight leading-[1.12]">
-              Money stuck? Turn failed debits into <span className="text-emerald-700 underline decoration-emerald-300 decoration-wavy decoration-2">refunds in 60 seconds</span>.
+            {/* Creative Stylish Headline */}
+            <h1 className="text-4xl sm:text-5xl md:text-6xl font-extrabold text-slate-900 tracking-tight leading-[1.18] max-w-4xl mx-auto">
+              <span className="block sm:inline">Money stuck? </span>
+              <span className="text-slate-900">Turn failed debits </span>
+              {/* Custom stylish receipt sticker element replacing traditional heart/emoji */}
+              <span
+                onClick={onStartDispute}
+                className="inline-flex items-center align-middle mx-1 sm:mx-1.5 px-2.5 py-1 sm:px-3 sm:py-1.5 rounded-2xl bg-white border border-slate-200 shadow-sm shadow-slate-900/5 -rotate-2 hover:rotate-0 hover:scale-105 transition-all duration-200 cursor-pointer group select-none"
+                title="Upload receipt screenshot to recover funds"
+              >
+                <StylishReceiptIcon className="w-5 h-6 sm:w-6 sm:h-7 mr-1.5 group-hover:-rotate-3 transition-transform flex-shrink-0" />
+                <span className="text-xs sm:text-sm font-bold font-mono text-slate-800 tracking-tight group-hover:text-emerald-700 transition-colors">
+                  Receipt
+                </span>
+                <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse ml-1.5" />
+              </span>
+              <span className="text-slate-900"> into </span>
+              <span className="bg-gradient-to-r from-emerald-600 via-teal-600 to-emerald-700 bg-clip-text text-transparent font-black">
+                refunds
+              </span>
+              <span className="text-slate-900"> in </span>
+              <span className="inline-flex items-center text-slate-900 font-extrabold">
+                <span className="underline decoration-emerald-400 decoration-wavy decoration-2">60 seconds</span>
+              </span>
+              .
             </h1>
 
             {/* Subhead */}
             <p className="mt-4 text-base sm:text-lg text-slate-600 leading-relaxed max-w-2xl mx-auto font-normal">
-              Stop waiting on unanswered support chats. Upload your receipt, extract forensic session IDs, and generate a legally backed complaint with statutory response countdowns.
+              Sent money and the recipient never got it? Debited twice at a POS supermarket? Upload your receipt. We find your hidden tracking number, email the exact team at your bank, and start an official countdown for your refund.
             </p>
 
             {/* CTAs */}
@@ -93,13 +156,13 @@ export default function LandingPage({ onStartDispute, onSelectSample, onOpenDire
             {/* Micro Trust Strip */}
             <div className="mt-6 flex flex-wrap items-center justify-center gap-6 text-xs text-slate-500">
               <span className="flex items-center">
-                <CheckCircle2 className="w-4 h-4 text-emerald-600 mr-1.5" /> Under 60 seconds
+                <CheckCircle2 className="w-4 h-4 text-emerald-600 mr-1.5" /> Takes under 60 seconds
               </span>
               <span className="flex items-center">
-                <CheckCircle2 className="w-4 h-4 text-emerald-600 mr-1.5" /> Pre-routed to verified inboxes
+                <CheckCircle2 className="w-4 h-4 text-emerald-600 mr-1.5" /> Direct to real bank dispute teams (not bots)
               </span>
               <span className="flex items-center">
-                <CheckCircle2 className="w-4 h-4 text-emerald-600 mr-1.5" /> CBN & Ombud SLA enforcement
+                <CheckCircle2 className="w-4 h-4 text-emerald-600 mr-1.5" /> Backed by Central Bank refund deadlines
               </span>
             </div>
           </div>

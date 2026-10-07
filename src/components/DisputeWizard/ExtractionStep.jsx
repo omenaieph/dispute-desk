@@ -39,13 +39,13 @@ export default function ExtractionStep({
           <div className="inline-flex items-center space-x-1.5 px-2.5 py-0.5 rounded-full text-xs font-semibold bg-slate-100 text-slate-700 border border-slate-200 mb-2">
             <span>Step 2 of 4</span>
             <span>•</span>
-            <span>Verify Details</span>
+            <span>Check Details</span>
           </div>
           <h2 className="text-xl sm:text-2xl font-bold text-slate-900 tracking-tight">
-            Verify Extracted Transaction Details
+            Check the Details Found on Your Receipt
           </h2>
           <p className="text-sm text-slate-600 mt-1">
-            Ensure the session ID and transaction amount match your receipt. Any edits will update the formal complaint automatically.
+            Make sure your amount and reference numbers look right. You can edit any box if anything is missing or blurred.
           </p>
         </div>
 
@@ -76,10 +76,10 @@ export default function ExtractionStep({
           <div className="sticky top-24 space-y-3">
             <div className="flex items-center justify-between">
               <span className="text-xs font-bold text-slate-700 uppercase tracking-wider">
-                Receipt Cross-Reference
+                Receipt Preview
               </span>
               <span className="text-[11px] text-emerald-700 font-semibold flex items-center">
-                <CheckCircle2 className="w-3.5 h-3.5 mr-1" /> Parsed & Verified
+                <CheckCircle2 className="w-3.5 h-3.5 mr-1" /> Details Found
               </span>
             </div>
 
@@ -89,7 +89,7 @@ export default function ExtractionStep({
             />
 
             <p className="text-[11px] text-slate-500 text-center bg-slate-100/70 p-2.5 rounded-lg border border-slate-200">
-              💡 Correct any blurred or missing fields on the right before generating your complaint.
+              💡 You can tap any box on the right to edit details before creating your complaint.
             </p>
           </div>
         </div>
@@ -101,11 +101,11 @@ export default function ExtractionStep({
             <div>
               <div className="flex items-center justify-between mb-1.5">
                 <label className="text-xs font-semibold text-slate-700">
-                  Financial Provider / Bank <span className="text-rose-500">*</span>
+                  Bank or Fintech App <span className="text-rose-500">*</span>
                 </label>
                 {isLowConfidence('provider') && (
                   <span className="text-[11px] text-amber-800 flex items-center bg-amber-50 px-2 py-0.5 rounded border border-amber-200">
-                    <AlertCircle className="w-3 h-3 mr-1 text-amber-600" /> Review Provider
+                    <AlertCircle className="w-3 h-3 mr-1 text-amber-600" /> Check Bank
                   </span>
                 )}
               </div>
@@ -125,7 +125,7 @@ export default function ExtractionStep({
               <div className="col-span-2">
                 <div className="flex items-center justify-between mb-1.5">
                   <label className="text-xs font-semibold text-slate-700">
-                    Disputed Amount <span className="text-rose-500">*</span>
+                    Amount Stuck / Debited <span className="text-rose-500">*</span>
                   </label>
                   {isLowConfidence('amount') && (
                     <span className="text-[11px] text-amber-800 flex items-center bg-amber-50 px-2 py-0.5 rounded border border-amber-200">
@@ -164,12 +164,12 @@ export default function ExtractionStep({
             <div>
               <div className="flex items-center justify-between mb-1.5">
                 <label className="text-xs font-semibold text-slate-700 flex items-center">
-                  <span>Reference / Session ID / RRN</span>
+                  <span>Reference Number / Session ID</span>
                   <span className="text-rose-500 ml-1">*</span>
                 </label>
                 {isLowConfidence('reference') && (
                   <span className="text-[11px] text-amber-800 flex items-center bg-amber-50 px-2 py-0.5 rounded border border-amber-200">
-                    <AlertCircle className="w-3 h-3 mr-1 text-amber-600" /> Verify Reference
+                    <AlertCircle className="w-3 h-3 mr-1 text-amber-600" /> Check Reference
                   </span>
                 )}
               </div>
@@ -183,7 +183,7 @@ export default function ExtractionStep({
                 }`}
               />
               <p className="text-[11px] text-slate-500 mt-1">
-                The interbank switch (NIBSS or BankservAfrica) requires this exact ID to locate your transaction logs.
+                Banks need this exact reference or session ID to track your stuck transaction in their logs.
               </p>
             </div>
 
@@ -191,20 +191,20 @@ export default function ExtractionStep({
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
               <div>
                 <label className="text-xs font-semibold text-slate-700 block mb-1.5">
-                  Transaction Type / Channel
+                  How did you pay? (Transfer, POS, Card)
                 </label>
                 <input
                   type="text"
                   value={extracted.type || ""}
                   onChange={(e) => handleChange('type', e.target.value)}
-                  placeholder="e.g. NIP Transfer, POS Purchase"
+                  placeholder="e.g. App Transfer, POS Purchase"
                   className="w-full px-3 py-2 rounded-lg bg-white border border-slate-300 text-sm text-slate-900 placeholder-slate-400 focus:outline-none focus:ring-1 focus:ring-slate-900 focus:border-slate-900"
                 />
               </div>
 
               <div>
                 <label className="text-xs font-semibold text-slate-700 block mb-1.5">
-                  Transaction Date & Time
+                  Date and Time of Transaction
                 </label>
                 <input
                   type="text"
@@ -221,7 +221,7 @@ export default function ExtractionStep({
               <div>
                 <div className="flex items-center justify-between mb-1.5">
                   <label className="text-xs font-semibold text-slate-700">
-                    Recipient / Beneficiary / Merchant
+                    Who was the money sent to?
                   </label>
                   {isLowConfidence('recipient') && (
                     <span className="text-[11px] text-amber-800 flex items-center bg-amber-50 px-2 py-0.5 rounded border border-amber-200">
@@ -242,7 +242,7 @@ export default function ExtractionStep({
 
               <div>
                 <label className="text-xs font-semibold text-slate-700 block mb-1.5">
-                  Sender Account / Card (Masked)
+                  Your Bank Account / Card (Last 4 digits)
                 </label>
                 <input
                   type="text"
@@ -257,7 +257,7 @@ export default function ExtractionStep({
             {/* Status */}
             <div>
               <label className="text-xs font-semibold text-slate-700 block mb-1.5">
-                Receipt Reported Status
+                Status shown on your receipt
               </label>
               <input
                 type="text"
@@ -277,7 +277,7 @@ export default function ExtractionStep({
               className="px-4 py-2 rounded-lg text-xs font-semibold bg-white hover:bg-slate-50 text-slate-700 border border-slate-300 transition-colors flex items-center space-x-1.5 shadow-2xs"
             >
               <ArrowLeft className="w-3.5 h-3.5" />
-              <span>Back to Upload</span>
+              <span>Back</span>
             </button>
 
             <button
@@ -285,7 +285,7 @@ export default function ExtractionStep({
               onClick={onProceed}
               className="px-6 py-2.5 rounded-lg text-xs sm:text-sm font-semibold bg-slate-900 hover:bg-slate-800 text-white transition-colors shadow-xs flex items-center space-x-2"
             >
-              <span>Next: Select Issue Type</span>
+              <span>Next: What Happened?</span>
               <ArrowRight className="w-4 h-4" />
             </button>
           </div>

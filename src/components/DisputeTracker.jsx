@@ -217,13 +217,13 @@ ${dispute.userName}`;
         <div>
           <div className="inline-flex items-center space-x-1.5 px-2.5 py-0.5 rounded-full text-xs font-semibold bg-slate-100 text-slate-700 border border-slate-200 mb-2">
             <Clock className="w-3.5 h-3.5 text-slate-600" />
-            <span>Active Case Ledger</span>
+            <span>Your Tracked Complaints</span>
           </div>
           <h2 className="text-xl sm:text-2xl font-bold text-slate-900 tracking-tight">
-            Dispute Tracker & Escalation Desk
+            Complaint Tracker & Bank Deadlines
           </h2>
           <p className="text-sm text-slate-600 mt-1">
-            Monitor response deadlines in real time. If a provider breaches their legal SLA, unlock one-tap follow-ups and regulator escalation.
+            Keep an eye on the bank's countdown timer. If they miss their deadline, send an urgent reminder or report them to the Central Bank with one click.
           </p>
         </div>
 
@@ -264,7 +264,7 @@ ${dispute.userName}`;
             filter === 'breached' ? 'bg-white text-rose-700 shadow-2xs' : 'text-slate-600 hover:text-slate-900'
           }`}
         >
-          🚨 Overdue / Breached
+          🚨 Bank Missed Deadline
         </button>
         <button
           type="button"
@@ -273,7 +273,7 @@ ${dispute.userName}`;
             filter === 'escalated' ? 'bg-white text-amber-800 shadow-2xs' : 'text-slate-600 hover:text-slate-900'
           }`}
         >
-          ⚖️ Escalated to Regulator
+          ⚖️ Reported to Regulator
         </button>
         <button
           type="button"
@@ -282,7 +282,7 @@ ${dispute.userName}`;
             filter === 'resolved' ? 'bg-white text-emerald-800 shadow-2xs' : 'text-slate-600 hover:text-slate-900'
           }`}
         >
-          ✅ Resolved
+          ✅ Money Refunded / Resolved
         </button>
       </div>
 
@@ -293,8 +293,8 @@ ${dispute.userName}`;
           <h3 className="text-sm font-bold text-slate-800">No disputes in this view</h3>
           <p className="text-xs text-slate-500 mt-1 max-w-sm mx-auto">
             {filter === 'breached'
-              ? "None of your recorded disputes have breached their statutory SLA window."
-              : "File a dispute or switch filters to view active dispute records."}
+              ? "None of your complaints are overdue. All banks are still within their deadline."
+              : "Start a complaint or change filters to see your active cases."}
           </p>
           <button
             type="button"
@@ -344,7 +344,7 @@ ${dispute.userName}`;
                   </div>
 
                   <div className="text-left sm:text-right">
-                    <span className="text-[11px] text-slate-400 block font-medium">Disputed Amount</span>
+                    <span className="text-[11px] text-slate-400 block font-medium">Amount Stuck</span>
                     <span className="text-base font-bold text-slate-900 font-mono">
                       {primaryTx.currency === "ZAR" ? "R" : "₦"}{primaryTx.amount || "0.00"}
                     </span>
@@ -356,32 +356,32 @@ ${dispute.userName}`;
                   <div className="flex flex-wrap items-center gap-2">
                     {isResolved ? (
                       <span className="inline-flex items-center px-2.5 py-0.5 rounded-full bg-emerald-50 text-emerald-800 border border-emerald-200 font-semibold text-[11px]">
-                        <CheckCircle2 className="w-3.5 h-3.5 mr-1 text-emerald-700" /> Resolved & Closed
+                        <CheckCircle2 className="w-3.5 h-3.5 mr-1 text-emerald-700" /> Resolved (Money Recovered)
                       </span>
                     ) : isEscalated ? (
                       <span className="inline-flex items-center px-2.5 py-0.5 rounded-full bg-amber-50 text-amber-800 border border-amber-200 font-semibold text-[11px]">
-                        <AlertTriangle className="w-3.5 h-3.5 mr-1 text-amber-600" /> Escalated to Regulator
+                        <AlertTriangle className="w-3.5 h-3.5 mr-1 text-amber-600" /> Reported to Central Bank
                       </span>
                     ) : deadline.isOverdue ? (
                       <span className="inline-flex items-center px-2.5 py-0.5 rounded-full bg-rose-50 text-rose-800 border border-rose-300 font-bold text-[11px]">
-                        <AlertOctagon className="w-3.5 h-3.5 mr-1 text-rose-600" /> SLA BREACHED ({deadline.text})
+                        <AlertOctagon className="w-3.5 h-3.5 mr-1 text-rose-600" /> DEADLINE MISSED ({deadline.text})
                       </span>
                     ) : (
                       <span className="inline-flex items-center px-2.5 py-0.5 rounded-full bg-sky-50 text-sky-800 border border-sky-200 font-semibold text-[11px]">
-                        <Clock className="w-3.5 h-3.5 mr-1 text-sky-600" /> Awaiting Reply ({deadline.text})
+                        <Clock className="w-3.5 h-3.5 mr-1 text-sky-600" /> Bank Has {deadline.text}
                       </span>
                     )}
 
                     {dispute.sentAt && (
                       <span className="text-slate-400 text-[11px]">
-                        Dispatched {new Date(dispute.sentAt).toLocaleDateString("en-GB", { day: "numeric", month: "short", hour: "2-digit", minute: "2-digit" })}
+                        Sent {new Date(dispute.sentAt).toLocaleDateString("en-GB", { day: "numeric", month: "short", hour: "2-digit", minute: "2-digit" })}
                       </span>
                     )}
                   </div>
 
                   {!isResolved && (
                     <span className="text-[11px] text-slate-500">
-                      Standard SLA: <span className="font-semibold text-slate-700">{p.slaLabel || "48 Hours"}</span>
+                      Bank's Legal Deadline: <span className="font-semibold text-slate-700">{p.slaLabel || "48 Hours"}</span>
                     </span>
                   )}
                 </div>
@@ -395,7 +395,7 @@ ${dispute.userName}`;
                       className="px-2.5 py-1.5 rounded-md text-xs font-semibold bg-white hover:bg-slate-50 text-slate-700 border border-slate-200 transition-colors flex items-center space-x-1"
                     >
                       <FileText className="w-3.5 h-3.5 text-slate-500" />
-                      <span>Dossier</span>
+                      <span>View Letter</span>
                     </button>
 
                     <button
@@ -404,7 +404,7 @@ ${dispute.userName}`;
                       className="px-2.5 py-1.5 rounded-md text-xs font-semibold bg-white hover:bg-slate-50 text-slate-700 border border-slate-200 transition-colors flex items-center space-x-1"
                     >
                       <Download className="w-3.5 h-3.5 text-slate-500" />
-                      <span>PDF</span>
+                      <span>Download PDF</span>
                     </button>
 
                     <button
@@ -429,7 +429,7 @@ ${dispute.userName}`;
                         }`}
                       >
                         <Mail className="w-3.5 h-3.5 text-slate-500" />
-                        <span>{deadline.isOverdue ? "Draft Urgent Follow-Up" : "Draft Follow-Up"}</span>
+                        <span>{deadline.isOverdue ? "Send Urgent Reminder" : "Send Reminder"}</span>
                       </button>
                     )}
 
@@ -444,7 +444,7 @@ ${dispute.userName}`;
                         }`}
                       >
                         <ShieldAlert className="w-3.5 h-3.5" />
-                        <span>Escalate to Regulator</span>
+                        <span>Report to Central Bank</span>
                       </button>
                     )}
 
@@ -455,7 +455,7 @@ ${dispute.userName}`;
                         className="px-3 py-1.5 rounded-md text-xs font-semibold bg-emerald-700 hover:bg-emerald-800 text-white transition-colors flex items-center space-x-1 shadow-2xs"
                       >
                         <CheckCircle2 className="w-3.5 h-3.5" />
-                        <span>Mark Resolved</span>
+                        <span>Mark as Refunded</span>
                       </button>
                     )}
                   </div>
@@ -478,10 +478,10 @@ ${dispute.userName}`;
                 {modalMode === 'details' && <FileText className="w-5 h-5 text-slate-700" />}
                 {modalMode === 'resolve' && <CheckCircle2 className="w-5 h-5 text-emerald-700" />}
                 <h3 className="text-base font-bold text-slate-900">
-                  {modalMode === 'followup' && "Urgent Follow-Up Draft (Quotes Original Reference)"}
-                  {modalMode === 'escalate' && "Statutory Regulator Escalation Docket"}
-                  {modalMode === 'details' && `Dispute Dossier: ${selectedDispute.id}`}
-                  {modalMode === 'resolve' && "Mark Dispute as Resolved"}
+                  {modalMode === 'followup' && "Urgent Reminder to Bank (Deadline Expired)"}
+                  {modalMode === 'escalate' && "Report to Central Bank (Regulator)"}
+                  {modalMode === 'details' && `Complaint Letter & Details: ${selectedDispute.id}`}
+                  {modalMode === 'resolve' && "Confirm Money Has Been Refunded"}
                 </h3>
               </div>
 
@@ -500,7 +500,7 @@ ${dispute.userName}`;
               return (
                 <div className="space-y-4">
                   <p className="text-xs text-slate-600">
-                    This follow-up letter quotes your original dispute submission date, reference code, and the elapsed statutory window.
+                    This reminder quotes your original dispute submission date, tracking code, and notifies the bank that their legal resolution window has expired.
                   </p>
 
                   <div className="bg-slate-50 rounded-lg p-3 border border-slate-200 space-y-2">
@@ -527,7 +527,7 @@ ${dispute.userName}`;
                       className="px-3 py-2 rounded-lg text-xs font-semibold bg-white hover:bg-slate-50 text-slate-700 border border-slate-300 flex items-center space-x-1.5"
                     >
                       <Copy className="w-3.5 h-3.5 text-slate-500" />
-                      <span>{copied ? "Copied!" : "Copy Follow-Up"}</span>
+                      <span>{copied ? "Copied!" : "Copy Reminder"}</span>
                     </button>
 
                     <button
@@ -559,7 +559,7 @@ ${dispute.userName}`;
               return (
                 <div className="space-y-4">
                   <div className="p-3 bg-amber-50 border border-amber-200 rounded-lg text-xs text-amber-800">
-                    <strong>Official Regulatory Escalation:</strong> This petition is addressed directly to <strong>{reg?.name}</strong> ({reg?.email}), invoking statutory financial conduct mandates.
+                    <strong>Official Regulatory Escalation:</strong> This formal report is addressed directly to <strong>{reg?.name}</strong> ({reg?.email}), reporting that the bank failed to resolve your issue within the legal deadline.
                   </div>
 
                   <div className="bg-slate-50 rounded-lg p-3 border border-slate-200 space-y-2">
@@ -590,7 +590,7 @@ ${dispute.userName}`;
                       className="px-3 py-2 rounded-lg text-xs font-semibold bg-white hover:bg-slate-50 text-slate-700 border border-slate-300 flex items-center space-x-1.5"
                     >
                       <Copy className="w-3.5 h-3.5 text-slate-500" />
-                      <span>{copied ? "Copied!" : "Copy Petition"}</span>
+                      <span>{copied ? "Copied!" : "Copy Report"}</span>
                     </button>
 
                     <button
@@ -607,7 +607,7 @@ ${dispute.userName}`;
                       className="px-4 py-2 rounded-lg text-xs font-semibold bg-amber-600 hover:bg-amber-700 text-white flex items-center space-x-1.5 shadow-xs"
                     >
                       <Send className="w-3.5 h-3.5" />
-                      <span>Dispatch to Regulator & Mark Escalated</span>
+                      <span>Open in Email & Report Bank</span>
                     </button>
                   </div>
                 </div>
@@ -618,7 +618,7 @@ ${dispute.userName}`;
             {modalMode === 'resolve' && (
               <div className="space-y-4">
                 <p className="text-xs text-slate-600">
-                  Record the resolution confirmation for your audit ledger:
+                  Add a quick note on how it was resolved (e.g. money refunded to your account):
                 </p>
 
                 <textarea
@@ -643,7 +643,7 @@ ${dispute.userName}`;
                     className="px-4 py-2 rounded-lg text-xs font-semibold bg-emerald-700 hover:bg-emerald-800 text-white flex items-center space-x-1.5 shadow-xs"
                   >
                     <CheckCircle2 className="w-3.5 h-3.5" />
-                    <span>Confirm Resolved</span>
+                    <span>Confirm Money Refunded</span>
                   </button>
                 </div>
               </div>

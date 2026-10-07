@@ -50,13 +50,13 @@ export default function UploadStep({
         <div className="inline-flex items-center space-x-1.5 px-2.5 py-0.5 rounded-full text-xs font-semibold bg-slate-100 text-slate-700 border border-slate-200 mb-2">
           <span>Step 1 of 4</span>
           <span>•</span>
-          <span>Receipt Intake</span>
+          <span>Upload Receipt</span>
         </div>
         <h2 className="text-xl sm:text-2xl font-bold text-slate-900 tracking-tight">
           Upload Transaction Receipt or Debit Alert
         </h2>
         <p className="text-sm text-slate-600 mt-1">
-          Upload a screenshot, photo, or PDF from your mobile banking app. We'll automatically identify the provider, session ID, and amount.
+          Upload a screenshot or PDF from your banking app. We'll automatically find the bank name, reference number, and amount.
         </p>
       </div>
 
@@ -92,10 +92,10 @@ export default function UploadStep({
 
           <div>
             <p className="text-sm font-semibold text-slate-900">
-              {isExtracting ? "Extracting transaction forensics..." : "Drop your receipt file here, or browse"}
+              {isExtracting ? "Reading your receipt details..." : "Drop your receipt screenshot here, or browse"}
             </p>
             <p className="text-xs text-slate-500 mt-0.5">
-              Supports PNG, JPG, or PDF debit alerts from all banks and fintech apps
+              Supports screenshots or PDFs from any bank or fintech app
             </p>
           </div>
 
@@ -106,7 +106,7 @@ export default function UploadStep({
               onClick={() => fileInputRef.current?.click()}
               className="px-4 py-2 rounded-lg text-xs font-semibold bg-slate-900 hover:bg-slate-800 text-white transition-colors shadow-2xs disabled:opacity-50"
             >
-              Select File from Device
+              Choose File from Device
             </button>
           </div>
         </div>
@@ -117,14 +117,14 @@ export default function UploadStep({
         <div className="bg-white border border-slate-200 rounded-xl p-4 shadow-2xs">
           <div className="flex items-center justify-between mb-3">
             <span className="text-xs font-bold text-slate-700 uppercase tracking-wider">
-              Attached Receipts ({uploadedReceipts.length})
+              Uploaded Receipts ({uploadedReceipts.length})
             </span>
             <button
               type="button"
               onClick={() => fileInputRef.current?.click()}
               className="text-xs text-emerald-700 hover:text-emerald-800 font-semibold flex items-center"
             >
-              <Plus className="w-3.5 h-3.5 mr-1" /> Add Additional Receipt
+              <Plus className="w-3.5 h-3.5 mr-1" /> Add Another Receipt
             </button>
           </div>
 
@@ -143,7 +143,7 @@ export default function UploadStep({
                       {receipt.name || receipt.title || `Receipt #${index + 1}`}
                     </p>
                     <p className="text-[11px] text-slate-500">
-                      {receipt.extractedData?.provider || "Extracted"} • {receipt.extractedData?.currency || "NGN"} {receipt.extractedData?.amount || ""}
+                      {receipt.extractedData?.provider || "Found"} • {receipt.extractedData?.currency || "NGN"} {receipt.extractedData?.amount || ""}
                     </p>
                   </div>
                 </div>
@@ -166,9 +166,9 @@ export default function UploadStep({
       <div className="bg-white border border-slate-200 rounded-xl p-4 shadow-2xs">
         <div className="flex items-center justify-between mb-2.5">
           <span className="text-xs font-bold text-slate-700 uppercase tracking-wider">
-            Quick Test Examples
+            Or Try with a Sample Receipt
           </span>
-          <span className="text-[11px] text-slate-500">Click to preview extraction</span>
+          <span className="text-[11px] text-slate-500">Click any sample to test instantly</span>
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
@@ -200,7 +200,7 @@ export default function UploadStep({
       <div className="p-3 rounded-lg bg-slate-100/70 border border-slate-200 flex items-start space-x-2.5 text-xs text-slate-600">
         <Lock className="w-4 h-4 text-slate-500 flex-shrink-0 mt-0.5" />
         <div>
-          <span className="font-semibold text-slate-800">Client-Side Privacy Guarantee:</span> Receipts are processed in-memory. No personal account numbers or PANs are stored on remote servers. All account numbers are masked to the last 4 digits.
+          <span className="font-semibold text-slate-800">100% Private & Safe:</span> Your receipt is read securely. We never store your full bank account or card number, and sensitive numbers are masked.
         </div>
       </div>
 
@@ -213,7 +213,7 @@ export default function UploadStep({
             disabled={isExtracting}
             className="w-full sm:w-auto px-6 py-2.5 rounded-lg text-sm font-semibold bg-slate-900 hover:bg-slate-800 text-white transition-colors shadow-xs flex items-center justify-center space-x-2"
           >
-            <span>Confirm Extracted Fields</span>
+            <span>Review Found Details</span>
             <ArrowRight className="w-4 h-4" />
           </button>
         </div>

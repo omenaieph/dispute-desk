@@ -255,38 +255,38 @@ export const SAMPLE_RECEIPTS = [
 export const ISSUE_TYPES = [
   {
     id: "debited_failed",
-    label: "Debited but failed",
+    label: "Money deducted, but not delivered",
     emoji: "⚠️",
-    description: "Account was debited, but the transfer or transaction failed to deliver to beneficiary."
+    description: "Your bank debited your account, but the recipient never received the money."
   },
   {
     id: "reversal_not_received",
-    label: "Reversal not received",
+    label: "Refund never arrived",
     emoji: "🔄",
-    description: "Transaction was acknowledged as failed, but refund/reversal has not reflected."
+    description: "The payment or POS transaction failed, but the bank never returned your money."
   },
   {
     id: "paid_not_delivered",
-    label: "Paid, service not delivered",
+    label: "Paid, but goods/service not received",
     emoji: "📦",
-    description: "Merchant received payment or debit succeeded, but goods/services were never provided."
+    description: "You paid the seller or business, but they never provided what you paid for."
   },
   {
     id: "double_charge",
-    label: "Double charge",
+    label: "Charged twice (or more)",
     emoji: "🔁",
-    description: "Card or account was debited multiple times for a single checkout or purchase."
+    description: "Your account was deducted multiple times for one single transfer or purchase."
   },
   {
     id: "unauthorised_transaction",
-    label: "Unauthorised transaction",
+    label: "Unknown debit on my account",
     emoji: "🛡️",
-    description: "Debited without your knowledge, consent, or authorization."
+    description: "Money was taken from your account without your permission or knowledge."
   },
   {
     id: "wrong_recipient",
-    label: "Wrong recipient / misrouted",
+    label: "Sent to wrong account / bank glitch",
     emoji: "🔀",
-    description: "Funds were routed to an unintended recipient due to system error or session issue."
+    description: "Money ended up in the wrong place because of an app, network, or bank error."
   }
 ];

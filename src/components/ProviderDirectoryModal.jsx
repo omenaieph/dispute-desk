@@ -98,11 +98,11 @@ export default function ProviderDirectoryModal({ isOpen, onClose, selectedCountr
             <div className="flex items-center space-x-2 text-emerald-900">
               <Shield className="w-4 h-4 text-emerald-700 flex-shrink-0" />
               <span>
-                <strong>Statutory Escalation Authority:</strong> {regulator.name} (<code>{regulator.email}</code>)
+                <strong>Official Government Regulator:</strong> {regulator.name} (<code>{regulator.email}</code>)
               </span>
             </div>
             <span className="text-[11px] text-emerald-800 font-medium">
-              SLA Rule: {regulator.slaRule.slice(0, 65)}...
+              Bank Resolution Rule: {regulator.slaRule.slice(0, 65)}...
             </span>
           </div>
         )}
@@ -127,7 +127,7 @@ export default function ProviderDirectoryModal({ isOpen, onClose, selectedCountr
                 </div>
 
                 <span className="text-[10px] px-2 py-0.5 rounded-full bg-slate-100 text-slate-700 font-semibold border border-slate-200">
-                  SLA: {provider.slaLabel}
+                  Legal Deadline: {provider.slaLabel}
                 </span>
               </div>
 

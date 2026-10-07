@@ -148,10 +148,10 @@ export default function DisputeWizard({
   };
 
   const steps = [
-    { num: 1, label: "Receipt Intake" },
-    { num: 2, label: "Verify Details" },
-    { num: 3, label: "Dispute Issue" },
-    { num: 4, label: "Dispatch Letter" }
+    { num: 1, label: "Upload Receipt" },
+    { num: 2, label: "Check Details" },
+    { num: 3, label: "What Happened" },
+    { num: 4, label: "Get Your Letter" }
   ];
 
   return (

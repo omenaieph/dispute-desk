@@ -35,10 +35,10 @@ export default function InteractiveHeroWidget({ onSelectSample }) {
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-4 border-b border-slate-100">
         <div>
           <span className="text-[11px] font-bold text-slate-400 uppercase tracking-wider block">
-            Interactive Live Simulator
+            Interactive Example
           </span>
           <span className="text-sm font-bold text-slate-900">
-            See how Claude transforms a messy receipt into legal teeth
+            See how your messy receipt turns into an official complaint letter
           </span>
         </div>
 
@@ -72,16 +72,16 @@ export default function InteractiveHeroWidget({ onSelectSample }) {
             <div className="flex items-center justify-between text-xs pb-2 border-b border-slate-200/60">
               <span className="font-bold text-slate-800 flex items-center">
                 <ScanLine className="w-3.5 h-3.5 text-emerald-600 mr-1.5" />
-                Receipt Vision Analysis
+                Receipt Details Found
               </span>
               <span className="text-[10px] font-mono text-emerald-700 bg-emerald-50 px-1.5 py-0.5 rounded border border-emerald-200">
-                99% Match
+                Verified
               </span>
             </div>
 
             <div className="mt-3 text-center py-2 bg-white rounded-lg border border-slate-200/80">
               <span className="text-[10px] font-medium text-slate-400 uppercase tracking-wider block">
-                Disputed Debit
+                Money Debited
               </span>
               <div className="text-xl font-bold font-mono text-slate-900">
                 {tx.currency === 'NGN' ? '₦' : 'R'}{tx.amount}
@@ -98,18 +98,18 @@ export default function InteractiveHeroWidget({ onSelectSample }) {
                 <span className="font-bold text-slate-800 truncate ml-2 max-w-[170px]">{tx.reference}</span>
               </div>
               <div className="flex justify-between p-1.5 bg-white rounded border border-slate-200/60">
-                <span className="text-slate-400">BENEFICIARY:</span>
+                <span className="text-slate-400">RECIPIENT:</span>
                 <span className="font-medium text-slate-700 truncate ml-2">{tx.recipient}</span>
               </div>
               <div className="flex justify-between p-1.5 bg-white rounded border border-slate-200/60">
-                <span className="text-slate-400">ROUTING:</span>
-                <span className="font-medium text-emerald-700 truncate ml-2">Verified Support Unit</span>
+                <span className="text-slate-400">SENT DIRECT TO:</span>
+                <span className="font-medium text-emerald-700 truncate ml-2">Bank's Real Dispute Team</span>
               </div>
             </div>
           </div>
 
           <div className="mt-3 pt-2 border-t border-slate-200/60 text-[10px] text-slate-400 flex items-center justify-between">
-            <span>Automated Forensics</span>
+            <span>Information read accurately</span>
             <span className="text-emerald-700 font-semibold">Ready to draft</span>
           </div>
         </div>
@@ -119,7 +119,7 @@ export default function InteractiveHeroWidget({ onSelectSample }) {
           <div>
             {/* Tone Toggle Rail */}
             <div className="flex items-center justify-between pb-3 border-b border-slate-100">
-              <span className="text-xs font-bold text-slate-700">Dynamic Tone Control:</span>
+              <span className="text-xs font-bold text-slate-700">Choose your tone:</span>
               <div className="flex items-center space-x-1 bg-slate-100 p-0.5 rounded-md text-[11px]">
                 {['polite', 'firm', 'final_notice'].map((t) => (
                   <button
@@ -142,7 +142,7 @@ export default function InteractiveHeroWidget({ onSelectSample }) {
             <div className="mt-3 space-y-2">
               <div className="p-2 bg-slate-50 rounded-lg border border-slate-200/80">
                 <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider block">
-                  Generated Subject:
+                  Generated Subject Line:
                 </span>
                 <p className="text-xs font-mono font-bold text-slate-900 mt-0.5">
                   {activeTone.subject}
@@ -158,14 +158,14 @@ export default function InteractiveHeroWidget({ onSelectSample }) {
           {/* Quick Action Button */}
           <div className="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between">
             <span className="text-xs text-slate-500 font-medium">
-              Statutory SLA: <strong className="text-slate-800">48 Hours countdown</strong>
+              Bank's Legal Deadline: <strong className="text-slate-800">48 Hours to refund you</strong>
             </span>
             <button
               type="button"
               onClick={() => onSelectSample(currentCase)}
               className="px-4 py-2 rounded-lg text-xs font-bold bg-slate-900 hover:bg-slate-800 text-white transition-colors shadow-2xs flex items-center space-x-1.5"
             >
-              <span>Test This Case in App</span>
+              <span>Test This In App</span>
               <ArrowRight className="w-3.5 h-3.5" />
             </button>
           </div>

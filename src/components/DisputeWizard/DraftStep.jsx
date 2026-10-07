@@ -77,13 +77,13 @@ export default function DraftStep({
           <div className="inline-flex items-center space-x-1.5 px-2.5 py-0.5 rounded-full text-xs font-semibold bg-slate-100 text-slate-700 border border-slate-200 mb-2">
             <span>Step 4 of 4</span>
             <span>•</span>
-            <span>Dispatch & Enforce</span>
+            <span>Send & Track</span>
           </div>
           <h2 className="text-xl sm:text-2xl font-bold text-slate-900 tracking-tight">
             Review Your Formal Dispute Letter
           </h2>
           <p className="text-sm text-slate-600 mt-1">
-            Pre-addressed to {provider?.name || "your provider's"} verified dispute unit with statutory citations and response deadlines.
+            Addressed to {provider?.name || "the bank's"} dispute unit with official banking rules and a legal 48-hour response deadline.
           </p>
         </div>
 
@@ -99,7 +99,7 @@ export default function DraftStep({
                 : 'text-slate-600 hover:text-slate-900'
             }`}
           >
-            🕊️ Polite
+            🕊️ Polite (First Notice)
           </button>
           <button
             type="button"
@@ -110,7 +110,7 @@ export default function DraftStep({
                 : 'text-slate-600 hover:text-slate-900'
             }`}
           >
-            ⚖️ Firm (Statutory)
+            ⚖️ Firm (Official Rules)
           </button>
           <button
             type="button"
@@ -121,7 +121,7 @@ export default function DraftStep({
                 : 'text-slate-600 hover:text-slate-900'
             }`}
           >
-            🚨 Final Notice
+            🚨 Urgent (Final Notice)
           </button>
         </div>
       </div>
@@ -134,7 +134,7 @@ export default function DraftStep({
           </div>
           <div className="overflow-hidden">
             <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider block">
-              Official Routing Address
+              Bank Dispute Inbox
             </span>
             <span className="text-xs font-bold text-slate-900 truncate block mt-0.5 font-mono">
               {provider?.supportEmail || "Support Inbox"}
@@ -151,7 +151,7 @@ export default function DraftStep({
           </div>
           <div>
             <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider block">
-              Statutory SLA Window
+              Bank Legal Deadline
             </span>
             <span className="text-xs font-bold text-emerald-800 block mt-0.5">
               {provider?.slaLabel || "48 Hours"} Max
@@ -168,7 +168,7 @@ export default function DraftStep({
           </div>
           <div className="overflow-hidden">
             <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider block">
-              Regulatory Escalation CC
+              Copy to Central Bank (Regulator)
             </span>
             <span className="text-xs font-bold text-slate-900 truncate block mt-0.5 font-mono">
               {regulator?.email}
@@ -245,7 +245,7 @@ export default function DraftStep({
               className="px-3 py-2 rounded-lg text-xs font-semibold bg-white hover:bg-slate-100 text-slate-700 border border-slate-300 transition-colors flex items-center space-x-1.5 shadow-2xs"
             >
               <Download className="w-3.5 h-3.5 text-slate-500" />
-              <span>{isExportingPDF ? "Exporting PDF..." : "Download Official PDF"}</span>
+              <span>{isExportingPDF ? "Exporting PDF..." : "Download Complaint PDF"}</span>
             </button>
           </div>
 
@@ -256,7 +256,7 @@ export default function DraftStep({
             className="w-full sm:w-auto px-5 py-2.5 rounded-lg text-xs sm:text-sm font-semibold bg-emerald-700 hover:bg-emerald-800 text-white transition-colors shadow-xs flex items-center justify-center space-x-2"
           >
             <Send className="w-4 h-4" />
-            <span>Mark as Sent & Start Resolution Tracker</span>
+            <span>I've Sent This Email — Start 48h Countdown</span>
           </button>
         </div>
       </div>
@@ -269,7 +269,7 @@ export default function DraftStep({
           className="px-4 py-2 rounded-lg text-xs font-semibold bg-white hover:bg-slate-50 text-slate-700 border border-slate-300 transition-colors flex items-center space-x-1.5 shadow-2xs"
         >
           <ArrowLeft className="w-3.5 h-3.5" />
-          <span>Edit Dispute Details</span>
+          <span>Back to Edit Details</span>
         </button>
       </div>
     </div>
