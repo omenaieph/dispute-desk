@@ -1,15 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import Header from './components/Header';
-import Hero from './components/Hero';
+import LandingPage from './components/LandingPage';
 import DisputeWizard from './components/DisputeWizard';
 import DisputeTracker from './components/DisputeTracker';
 import ProviderDirectoryModal from './components/ProviderDirectoryModal';
 import ApiKeyModal from './components/ApiKeyModal';
 import { getStoredDisputes, getStoredSettings, saveSettings } from './utils/storage';
-import { Shield } from 'lucide-react';
 
 export default function App() {
-  const [activeTab, setActiveTab] = useState('wizard');
+  const [activeTab, setActiveTab] = useState('landing'); // 'landing' | 'wizard' | 'tracker'
   const [selectedCountry, setSelectedCountry] = useState('NG');
   const [disputes, setDisputes] = useState(() => getStoredDisputes());
   const [settings, setSettings] = useState(() => getStoredSettings());
@@ -35,11 +34,17 @@ export default function App() {
     resolved: disputes.filter((d) => d.status === 'resolved').length
   };
 
+  const handleStartDispute = () => {
+    setInitialSample(null);
+    setActiveTab('wizard');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
   const handleSelectSample = (sample) => {
     setSelectedCountry(sample.country);
     setInitialSample(sample);
     setActiveTab('wizard');
-    window.scrollTo({ top: 380, behavior: 'smooth' });
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   const handleSaveApiKey = (key) => {
@@ -57,7 +62,10 @@ export default function App() {
       {/* Top Navbar */}
       <Header
         activeTab={activeTab}
-        setActiveTab={setActiveTab}
+        setActiveTab={(tab) => {
+          setActiveTab(tab);
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        }}
         selectedCountry={selectedCountry}
         setSelectedCountry={(c) => {
           setSelectedCountry(c);
@@ -71,36 +79,37 @@ export default function App() {
       />
 
       <main className="flex-1">
-        {/* Editorial Hero */}
-        {activeTab === 'wizard' && (
-          <Hero
+        {/* 1. Landing Page View */}
+        {activeTab === 'landing' && (
+          <LandingPage
+            onStartDispute={handleStartDispute}
             onSelectSample={handleSelectSample}
-            onStartBlank={() => {
-              setInitialSample(null);
-              window.scrollTo({ top: 350, behavior: 'smooth' });
-            }}
-            selectedCountry={selectedCountry}
+            onOpenDirectory={() => setIsDirectoryOpen(true)}
           />
         )}
 
-        {/* Core Workspace */}
-        {activeTab === 'wizard' ? (
-          <DisputeWizard
-            selectedCountry={selectedCountry}
-            apiKey={settings.apiKey}
-            initialSample={initialSample}
-            onDisputeCreated={handleDisputeCreated}
-            onNavigateToTracker={() => setActiveTab('tracker')}
-          />
-        ) : (
-          <DisputeTracker
-            disputes={disputes}
-            setDisputes={setDisputes}
-            onStartNewDispute={() => {
-              setInitialSample(null);
-              setActiveTab('wizard');
-            }}
-          />
+        {/* 2. Dispute Creator Wizard View */}
+        {activeTab === 'wizard' && (
+          <div className="py-6">
+            <DisputeWizard
+              selectedCountry={selectedCountry}
+              apiKey={settings.apiKey}
+              initialSample={initialSample}
+              onDisputeCreated={handleDisputeCreated}
+              onNavigateToTracker={() => setActiveTab('tracker')}
+            />
+          </div>
+        )}
+
+        {/* 3. Dispute Tracker Ledger View */}
+        {activeTab === 'tracker' && (
+          <div className="py-6">
+            <DisputeTracker
+              disputes={disputes}
+              setDisputes={setDisputes}
+              onStartNewDispute={handleStartDispute}
+            />
+          </div>
         )}
       </main>
 
@@ -119,8 +128,8 @@ export default function App() {
         onSaveApiKey={handleSaveApiKey}
       />
 
-      {/* Institutional Clean Footer */}
-      <footer className="border-t border-slate-200 bg-white py-8 text-xs text-slate-500">
+      {/* Institutional Footer */}
+      <footer className="border-t border-slate-200 bg-white py-10 text-xs text-slate-500">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4">
           <div className="flex items-center space-x-2">
             <div className="w-5 h-5 rounded bg-slate-900 text-white flex items-center justify-center font-bold text-[10px]">
@@ -134,10 +143,20 @@ export default function App() {
           <div className="flex items-center space-x-4">
             <button
               type="button"
+              onClick={() => {
+                setActiveTab('landing');
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+              }}
+              className="hover:text-slate-900 transition-colors"
+            >
+              Overview
+            </button>
+            <button
+              type="button"
               onClick={() => setIsDirectoryOpen(true)}
               className="hover:text-slate-900 transition-colors"
             >
-              Provider Directory
+              Bank Directory
             </button>
             <button
               type="button"
@@ -153,10 +172,10 @@ export default function App() {
 
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 mt-4 pt-4 border-t border-slate-100 flex flex-col sm:flex-row items-center justify-between gap-2 text-[11px] text-slate-400">
           <p>
-            Complies with Central Bank of Nigeria Consumer Protection Guidelines & SA National Financial Ombud Scheme standards.
+            Complies with Central Bank of Nigeria (CBN) Consumer Protection Regulations 2019 & SA National Financial Ombud Scheme guidelines.
           </p>
           <p>
-            Client-side parsing · Sensitive account numbers masked to last 4 digits · Zero remote database storage
+            Client-side forensic parsing · Zero remote database storage · Account numbers masked to last 4 digits
           </p>
         </div>
       </footer>
