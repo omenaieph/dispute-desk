@@ -15,6 +15,7 @@ import RecentResolutionsTicker from './ui/RecentResolutionsTicker';
 import InteractiveHeroWidget from './ui/InteractiveHeroWidget';
 import BeforeAfterCompare from './ui/BeforeAfterCompare';
 import BentoGrid from './ui/BentoGrid';
+import FundsTraceScrollPath from './ui/FundsTraceScrollPath';
 
 export default function LandingPage({ onStartDispute, onSelectSample, onOpenDirectory }) {
   const [openFaq, setOpenFaq] = useState(null);
@@ -119,7 +120,10 @@ export default function LandingPage({ onStartDispute, onSelectSample, onOpenDire
       {/* 4. Bento Grid: 4 Superpowers */}
       <BentoGrid onStartDispute={onStartDispute} />
 
-      {/* 5. Supported Providers & Regulatory Protection */}
+      {/* 5. Scroll-driven SVG Funds Trace (21st.dev Style) */}
+      <FundsTraceScrollPath onStartDispute={onStartDispute} />
+
+      {/* 6. Supported Providers & Regulatory Protection */}
       <section className="py-16 bg-slate-50/50 border-b border-slate-200">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-8">
