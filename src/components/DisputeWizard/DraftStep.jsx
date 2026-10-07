@@ -13,6 +13,7 @@ import {
 } from 'lucide-react';
 import { generateDisputePDF } from '../../utils/pdfGenerator';
 import { REGULATORY_AUTHORITIES } from '../../data/providers';
+import confetti from 'canvas-confetti';
 
 export default function DraftStep({
   complaint,
@@ -26,6 +27,17 @@ export default function DraftStep({
 }) {
   const [copied, setCopied] = useState(false);
   const [isExportingPDF, setIsExportingPDF] = useState(false);
+
+  const handleMarkAndCelebrate = () => {
+    try {
+      confetti({
+        particleCount: 50,
+        spread: 60,
+        origin: { y: 0.7 }
+      });
+    } catch (e) {}
+    onMarkAsSent();
+  };
 
   const country = provider?.country || (dispute?.transactions?.[0]?.currency === "ZAR" ? "ZA" : "NG");
   const regulator = REGULATORY_AUTHORITIES[country];
@@ -240,7 +252,7 @@ export default function DraftStep({
           {/* Mark as Sent (Transitions to Tracker) */}
           <button
             type="button"
-            onClick={onMarkAsSent}
+            onClick={handleMarkAndCelebrate}
             className="w-full sm:w-auto px-5 py-2.5 rounded-lg text-xs sm:text-sm font-semibold bg-emerald-700 hover:bg-emerald-800 text-white transition-colors shadow-xs flex items-center justify-center space-x-2"
           >
             <Send className="w-4 h-4" />

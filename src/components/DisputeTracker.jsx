@@ -18,6 +18,7 @@ import {
 import { saveDispute, deleteDispute } from '../utils/storage';
 import { REGULATORY_AUTHORITIES } from '../data/providers';
 import { generateDisputePDF } from '../utils/pdfGenerator';
+import confetti from 'canvas-confetti';
 
 export default function DisputeTracker({ disputes, setDisputes, onStartNewDispute }) {
   const [filter, setFilter] = useState('all');
@@ -188,6 +189,14 @@ ${dispute.userName}`;
   };
 
   const handleConfirmResolve = (dispute) => {
+    try {
+      confetti({
+        particleCount: 70,
+        spread: 70,
+        origin: { y: 0.6 }
+      });
+    } catch (e) {}
+
     const updated = {
       ...dispute,
       status: "resolved",

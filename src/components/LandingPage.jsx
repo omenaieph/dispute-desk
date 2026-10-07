@@ -1,21 +1,20 @@
 import React, { useState } from 'react';
 import {
-  ShieldCheck,
   ArrowRight,
-  Clock,
   CheckCircle2,
-  AlertTriangle,
-  FileText,
-  Mail,
   Lock,
   ChevronDown,
   Building,
-  Scale,
-  Sparkles,
-  ExternalLink
+  Shield,
+  FileText
 } from 'lucide-react';
-import { PROVIDERS, REGULATORY_AUTHORITIES } from '../data/providers';
+import { PROVIDERS } from '../data/providers';
 import { SAMPLE_RECEIPTS } from '../data/sampleReceipts';
+import Marquee from './ui/Marquee';
+import RecentResolutionsTicker from './ui/RecentResolutionsTicker';
+import InteractiveHeroWidget from './ui/InteractiveHeroWidget';
+import BeforeAfterCompare from './ui/BeforeAfterCompare';
+import BentoGrid from './ui/BentoGrid';
 
 export default function LandingPage({ onStartDispute, onSelectSample, onOpenDirectory }) {
   const [openFaq, setOpenFaq] = useState(null);
@@ -49,16 +48,13 @@ export default function LandingPage({ onStartDispute, onSelectSample, onOpenDire
 
   return (
     <div className="bg-white text-slate-900 selection:bg-slate-900 selection:text-white">
-      {/* 1. Hero Section */}
-      <section className="relative overflow-hidden pt-12 pb-20 border-b border-slate-200 bg-gradient-to-b from-slate-50/50 to-white">
+      {/* 1. Hero Section with Dot Grid Texture */}
+      <section className="relative overflow-hidden pt-10 pb-16 border-b border-slate-200 bg-[radial-gradient(#e2e8f0_1px,transparent_1px)] [background-size:24px_24px]">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-3xl mx-auto">
-            {/* Pill */}
-            <div className="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-slate-100 border border-slate-200 text-xs text-slate-700 font-medium mb-5">
-              <span className="w-1.5 h-1.5 rounded-full bg-emerald-600" />
-              <span>Africa Fintech Consumer Protection</span>
-              <span className="text-slate-300">•</span>
-              <span className="text-slate-500">Nigeria & South Africa</span>
+            {/* Live Resolutions Ticker Pill */}
+            <div className="mb-5 flex justify-center">
+              <RecentResolutionsTicker />
             </div>
 
             {/* Headline */}
@@ -67,16 +63,16 @@ export default function LandingPage({ onStartDispute, onSelectSample, onOpenDire
             </h1>
 
             {/* Subhead */}
-            <p className="mt-5 text-lg sm:text-xl text-slate-600 leading-relaxed max-w-2xl mx-auto font-normal">
+            <p className="mt-4 text-base sm:text-lg text-slate-600 leading-relaxed max-w-2xl mx-auto font-normal">
               Stop waiting on unanswered support chats. Upload your receipt, extract forensic session IDs, and generate a legally backed complaint with statutory response countdowns.
             </p>
 
             {/* CTAs */}
-            <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-3">
+            <div className="mt-7 flex flex-col sm:flex-row items-center justify-center gap-3">
               <button
                 type="button"
                 onClick={onStartDispute}
-                className="w-full sm:w-auto px-7 py-3.5 rounded-xl text-sm font-bold bg-slate-900 hover:bg-slate-800 text-white transition-all shadow-sm flex items-center justify-center space-x-2"
+                className="w-full sm:w-auto px-7 py-3.5 rounded-xl text-sm font-bold bg-slate-900 hover:bg-slate-800 text-white transition-all shadow-xs flex items-center justify-center space-x-2"
               >
                 <span>Start a Free Dispute</span>
                 <ArrowRight className="w-4 h-4" />
@@ -93,10 +89,10 @@ export default function LandingPage({ onStartDispute, onSelectSample, onOpenDire
               </button>
             </div>
 
-            {/* Micro Trust Proof */}
-            <div className="mt-7 flex flex-wrap items-center justify-center gap-6 text-xs text-slate-500">
+            {/* Micro Trust Strip */}
+            <div className="mt-6 flex flex-wrap items-center justify-center gap-6 text-xs text-slate-500">
               <span className="flex items-center">
-                <CheckCircle2 className="w-4 h-4 text-emerald-600 mr-1.5" /> Ready under 60 seconds
+                <CheckCircle2 className="w-4 h-4 text-emerald-600 mr-1.5" /> Under 60 seconds
               </span>
               <span className="flex items-center">
                 <CheckCircle2 className="w-4 h-4 text-emerald-600 mr-1.5" /> Pre-routed to verified inboxes
@@ -107,186 +103,23 @@ export default function LandingPage({ onStartDispute, onSelectSample, onOpenDire
             </div>
           </div>
 
-          {/* Product Teaser Preview / Live Docket Mockup */}
-          <div className="mt-14 max-w-4xl mx-auto bg-white border border-slate-200/90 rounded-2xl p-5 sm:p-7 shadow-sm">
-            <div className="flex items-center justify-between pb-4 border-b border-slate-100">
-              <div className="flex items-center space-x-2">
-                <span className="w-3 h-3 rounded-full bg-rose-400" />
-                <span className="w-3 h-3 rounded-full bg-amber-400" />
-                <span className="w-3 h-3 rounded-full bg-emerald-400" />
-                <span className="ml-2 text-xs font-mono text-slate-400">dispute-docket-preview.pdf</span>
-              </div>
-              <span className="text-[11px] font-semibold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded border border-emerald-200">
-                Statutory Regulatory Standard
-              </span>
-            </div>
-
-            <div className="mt-5 grid grid-cols-1 md:grid-cols-12 gap-6 items-center">
-              {/* Receipt snippet */}
-              <div className="md:col-span-5 bg-slate-50 rounded-xl p-4 border border-slate-200 space-y-2 text-xs">
-                <div className="flex justify-between font-bold text-slate-800">
-                  <span>OPay Transaction Receipt</span>
-                  <span className="text-rose-600">FAILED AT SWITCH</span>
-                </div>
-                <div className="text-xl font-bold font-mono text-slate-900">₦45,000.00</div>
-                <div className="space-y-1 text-[11px] text-slate-600 divide-y divide-slate-200/60 font-mono">
-                  <div className="pt-1 flex justify-between">
-                    <span className="text-slate-400">Session ID:</span>
-                    <span className="font-semibold text-slate-800">100004241006143218...</span>
-                  </div>
-                  <div className="pt-1 flex justify-between">
-                    <span className="text-slate-400">Beneficiary:</span>
-                    <span>C. Obi (GTBank)</span>
-                  </div>
-                  <div className="pt-1 flex justify-between">
-                    <span className="text-slate-400">Timestamp:</span>
-                    <span>06 Oct 2026, 14:32</span>
-                  </div>
-                </div>
-              </div>
-
-              {/* Arrow */}
-              <div className="hidden md:flex md:col-span-1 justify-center">
-                <ArrowRight className="w-6 h-6 text-slate-300" />
-              </div>
-
-              {/* Generated complaint snippet */}
-              <div className="md:col-span-6 bg-slate-900 text-white rounded-xl p-4 space-y-2 text-xs font-mono">
-                <div className="text-emerald-400 font-bold text-[11px]">
-                  SUBJECT: FORMAL DISPUTE NOTICE: Failed NIP Debit [₦45,000] — Ref: 100004241...
-                </div>
-                <p className="text-slate-300 text-[11px] leading-relaxed">
-                  "Under Central Bank of Nigeria Consumer Protection Regulations 2019, your institution is mandated to reverse uncredited NIP transactions within 48 hours..."
-                </p>
-                <div className="flex items-center justify-between pt-2 border-t border-slate-800 text-[10px] text-slate-400">
-                  <span>To: support@opay-inc.com</span>
-                  <span className="text-cyan-400 font-semibold">SLA: 48h Countdown</span>
-                </div>
-              </div>
-            </div>
+          {/* Interactive Hero Widget (Simulated Scanner & Tone Morpher) */}
+          <div className="mt-12 max-w-4xl mx-auto">
+            <InteractiveHeroWidget onSelectSample={onSelectSample} />
           </div>
         </div>
       </section>
 
-      {/* 2. The Problem Section */}
-      <section className="py-16 bg-slate-50/60 border-b border-slate-200">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center max-w-2xl mx-auto">
-            <span className="text-xs font-bold text-slate-500 uppercase tracking-wider">
-              The Reality of African Payments
-            </span>
-            <h2 className="mt-1.5 text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">
-              Why do transaction disputes get ignored?
-            </h2>
-            <p className="mt-2 text-sm text-slate-600">
-              When money gets stuck between payment switches, everyday users are trapped in support limbo.
-            </p>
-          </div>
+      {/* 2. Infinite Logo Marquee of African Institutions */}
+      <Marquee />
 
-          <div className="mt-10 grid grid-cols-1 md:grid-cols-3 gap-6">
-            <div className="bg-white border border-slate-200 rounded-xl p-6 shadow-2xs space-y-3">
-              <div className="w-10 h-10 rounded-lg bg-rose-50 text-rose-600 flex items-center justify-center font-bold">
-                ✕
-              </div>
-              <h3 className="text-base font-bold text-slate-900">Sent to the Wrong Inboxes</h3>
-              <p className="text-xs text-slate-600 leading-relaxed">
-                General customer support email addresses receive hundreds of thousands of inquiries every week. Without direct escalation routing, your complaint sits unassigned for weeks.
-              </p>
-            </div>
+      {/* 3. The Visceral Before vs After Comparison */}
+      <BeforeAfterCompare onStartDispute={onStartDispute} />
 
-            <div className="bg-white border border-slate-200 rounded-xl p-6 shadow-2xs space-y-3">
-              <div className="w-10 h-10 rounded-lg bg-amber-50 text-amber-600 flex items-center justify-center font-bold">
-                #
-              </div>
-              <h3 className="text-base font-bold text-slate-900">Missing Interbank Session IDs</h3>
-              <p className="text-xs text-slate-600 leading-relaxed">
-                Central banking switches (NIBSS, Interswitch, BankservAfrica) will not open a trace without the session ID, terminal STAN, or RRN. Banks discard claims that lack these forensics.
-              </p>
-            </div>
+      {/* 4. Bento Grid: 4 Superpowers */}
+      <BentoGrid onStartDispute={onStartDispute} />
 
-            <div className="bg-white border border-slate-200 rounded-xl p-6 shadow-2xs space-y-3">
-              <div className="w-10 h-10 rounded-lg bg-slate-100 text-slate-700 flex items-center justify-center font-bold">
-                ⚖️
-              </div>
-              <h3 className="text-base font-bold text-slate-900">No Legal Teeth or Deadlines</h3>
-              <p className="text-xs text-slate-600 leading-relaxed">
-                Institutions prioritize complaints that cite specific statutory guidelines and include automated escalation paths to the Central Bank of Nigeria or Banking Ombudsman.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* 3. How It Works Section */}
-      <section className="py-16 bg-white border-b border-slate-200">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center max-w-2xl mx-auto">
-            <span className="text-xs font-bold text-emerald-700 uppercase tracking-wider">
-              Simple 3-Step Process
-            </span>
-            <h2 className="mt-1.5 text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">
-              How Dispute Desk gets your money back
-            </h2>
-            <p className="mt-2 text-sm text-slate-600">
-              From uploaded receipt to legally backed resolution in under 60 seconds.
-            </p>
-          </div>
-
-          <div className="mt-12 grid grid-cols-1 md:grid-cols-3 gap-8 relative">
-            {/* Step 1 */}
-            <div className="space-y-3">
-              <div className="flex items-center space-x-3">
-                <span className="w-8 h-8 rounded-full bg-slate-900 text-white flex items-center justify-center text-sm font-bold">
-                  1
-                </span>
-                <h3 className="text-base font-bold text-slate-900">Upload Receipt or Alert</h3>
-              </div>
-              <p className="text-xs text-slate-600 leading-relaxed">
-                Take a screenshot or photo of your banking app confirmation, debit alert SMS, or POS receipt. Claude Vision extracts all reference numbers, amounts, timestamps, and recipient data with 95%+ forensic precision.
-              </p>
-            </div>
-
-            {/* Step 2 */}
-            <div className="space-y-3">
-              <div className="flex items-center space-x-3">
-                <span className="w-8 h-8 rounded-full bg-slate-900 text-white flex items-center justify-center text-sm font-bold">
-                  2
-                </span>
-                <h3 className="text-base font-bold text-slate-900">Generate Formal Letter</h3>
-              </div>
-              <p className="text-xs text-slate-600 leading-relaxed">
-                Choose your tone (Polite, Firm, Final Notice). Dispute Desk cross-references our verified directory of 16+ African fintechs, fills the dedicated dispute inbox, and produces an official letter citing statutory SLAs.
-              </p>
-            </div>
-
-            {/* Step 3 */}
-            <div className="space-y-3">
-              <div className="flex items-center space-x-3">
-                <span className="w-8 h-8 rounded-full bg-slate-900 text-white flex items-center justify-center text-sm font-bold">
-                  3
-                </span>
-                <h3 className="text-base font-bold text-slate-900">Track & Escalate</h3>
-              </div>
-              <p className="text-xs text-slate-600 leading-relaxed">
-                Dispatch via your email app or export as an official PDF. A live countdown tracks the bank's response window. If they default, 1-tap escalates directly to the regulator (CBN or NFOSA).
-              </p>
-            </div>
-          </div>
-
-          <div className="mt-12 text-center">
-            <button
-              type="button"
-              onClick={onStartDispute}
-              className="px-6 py-3 rounded-lg text-xs sm:text-sm font-bold bg-slate-900 hover:bg-slate-800 text-white transition-colors shadow-xs inline-flex items-center space-x-2"
-            >
-              <span>Try Dispute Desk Now</span>
-              <ArrowRight className="w-4 h-4" />
-            </button>
-          </div>
-        </div>
-      </section>
-
-      {/* 4. Supported Providers & Regulatory Protection */}
+      {/* 5. Supported Providers & Regulatory Protection */}
       <section className="py-16 bg-slate-50/50 border-b border-slate-200">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-8">
@@ -316,7 +149,7 @@ export default function LandingPage({ onStartDispute, onSelectSample, onOpenDire
                 className="bg-white border border-slate-200 rounded-lg p-3 text-center shadow-2xs hover:border-slate-300 transition-colors"
               >
                 <span className="font-bold text-xs text-slate-900 block truncate">{p.name}</span>
-                <span className="text-[10px] text-slate-500 block mt-0.5">{p.slaLabel}</span>
+                <span className="text-[10px] text-slate-500 block mt-0.5 font-mono">{p.slaLabel}</span>
               </div>
             ))}
           </div>
@@ -330,7 +163,7 @@ export default function LandingPage({ onStartDispute, onSelectSample, onOpenDire
                   Central Bank of Nigeria (CBN CPD)
                 </h4>
               </div>
-              <p className="text-xs text-slate-600">
+              <p className="text-xs text-slate-600 leading-relaxed">
                 Mandates immediate reversal for intra-bank transfers and a maximum of 48–72 hours for inter-bank NIP transfers under the Consumer Protection Regulations 2019.
               </p>
               <div className="text-[11px] font-mono text-emerald-700 font-semibold">
@@ -345,7 +178,7 @@ export default function LandingPage({ onStartDispute, onSelectSample, onOpenDire
                   National Financial Ombud Scheme (NFOSA)
                 </h4>
               </div>
-              <p className="text-xs text-slate-600">
+              <p className="text-xs text-slate-600 leading-relaxed">
                 Enforces the South African Code of Banking Practice, requiring institutions to resolve payment dispensation claims within mandatory investigation windows.
               </p>
               <div className="text-[11px] font-mono text-emerald-700 font-semibold">
@@ -356,7 +189,7 @@ export default function LandingPage({ onStartDispute, onSelectSample, onOpenDire
         </div>
       </section>
 
-      {/* 5. Frequently Asked Questions */}
+      {/* 6. Frequently Asked Questions */}
       <section className="py-16 bg-white border-b border-slate-200">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-xl mx-auto mb-10">
@@ -397,7 +230,7 @@ export default function LandingPage({ onStartDispute, onSelectSample, onOpenDire
         </div>
       </section>
 
-      {/* 6. Final Call to Action */}
+      {/* 7. Final Call to Action */}
       <section className="py-16 bg-slate-900 text-white">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-4">
           <h2 className="text-2xl sm:text-4xl font-extrabold tracking-tight">
