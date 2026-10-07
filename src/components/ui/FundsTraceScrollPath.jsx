@@ -39,14 +39,14 @@ export default function FundsTraceScrollPath({ onStartDispute }) {
         </div>
 
         {/* Milestone Cards Timeline with Connecting SVG Path */}
-        <div className="relative max-w-3xl mx-auto space-y-28 py-6">
-          {/* Animated SVG Path in background */}
-          <div className="absolute left-6 sm:left-1/2 top-0 bottom-0 -translate-x-1/2 w-24 pointer-events-none z-0">
+        <div className="relative max-w-3xl mx-auto space-y-12 sm:space-y-28 py-6">
+          {/* Animated SVG Path in background (Desktop & Tablets) */}
+          <div className="absolute left-1/2 top-0 bottom-0 -translate-x-1/2 w-24 pointer-events-none z-0">
             <svg
               viewBox="0 0 100 800"
               fill="none"
               preserveAspectRatio="none"
-              className="w-full h-full"
+              className="w-full h-full opacity-60 sm:opacity-100"
             >
               {/* Static background guide track */}
               <path
@@ -69,8 +69,8 @@ export default function FundsTraceScrollPath({ onStartDispute }) {
           </div>
 
           {/* Node 1: The Failed Debit */}
-          <div className="relative z-10 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6">
-            <div className="sm:w-5/12 bg-slate-950/90 border border-slate-800 rounded-2xl p-5 shadow-lg backdrop-blur-sm">
+          <div className="relative z-10 flex flex-col sm:flex-row items-center justify-between gap-4 sm:gap-6">
+            <div className="w-full sm:w-5/12 order-2 sm:order-1 bg-slate-950/90 border border-slate-800 rounded-2xl p-4 sm:p-5 shadow-lg backdrop-blur-sm">
               <div className="flex items-center space-x-2 text-rose-400 text-xs font-bold uppercase tracking-wider mb-2">
                 <AlertCircle className="w-4 h-4 flex-shrink-0" />
                 <span>Stage 1: Money Left Your Account</span>
@@ -85,23 +85,23 @@ export default function FundsTraceScrollPath({ onStartDispute }) {
             </div>
 
             {/* Central Node Badge */}
-            <div className="w-12 h-12 rounded-full bg-slate-900 border-2 border-emerald-500 text-emerald-400 flex items-center justify-center font-bold text-sm shadow-md shadow-emerald-500/20 sm:mx-auto flex-shrink-0">
+            <div className="order-1 sm:order-2 w-11 h-11 sm:w-12 sm:h-12 rounded-full bg-slate-900 border-2 border-emerald-500 text-emerald-400 flex items-center justify-center font-bold text-xs sm:text-sm shadow-md shadow-emerald-500/20 sm:mx-auto flex-shrink-0">
               01
             </div>
 
-            <div className="hidden sm:block sm:w-5/12" />
+            <div className="hidden sm:block sm:w-5/12 sm:order-3" />
           </div>
 
           {/* Node 2: Forensic Switch Extraction */}
-          <div className="relative z-10 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6">
-            <div className="hidden sm:block sm:w-5/12" />
+          <div className="relative z-10 flex flex-col sm:flex-row items-center justify-between gap-4 sm:gap-6">
+            <div className="hidden sm:block sm:w-5/12 sm:order-1" />
 
             {/* Central Node Badge */}
-            <div className="w-12 h-12 rounded-full bg-slate-900 border-2 border-emerald-500 text-emerald-400 flex items-center justify-center font-bold text-sm shadow-md shadow-emerald-500/20 sm:mx-auto flex-shrink-0">
+            <div className="order-1 sm:order-2 w-11 h-11 sm:w-12 sm:h-12 rounded-full bg-slate-900 border-2 border-emerald-500 text-emerald-400 flex items-center justify-center font-bold text-xs sm:text-sm shadow-md shadow-emerald-500/20 sm:mx-auto flex-shrink-0">
               02
             </div>
 
-            <div className="sm:w-5/12 bg-slate-950/90 border border-slate-800 rounded-2xl p-5 shadow-lg backdrop-blur-sm">
+            <div className="w-full sm:w-5/12 order-2 sm:order-3 bg-slate-950/90 border border-slate-800 rounded-2xl p-4 sm:p-5 shadow-lg backdrop-blur-sm">
               <div className="flex items-center space-x-2 text-cyan-400 text-xs font-bold uppercase tracking-wider mb-2">
                 <Search className="w-4 h-4 flex-shrink-0" />
                 <span>Stage 2: We Find the Tracking Code</span>
@@ -117,8 +117,8 @@ export default function FundsTraceScrollPath({ onStartDispute }) {
           </div>
 
           {/* Node 3: Statutory SLA Countdown */}
-          <div className="relative z-10 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6">
-            <div className="sm:w-5/12 bg-slate-950/90 border border-slate-800 rounded-2xl p-5 shadow-lg backdrop-blur-sm">
+          <div className="relative z-10 flex flex-col sm:flex-row items-center justify-between gap-4 sm:gap-6">
+            <div className="w-full sm:w-5/12 order-2 sm:order-1 bg-slate-950/90 border border-slate-800 rounded-2xl p-4 sm:p-5 shadow-lg backdrop-blur-sm">
               <div className="flex items-center space-x-2 text-amber-400 text-xs font-bold uppercase tracking-wider mb-2">
                 <Clock className="w-4 h-4 flex-shrink-0" />
                 <span>Stage 3: 48-Hour Bank Legal Clock Starts</span>
@@ -133,23 +133,23 @@ export default function FundsTraceScrollPath({ onStartDispute }) {
             </div>
 
             {/* Central Node Badge */}
-            <div className="w-12 h-12 rounded-full bg-slate-900 border-2 border-emerald-500 text-emerald-400 flex items-center justify-center font-bold text-sm shadow-md shadow-emerald-500/20 sm:mx-auto flex-shrink-0">
+            <div className="order-1 sm:order-2 w-11 h-11 sm:w-12 sm:h-12 rounded-full bg-slate-900 border-2 border-emerald-500 text-emerald-400 flex items-center justify-center font-bold text-xs sm:text-sm shadow-md shadow-emerald-500/20 sm:mx-auto flex-shrink-0">
               03
             </div>
 
-            <div className="hidden sm:block sm:w-5/12" />
+            <div className="hidden sm:block sm:w-5/12 sm:order-3" />
           </div>
 
           {/* Node 4: Funds Resolved */}
-          <div className="relative z-10 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6">
-            <div className="hidden sm:block sm:w-5/12" />
+          <div className="relative z-10 flex flex-col sm:flex-row items-center justify-between gap-4 sm:gap-6">
+            <div className="hidden sm:block sm:w-5/12 sm:order-1" />
 
             {/* Central Node Badge */}
-            <div className="w-12 h-12 rounded-full bg-emerald-500 text-slate-950 flex items-center justify-center font-bold text-sm shadow-lg shadow-emerald-500/30 sm:mx-auto flex-shrink-0">
+            <div className="order-1 sm:order-2 w-11 h-11 sm:w-12 sm:h-12 rounded-full bg-emerald-500 text-slate-950 flex items-center justify-center font-bold text-xs sm:text-sm shadow-lg shadow-emerald-500/30 sm:mx-auto flex-shrink-0">
               ✓
             </div>
 
-            <div className="sm:w-5/12 bg-gradient-to-br from-slate-900 to-emerald-950/40 border border-emerald-500/40 rounded-2xl p-5 shadow-xl backdrop-blur-sm">
+            <div className="w-full sm:w-5/12 order-2 sm:order-3 bg-gradient-to-br from-slate-900 to-emerald-950/40 border border-emerald-500/40 rounded-2xl p-4 sm:p-5 shadow-xl backdrop-blur-sm">
               <div className="flex items-center space-x-2 text-emerald-400 text-xs font-bold uppercase tracking-wider mb-2">
                 <CheckCircle2 className="w-4 h-4 flex-shrink-0" />
                 <span>Stage 4: Money Refunded to Your Account</span>

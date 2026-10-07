@@ -51,13 +51,13 @@ export default function ExtractionStep({
 
         {/* Multi-receipt tabs if multiple receipts */}
         {receipts.length > 1 && (
-          <div className="flex items-center space-x-1 bg-slate-100 p-1 rounded-lg border border-slate-200">
+          <div className="flex items-center space-x-1 bg-slate-100 p-1 rounded-lg border border-slate-200 overflow-x-auto scrollbar-none max-w-full">
             {receipts.map((r, idx) => (
               <button
                 key={idx}
                 type="button"
                 onClick={() => setCurrentReceiptIndex(idx)}
-                className={`px-3 py-1.5 rounded-md text-xs font-semibold transition-all ${
+                className={`px-3 py-1.5 rounded-md text-xs font-semibold shrink-0 whitespace-nowrap transition-all ${
                   idx === currentReceiptIndex
                     ? 'bg-white text-slate-900 shadow-2xs'
                     : 'text-slate-600 hover:text-slate-900'
@@ -96,7 +96,7 @@ export default function ExtractionStep({
 
         {/* Right Column: Clean Form Fields */}
         <div className="lg:col-span-7 order-1 lg:order-2 space-y-4">
-          <div className="bg-white border border-slate-200 rounded-xl p-5 sm:p-6 space-y-4 shadow-2xs">
+          <div className="bg-white border border-slate-200 rounded-xl p-4 sm:p-6 space-y-4 shadow-2xs">
             {/* Institution / Provider */}
             <div>
               <div className="flex items-center justify-between mb-1.5">
@@ -270,11 +270,11 @@ export default function ExtractionStep({
           </div>
 
           {/* Action Row */}
-          <div className="flex items-center justify-between pt-2">
+          <div className="flex items-center justify-between pt-2 gap-3">
             <button
               type="button"
               onClick={onBack}
-              className="px-4 py-2 rounded-lg text-xs font-semibold bg-white hover:bg-slate-50 text-slate-700 border border-slate-300 transition-colors flex items-center space-x-1.5 shadow-2xs"
+              className="px-4 py-2.5 rounded-lg text-xs font-semibold bg-white hover:bg-slate-50 text-slate-700 border border-slate-300 transition-colors flex items-center space-x-1.5 shadow-2xs min-h-[44px]"
             >
               <ArrowLeft className="w-3.5 h-3.5" />
               <span>Back</span>
@@ -283,7 +283,7 @@ export default function ExtractionStep({
             <button
               type="button"
               onClick={onProceed}
-              className="px-6 py-2.5 rounded-lg text-xs sm:text-sm font-semibold bg-slate-900 hover:bg-slate-800 text-white transition-colors shadow-xs flex items-center space-x-2"
+              className="px-5 sm:px-6 py-2.5 rounded-lg text-xs sm:text-sm font-semibold bg-slate-900 hover:bg-slate-800 text-white transition-colors shadow-xs flex items-center space-x-2 min-h-[44px]"
             >
               <span>Next: What Happened?</span>
               <ArrowRight className="w-4 h-4" />

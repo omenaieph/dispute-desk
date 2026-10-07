@@ -71,8 +71,8 @@ export default function IssueStep({
       </div>
 
       {/* Additional Narrative Notes */}
-      <div className="bg-white border border-slate-200 rounded-xl p-5 sm:p-6 space-y-3 shadow-2xs">
-        <div className="flex items-center justify-between">
+      <div className="bg-white border border-slate-200 rounded-xl p-4 sm:p-6 space-y-3 shadow-2xs">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-1">
           <label className="text-xs font-bold text-slate-700 uppercase tracking-wider flex items-center">
             <MessageSquare className="w-3.5 h-3.5 mr-1.5 text-slate-500" />
             <span>Anything else the bank should know? (Optional)</span>
@@ -93,21 +93,21 @@ export default function IssueStep({
           <button
             type="button"
             onClick={() => setExtraNotes(prev => (prev ? prev + " " : "") + "The recipient checked their bank statement and confirmed the money was never received.")}
-            className="text-[11px] px-2.5 py-1 rounded-md bg-slate-100 hover:bg-slate-200/80 text-slate-700 border border-slate-200 transition-colors"
+            className="text-[11px] px-2.5 py-1.5 rounded-md bg-slate-100 hover:bg-slate-200/80 text-slate-700 border border-slate-200 transition-colors"
           >
             + Recipient never got the money
           </button>
           <button
             type="button"
             onClick={() => setExtraNotes(prev => (prev ? prev + " " : "") + "The POS or ATM machine displayed a decline error, but the money was deducted from my account.")}
-            className="text-[11px] px-2.5 py-1 rounded-md bg-slate-100 hover:bg-slate-200/80 text-slate-700 border border-slate-200 transition-colors"
+            className="text-[11px] px-2.5 py-1.5 rounded-md bg-slate-100 hover:bg-slate-200/80 text-slate-700 border border-slate-200 transition-colors"
           >
             + Machine said Failed but debited me
           </button>
           <button
             type="button"
             onClick={() => setExtraNotes(prev => (prev ? prev + " " : "") + "More than 48 hours have passed since this transaction without any refund from the bank.")}
-            className="text-[11px] px-2.5 py-1 rounded-md bg-slate-100 hover:bg-slate-200/80 text-slate-700 border border-slate-200 transition-colors"
+            className="text-[11px] px-2.5 py-1.5 rounded-md bg-slate-100 hover:bg-slate-200/80 text-slate-700 border border-slate-200 transition-colors"
           >
             + More than 48 hours have passed
           </button>
@@ -115,7 +115,7 @@ export default function IssueStep({
       </div>
 
       {/* Complainant Identity */}
-      <div className="bg-white border border-slate-200 rounded-xl p-5 sm:p-6 space-y-3 shadow-2xs">
+      <div className="bg-white border border-slate-200 rounded-xl p-4 sm:p-6 space-y-3 shadow-2xs">
         <div className="flex items-center space-x-2 pb-1 border-b border-slate-100">
           <User className="w-4 h-4 text-slate-600" />
           <h3 className="text-xs font-bold text-slate-700 uppercase tracking-wider">
@@ -166,11 +166,11 @@ export default function IssueStep({
       </div>
 
       {/* Action Row */}
-      <div className="flex items-center justify-between pt-2">
+      <div className="flex items-center justify-between pt-2 gap-3">
         <button
           type="button"
           onClick={onBack}
-          className="px-4 py-2 rounded-lg text-xs font-semibold bg-white hover:bg-slate-50 text-slate-700 border border-slate-300 transition-colors flex items-center space-x-1.5 shadow-2xs"
+          className="px-4 py-2.5 rounded-lg text-xs font-semibold bg-white hover:bg-slate-50 text-slate-700 border border-slate-300 transition-colors flex items-center space-x-1.5 shadow-2xs min-h-[44px]"
         >
           <ArrowLeft className="w-3.5 h-3.5" />
           <span>Back</span>
@@ -179,7 +179,7 @@ export default function IssueStep({
         <button
           type="button"
           onClick={onProceed}
-          className="px-6 py-2.5 rounded-lg text-xs sm:text-sm font-semibold bg-slate-900 hover:bg-slate-800 text-white transition-colors shadow-xs flex items-center space-x-2"
+          className="px-5 sm:px-6 py-2.5 rounded-lg text-xs sm:text-sm font-semibold bg-slate-900 hover:bg-slate-800 text-white transition-colors shadow-xs flex items-center space-x-2 min-h-[44px]"
         >
           <span>Create Complaint Letter</span>
           <ArrowRight className="w-4 h-4" />

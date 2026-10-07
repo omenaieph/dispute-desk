@@ -30,26 +30,26 @@ export default function InteractiveHeroWidget({ onSelectSample }) {
   const activeTone = toneSnippets[tone];
 
   return (
-    <div className="bg-white border border-slate-200/90 rounded-2xl p-5 sm:p-6 shadow-sm relative overflow-hidden text-left">
+    <div className="bg-white border border-slate-200/90 rounded-2xl p-4 sm:p-6 shadow-sm relative overflow-hidden text-left">
       {/* Interactive header tabs */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-4 border-b border-slate-100">
         <div>
           <span className="text-[11px] font-bold text-slate-400 uppercase tracking-wider block">
             Interactive Example
           </span>
-          <span className="text-sm font-bold text-slate-900">
+          <span className="text-xs sm:text-sm font-bold text-slate-900">
             See how your messy receipt turns into an official complaint letter
           </span>
         </div>
 
         {/* Case Selector Pills */}
-        <div className="flex items-center space-x-1 bg-slate-100 p-1 rounded-lg border border-slate-200 text-xs">
+        <div className="flex items-center space-x-1 bg-slate-100 p-1 rounded-lg border border-slate-200 text-xs overflow-x-auto scrollbar-none max-w-full">
           {SAMPLE_RECEIPTS.slice(0, 3).map((sample, idx) => (
             <button
               key={sample.id}
               type="button"
               onClick={() => setSelectedCaseIdx(idx)}
-              className={`px-2.5 py-1 rounded-md font-semibold transition-all ${
+              className={`px-2.5 py-1 rounded-md font-semibold shrink-0 whitespace-nowrap transition-all ${
                 selectedCaseIdx === idx
                   ? 'bg-white text-slate-900 shadow-2xs'
                   : 'text-slate-600 hover:text-slate-900'
@@ -94,16 +94,16 @@ export default function InteractiveHeroWidget({ onSelectSample }) {
             {/* Extracted Forensic Tags */}
             <div className="mt-3 space-y-1.5 text-[11px] font-mono">
               <div className="flex justify-between p-1.5 bg-white rounded border border-slate-200/60">
-                <span className="text-slate-400">SESSION ID:</span>
-                <span className="font-bold text-slate-800 truncate ml-2 max-w-[170px]">{tx.reference}</span>
+                <span className="text-slate-400 shrink-0">SESSION ID:</span>
+                <span className="font-bold text-slate-800 break-all text-right ml-2">{tx.reference}</span>
               </div>
               <div className="flex justify-between p-1.5 bg-white rounded border border-slate-200/60">
-                <span className="text-slate-400">RECIPIENT:</span>
-                <span className="font-medium text-slate-700 truncate ml-2">{tx.recipient}</span>
+                <span className="text-slate-400 shrink-0">RECIPIENT:</span>
+                <span className="font-medium text-slate-700 truncate ml-2 text-right">{tx.recipient}</span>
               </div>
               <div className="flex justify-between p-1.5 bg-white rounded border border-slate-200/60">
-                <span className="text-slate-400">SENT DIRECT TO:</span>
-                <span className="font-medium text-emerald-700 truncate ml-2">Bank's Real Dispute Team</span>
+                <span className="text-slate-400 shrink-0">SENT DIRECT TO:</span>
+                <span className="font-medium text-emerald-700 truncate ml-2 text-right">Bank's Real Dispute Team</span>
               </div>
             </div>
           </div>
@@ -118,15 +118,15 @@ export default function InteractiveHeroWidget({ onSelectSample }) {
         <div className="lg:col-span-7 bg-white border border-slate-200 rounded-xl p-4 flex flex-col justify-between">
           <div>
             {/* Tone Toggle Rail */}
-            <div className="flex items-center justify-between pb-3 border-b border-slate-100">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 pb-3 border-b border-slate-100">
               <span className="text-xs font-bold text-slate-700">Choose your tone:</span>
-              <div className="flex items-center space-x-1 bg-slate-100 p-0.5 rounded-md text-[11px]">
+              <div className="flex items-center space-x-1 bg-slate-100 p-0.5 rounded-md text-[11px] overflow-x-auto scrollbar-none max-w-full">
                 {['polite', 'firm', 'final_notice'].map((t) => (
                   <button
                     key={t}
                     type="button"
                     onClick={() => setTone(t)}
-                    className={`px-2 py-1 rounded font-semibold capitalize transition-all ${
+                    className={`px-2.5 py-1 rounded font-semibold capitalize shrink-0 whitespace-nowrap transition-all ${
                       tone === t
                         ? 'bg-slate-900 text-white shadow-2xs'
                         : 'text-slate-600 hover:text-slate-900'
@@ -140,11 +140,11 @@ export default function InteractiveHeroWidget({ onSelectSample }) {
 
             {/* Live Letter Header */}
             <div className="mt-3 space-y-2">
-              <div className="p-2 bg-slate-50 rounded-lg border border-slate-200/80">
+              <div className="p-2.5 bg-slate-50 rounded-lg border border-slate-200/80">
                 <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider block">
                   Generated Subject Line:
                 </span>
-                <p className="text-xs font-mono font-bold text-slate-900 mt-0.5">
+                <p className="text-xs font-mono font-bold text-slate-900 mt-0.5 break-words">
                   {activeTone.subject}
                 </p>
               </div>
@@ -156,14 +156,14 @@ export default function InteractiveHeroWidget({ onSelectSample }) {
           </div>
 
           {/* Quick Action Button */}
-          <div className="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between">
+          <div className="mt-4 pt-3 border-t border-slate-100 flex flex-col sm:flex-row sm:items-center justify-between gap-2.5">
             <span className="text-xs text-slate-500 font-medium">
               Bank's Legal Deadline: <strong className="text-slate-800">48 Hours to refund you</strong>
             </span>
             <button
               type="button"
               onClick={() => onSelectSample(currentCase)}
-              className="px-4 py-2 rounded-lg text-xs font-bold bg-slate-900 hover:bg-slate-800 text-white transition-colors shadow-2xs flex items-center space-x-1.5"
+              className="w-full sm:w-auto justify-center px-4 py-2.5 rounded-lg text-xs font-bold bg-slate-900 hover:bg-slate-800 text-white transition-colors shadow-2xs flex items-center space-x-1.5 min-h-[44px]"
             >
               <span>Test This In App</span>
               <ArrowRight className="w-3.5 h-3.5" />

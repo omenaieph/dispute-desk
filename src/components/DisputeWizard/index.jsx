@@ -156,6 +156,16 @@ export default function DisputeWizard({
 
   return (
     <div className="max-w-4xl mx-auto px-4 sm:px-6 py-8">
+      {/* Mobile Step Indicator Header */}
+      <div className="sm:hidden mb-4 flex items-center justify-between px-1">
+        <span className="text-xs font-bold text-slate-900">
+          Step {currentStep} of 4: {steps[currentStep - 1]?.label}
+        </span>
+        <span className="text-[11px] font-semibold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded-full border border-emerald-200">
+          {Math.round((currentStep / 4) * 100)}% Complete
+        </span>
+      </div>
+
       {/* Clean Stepper Navigation */}
       <div className="mb-8">
         <div className="grid grid-cols-4 gap-2 border-b border-slate-200 pb-4">

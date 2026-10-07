@@ -100,16 +100,16 @@ export default function LandingPage({ onStartDispute, onSelectSample, onOpenDire
             </div>
 
             {/* Creative Stylish Headline */}
-            <h1 className="text-4xl sm:text-5xl md:text-6xl font-extrabold text-slate-900 tracking-tight leading-[1.18] max-w-4xl mx-auto">
+            <h1 className="text-3xl sm:text-5xl md:text-6xl font-extrabold text-slate-900 tracking-tight leading-[1.2] sm:leading-[1.18] max-w-4xl mx-auto">
               <span className="block sm:inline">Money stuck? </span>
               <span className="text-slate-900">Turn failed debits </span>
               {/* Custom stylish receipt sticker element replacing traditional heart/emoji */}
               <span
                 onClick={onStartDispute}
-                className="inline-flex items-center align-middle mx-1 sm:mx-1.5 px-2.5 py-1 sm:px-3 sm:py-1.5 rounded-2xl bg-white border border-slate-200 shadow-sm shadow-slate-900/5 -rotate-2 hover:rotate-0 hover:scale-105 transition-all duration-200 cursor-pointer group select-none"
+                className="inline-flex items-center align-middle mx-1 sm:mx-1.5 px-2 py-0.5 sm:px-3 sm:py-1.5 rounded-xl sm:rounded-2xl bg-white border border-slate-200 shadow-sm shadow-slate-900/5 -rotate-2 hover:rotate-0 hover:scale-105 transition-all duration-200 cursor-pointer group select-none whitespace-nowrap"
                 title="Upload receipt screenshot to recover funds"
               >
-                <StylishReceiptIcon className="w-5 h-6 sm:w-6 sm:h-7 mr-1.5 group-hover:-rotate-3 transition-transform flex-shrink-0" />
+                <StylishReceiptIcon className="w-5 h-6 sm:w-6 sm:h-7 mr-1 sm:mr-1.5 group-hover:-rotate-3 transition-transform flex-shrink-0" />
                 <span className="text-xs sm:text-sm font-bold font-mono text-slate-800 tracking-tight group-hover:text-emerald-700 transition-colors">
                   Receipt
                 </span>
@@ -310,7 +310,7 @@ export default function LandingPage({ onStartDispute, onSelectSample, onOpenDire
             <button
               type="button"
               onClick={onStartDispute}
-              className="px-8 py-3.5 rounded-xl text-sm font-bold bg-emerald-500 hover:bg-emerald-400 text-slate-950 transition-all shadow-md inline-flex items-center space-x-2"
+              className="w-full sm:w-auto px-8 py-3.5 rounded-xl text-sm font-bold bg-emerald-500 hover:bg-emerald-400 text-slate-950 transition-all shadow-md inline-flex items-center justify-center space-x-2 min-h-[48px]"
             >
               <span>Start Your Dispute Now</span>
               <ArrowRight className="w-4 h-4" />

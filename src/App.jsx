@@ -130,17 +130,19 @@ export default function App() {
 
       {/* Institutional Footer */}
       <footer className="border-t border-slate-200 bg-white py-10 text-xs text-slate-500">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4">
-          <div className="flex items-center space-x-2">
-            <div className="w-5 h-5 rounded bg-slate-900 text-white flex items-center justify-center font-bold text-[10px]">
-              DD
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-center sm:text-left">
+          <div className="flex flex-col sm:flex-row items-center gap-1 sm:gap-2">
+            <div className="flex items-center space-x-2">
+              <div className="w-5 h-5 rounded bg-slate-900 text-white flex items-center justify-center font-bold text-[10px]">
+                DD
+              </div>
+              <span className="font-bold text-slate-900">Dispute Desk</span>
             </div>
-            <span className="font-bold text-slate-900">Dispute Desk</span>
-            <span>—</span>
-            <span>Turn failed African fintech transactions into resolved refunds under 60 seconds.</span>
+            <span className="hidden sm:inline text-slate-300">—</span>
+            <span className="text-slate-500">Turn failed African fintech transactions into refunds in 60 seconds.</span>
           </div>
 
-          <div className="flex items-center space-x-4">
+          <div className="flex flex-wrap items-center justify-center gap-3 sm:gap-4">
             <button
               type="button"
               onClick={() => {
@@ -170,7 +172,7 @@ export default function App() {
           </div>
         </div>
 
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 mt-4 pt-4 border-t border-slate-100 flex flex-col sm:flex-row items-center justify-between gap-2 text-[11px] text-slate-400">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 mt-4 pt-4 border-t border-slate-100 flex flex-col sm:flex-row items-center justify-between gap-2 text-[11px] text-slate-400 text-center sm:text-left">
           <p>
             Complies with Central Bank of Nigeria (CBN) Consumer Protection Regulations 2019 & SA National Financial Ombud Scheme guidelines.
           </p>

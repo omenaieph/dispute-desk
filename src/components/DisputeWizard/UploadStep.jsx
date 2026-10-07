@@ -104,7 +104,7 @@ export default function UploadStep({
               type="button"
               disabled={isExtracting}
               onClick={() => fileInputRef.current?.click()}
-              className="px-4 py-2 rounded-lg text-xs font-semibold bg-slate-900 hover:bg-slate-800 text-white transition-colors shadow-2xs disabled:opacity-50"
+              className="px-5 py-2.5 rounded-lg text-xs font-semibold bg-slate-900 hover:bg-slate-800 text-white transition-colors shadow-2xs disabled:opacity-50 min-h-[44px]"
             >
               Choose File from Device
             </button>
@@ -164,7 +164,7 @@ export default function UploadStep({
 
       {/* Example Cases Gallery */}
       <div className="bg-white border border-slate-200 rounded-xl p-4 shadow-2xs">
-        <div className="flex items-center justify-between mb-2.5">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between mb-2.5 gap-1">
           <span className="text-xs font-bold text-slate-700 uppercase tracking-wider">
             Or Try with a Sample Receipt
           </span>
@@ -177,7 +177,7 @@ export default function UploadStep({
               key={sample.id}
               type="button"
               onClick={() => onSelectSample(sample)}
-              className="text-left p-2.5 rounded-lg bg-slate-50 hover:bg-slate-100/80 border border-slate-200 hover:border-slate-300 transition-all flex items-center justify-between group"
+              className="text-left p-2.5 rounded-lg bg-slate-50 hover:bg-slate-100/80 border border-slate-200 hover:border-slate-300 transition-all flex items-center justify-between group min-h-[44px]"
             >
               <div>
                 <div className="flex items-center space-x-2">
@@ -211,7 +211,7 @@ export default function UploadStep({
             type="button"
             onClick={onProceed}
             disabled={isExtracting}
-            className="w-full sm:w-auto px-6 py-2.5 rounded-lg text-sm font-semibold bg-slate-900 hover:bg-slate-800 text-white transition-colors shadow-xs flex items-center justify-center space-x-2"
+            className="w-full sm:w-auto px-6 py-3 rounded-lg text-sm font-semibold bg-slate-900 hover:bg-slate-800 text-white transition-colors shadow-xs flex items-center justify-center space-x-2 min-h-[48px]"
           >
             <span>Review Found Details</span>
             <ArrowRight className="w-4 h-4" />

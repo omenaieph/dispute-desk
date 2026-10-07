@@ -19,7 +19,7 @@ export default function BeforeAfterCompare({ onStartDispute }) {
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-5xl mx-auto">
           {/* Card 1: The Regular Way (Frustration & Ignored) */}
-          <div className="bg-white border border-rose-200 rounded-2xl p-6 shadow-2xs relative flex flex-col justify-between">
+          <div className="bg-white border border-rose-200 rounded-2xl p-4 sm:p-6 shadow-2xs relative flex flex-col justify-between">
             <div>
               <div className="flex items-center justify-between pb-3 border-b border-rose-100">
                 <div className="flex items-center space-x-2 text-rose-700">
@@ -34,13 +34,13 @@ export default function BeforeAfterCompare({ onStartDispute }) {
               {/* Chat Simulation */}
               <div className="mt-4 space-y-3 text-xs">
                 {/* User message */}
-                <div className="bg-slate-100 rounded-xl rounded-tr-none p-3 text-slate-800 ml-6">
+                <div className="bg-slate-100 rounded-xl rounded-tr-none p-3 text-slate-800 ml-4 sm:ml-6">
                   <p className="font-semibold text-slate-900 mb-0.5">You:</p>
                   "Good day, I was debited ₦45,000 yesterday and the person didn't receive it. Please help reverse my money."
                 </div>
 
                 {/* Bank automated bot reply */}
-                <div className="bg-rose-50/60 border border-rose-100 rounded-xl rounded-tl-none p-3 text-slate-700 mr-6">
+                <div className="bg-rose-50/60 border border-rose-100 rounded-xl rounded-tl-none p-3 text-slate-700 mr-4 sm:mr-6">
                   <p className="font-bold text-rose-800 mb-0.5">Automated Bank Bot:</p>
                   "Thank you for contacting us! Ticket #99104 is queued. Due to high volume, our team will investigate within 7–14 business days."
                 </div>
@@ -59,7 +59,7 @@ export default function BeforeAfterCompare({ onStartDispute }) {
           </div>
 
           {/* Card 2: With Dispute Desk (Authoritative & Enforced) */}
-          <div className="bg-white border border-emerald-300 rounded-2xl p-6 shadow-2xs relative flex flex-col justify-between ring-1 ring-emerald-500/20">
+          <div className="bg-white border border-emerald-300 rounded-2xl p-4 sm:p-6 shadow-2xs relative flex flex-col justify-between ring-1 ring-emerald-500/20">
             <div>
               <div className="flex items-center justify-between pb-3 border-b border-emerald-100">
                 <div className="flex items-center space-x-2 text-emerald-800">
@@ -72,16 +72,16 @@ export default function BeforeAfterCompare({ onStartDispute }) {
               </div>
 
               {/* Letter Preview */}
-              <div className="mt-4 bg-slate-900 text-white rounded-xl p-4 text-xs font-mono space-y-2">
-                <div className="flex items-center justify-between text-[11px] pb-1 border-b border-slate-800">
+              <div className="mt-4 bg-slate-900 text-white rounded-xl p-3.5 sm:p-4 text-xs font-mono space-y-2">
+                <div className="flex flex-col sm:flex-row sm:items-center justify-between text-[11px] pb-1 border-b border-slate-800 gap-1">
                   <span className="text-emerald-400 font-bold">DIRECT TO: Bank's Dispute & Reversals Desk</span>
-                  <span className="text-cyan-300">CC: Central Bank (cpd@cbn.gov.ng)</span>
+                  <span className="text-cyan-300 break-all sm:break-normal">CC: Central Bank (cpd@cbn.gov.ng)</span>
                 </div>
 
                 <p className="text-slate-200 text-[11px] leading-relaxed pt-1">
                   <strong>SUBJECT: FORMAL TRANSACTION DISPUTE</strong> [₦45,000.00]
                   <br />
-                  Tracking / Session ID: <span className="text-emerald-300">100004241006143218009214</span>
+                  Tracking / Session ID: <span className="text-emerald-300 break-all">100004241006143218009214</span>
                   <br />
                   Under CBN regulations, banks must reverse failed transfers within 48 hours. If not reversed by Thursday, this complaint escalates directly to regulatory investigation.
                 </p>
@@ -109,7 +109,7 @@ export default function BeforeAfterCompare({ onStartDispute }) {
           <button
             type="button"
             onClick={onStartDispute}
-            className="px-6 py-3 rounded-lg text-xs sm:text-sm font-bold bg-slate-900 hover:bg-slate-800 text-white transition-colors shadow-xs inline-flex items-center space-x-2"
+            className="w-full sm:w-auto px-6 py-3.5 rounded-lg text-xs sm:text-sm font-bold bg-slate-900 hover:bg-slate-800 text-white transition-colors shadow-xs inline-flex items-center justify-center space-x-2 min-h-[44px]"
           >
             <span>File Your Formal Complaint</span>
             <ArrowRight className="w-4 h-4" />

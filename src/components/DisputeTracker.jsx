@@ -230,7 +230,7 @@ ${dispute.userName}`;
         <button
           type="button"
           onClick={onStartNewDispute}
-          className="px-4 py-2 rounded-lg text-xs sm:text-sm font-semibold bg-slate-900 hover:bg-slate-800 text-white transition-colors shadow-xs flex items-center justify-center space-x-1.5"
+          className="w-full sm:w-auto px-4 py-2.5 rounded-lg text-xs sm:text-sm font-semibold bg-slate-900 hover:bg-slate-800 text-white transition-colors shadow-xs flex items-center justify-center space-x-1.5 min-h-[44px]"
         >
           <Plus className="w-4 h-4" />
           <span>New Dispute</span>
@@ -238,11 +238,11 @@ ${dispute.userName}`;
       </div>
 
       {/* Filter Tabs */}
-      <div className="flex items-center space-x-1 bg-slate-100 p-1 rounded-lg border border-slate-200 text-xs overflow-x-auto">
+      <div className="flex items-center space-x-1 bg-slate-100 p-1 rounded-lg border border-slate-200 text-xs overflow-x-auto scrollbar-none max-w-full">
         <button
           type="button"
           onClick={() => setFilter('all')}
-          className={`px-3 py-1.5 rounded-md font-semibold whitespace-nowrap transition-all ${
+          className={`px-3 py-1.5 rounded-md font-semibold shrink-0 whitespace-nowrap transition-all ${
             filter === 'all' ? 'bg-white text-slate-900 shadow-2xs' : 'text-slate-600 hover:text-slate-900'
           }`}
         >
@@ -251,7 +251,7 @@ ${dispute.userName}`;
         <button
           type="button"
           onClick={() => setFilter('awaiting_reply')}
-          className={`px-3 py-1.5 rounded-md font-semibold whitespace-nowrap transition-all ${
+          className={`px-3 py-1.5 rounded-md font-semibold shrink-0 whitespace-nowrap transition-all ${
             filter === 'awaiting_reply' ? 'bg-white text-sky-800 shadow-2xs' : 'text-slate-600 hover:text-slate-900'
           }`}
         >
@@ -260,7 +260,7 @@ ${dispute.userName}`;
         <button
           type="button"
           onClick={() => setFilter('breached')}
-          className={`px-3 py-1.5 rounded-md font-semibold whitespace-nowrap transition-all ${
+          className={`px-3 py-1.5 rounded-md font-semibold shrink-0 whitespace-nowrap transition-all ${
             filter === 'breached' ? 'bg-white text-rose-700 shadow-2xs' : 'text-slate-600 hover:text-slate-900'
           }`}
         >
@@ -269,7 +269,7 @@ ${dispute.userName}`;
         <button
           type="button"
           onClick={() => setFilter('escalated')}
-          className={`px-3 py-1.5 rounded-md font-semibold whitespace-nowrap transition-all ${
+          className={`px-3 py-1.5 rounded-md font-semibold shrink-0 whitespace-nowrap transition-all ${
             filter === 'escalated' ? 'bg-white text-amber-800 shadow-2xs' : 'text-slate-600 hover:text-slate-900'
           }`}
         >
@@ -278,7 +278,7 @@ ${dispute.userName}`;
         <button
           type="button"
           onClick={() => setFilter('resolved')}
-          className={`px-3 py-1.5 rounded-md font-semibold whitespace-nowrap transition-all ${
+          className={`px-3 py-1.5 rounded-md font-semibold shrink-0 whitespace-nowrap transition-all ${
             filter === 'resolved' ? 'bg-white text-emerald-800 shadow-2xs' : 'text-slate-600 hover:text-slate-900'
           }`}
         >
@@ -316,7 +316,7 @@ ${dispute.userName}`;
             return (
               <div
                 key={dispute.id}
-                className={`bg-white border rounded-xl p-5 transition-all shadow-2xs ${
+                className={`bg-white border rounded-xl p-4 sm:p-5 transition-all shadow-2xs ${
                   deadline.isOverdue && !isResolved
                     ? 'border-rose-300 bg-rose-50/20'
                     : isResolved
@@ -338,7 +338,7 @@ ${dispute.userName}`;
                         </span>
                       </div>
                       <p className="text-xs text-slate-500 mt-0.5">
-                        {dispute.issueType?.label} • Ref: <span className="font-mono text-slate-800 font-medium">{primaryTx.reference || "N/A"}</span>
+                        {dispute.issueType?.label} • Ref: <span className="font-mono text-slate-800 font-medium break-all">{primaryTx.reference || "N/A"}</span>
                       </p>
                     </div>
                   </div>
@@ -387,12 +387,12 @@ ${dispute.userName}`;
                 </div>
 
                 {/* Action Buttons Row */}
-                <div className="pt-2.5 flex flex-wrap items-center justify-between gap-2 border-t border-slate-100">
+                <div className="pt-2.5 flex flex-col sm:flex-row sm:items-center justify-between gap-2.5 border-t border-slate-100">
                   <div className="flex flex-wrap items-center gap-1.5">
                     <button
                       type="button"
                       onClick={() => handleOpenDraftModal(dispute, 'details')}
-                      className="px-2.5 py-1.5 rounded-md text-xs font-semibold bg-white hover:bg-slate-50 text-slate-700 border border-slate-200 transition-colors flex items-center space-x-1"
+                      className="flex-1 sm:flex-none justify-center px-2.5 py-2 rounded-md text-xs font-semibold bg-white hover:bg-slate-50 text-slate-700 border border-slate-200 transition-colors flex items-center space-x-1 min-h-[38px]"
                     >
                       <FileText className="w-3.5 h-3.5 text-slate-500" />
                       <span>View Letter</span>
@@ -401,7 +401,7 @@ ${dispute.userName}`;
                     <button
                       type="button"
                       onClick={() => generateDisputePDF({ dispute, complaint: dispute.complaint, provider: p })}
-                      className="px-2.5 py-1.5 rounded-md text-xs font-semibold bg-white hover:bg-slate-50 text-slate-700 border border-slate-200 transition-colors flex items-center space-x-1"
+                      className="flex-1 sm:flex-none justify-center px-2.5 py-2 rounded-md text-xs font-semibold bg-white hover:bg-slate-50 text-slate-700 border border-slate-200 transition-colors flex items-center space-x-1 min-h-[38px]"
                     >
                       <Download className="w-3.5 h-3.5 text-slate-500" />
                       <span>Download PDF</span>
@@ -410,7 +410,7 @@ ${dispute.userName}`;
                     <button
                       type="button"
                       onClick={() => handleDelete(dispute.id)}
-                      className="p-1.5 text-slate-400 hover:text-rose-600 transition-colors"
+                      className="p-2 text-slate-400 hover:text-rose-600 transition-colors rounded-md hover:bg-slate-50"
                       title="Delete record"
                     >
                       <Trash2 className="w-3.5 h-3.5" />
@@ -422,7 +422,7 @@ ${dispute.userName}`;
                       <button
                         type="button"
                         onClick={() => handleOpenDraftModal(dispute, 'followup')}
-                        className={`px-3 py-1.5 rounded-md text-xs font-semibold transition-all flex items-center space-x-1.5 ${
+                        className={`flex-1 sm:flex-none justify-center px-3 py-2 rounded-md text-xs font-semibold transition-all flex items-center space-x-1.5 min-h-[38px] ${
                           deadline.isOverdue
                             ? 'bg-rose-50 hover:bg-rose-100 text-rose-800 border border-rose-300'
                             : 'bg-white hover:bg-slate-50 text-slate-700 border border-slate-300'
@@ -437,7 +437,7 @@ ${dispute.userName}`;
                       <button
                         type="button"
                         onClick={() => handleOpenDraftModal(dispute, 'escalate')}
-                        className={`px-3 py-1.5 rounded-md text-xs font-semibold transition-all flex items-center space-x-1.5 ${
+                        className={`flex-1 sm:flex-none justify-center px-3 py-2 rounded-md text-xs font-semibold transition-all flex items-center space-x-1.5 min-h-[38px] ${
                           deadline.isOverdue
                             ? 'bg-amber-600 hover:bg-amber-700 text-white shadow-2xs'
                             : 'bg-white hover:bg-slate-50 text-amber-800 border border-amber-300'
@@ -452,7 +452,7 @@ ${dispute.userName}`;
                       <button
                         type="button"
                         onClick={() => handleOpenDraftModal(dispute, 'resolve')}
-                        className="px-3 py-1.5 rounded-md text-xs font-semibold bg-emerald-700 hover:bg-emerald-800 text-white transition-colors flex items-center space-x-1 shadow-2xs"
+                        className="w-full sm:w-auto justify-center px-3 py-2 rounded-md text-xs font-semibold bg-emerald-700 hover:bg-emerald-800 text-white transition-colors flex items-center space-x-1 shadow-2xs min-h-[38px]"
                       >
                         <CheckCircle2 className="w-3.5 h-3.5" />
                         <span>Mark as Refunded</span>
@@ -468,8 +468,8 @@ ${dispute.userName}`;
 
       {/* Clean Modal for Follow-up / Escalation / Details / Resolve */}
       {modalMode && selectedDispute && (
-        <div className="fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-xs flex items-center justify-center p-4">
-          <div className="bg-white border border-slate-200 rounded-xl w-full max-w-2xl max-h-[90vh] overflow-y-auto shadow-xl p-6 space-y-4">
+        <div className="fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-xs flex items-center justify-center p-3 sm:p-4">
+          <div className="bg-white border border-slate-200 rounded-xl w-full max-w-2xl max-h-[92vh] overflow-y-auto shadow-xl p-4 sm:p-6 space-y-4">
             {/* Modal Title */}
             <div className="flex items-center justify-between pb-3 border-b border-slate-200">
               <div className="flex items-center space-x-2">

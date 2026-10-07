@@ -21,10 +21,10 @@ export default function ApiKeyModal({ isOpen, onClose, apiKey, onSaveApiKey }) {
   };
 
   return (
-    <div className="fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-xs flex items-center justify-center p-4">
-      <div className="bg-white border border-slate-200 rounded-xl w-full max-w-2xl max-h-[90vh] flex flex-col shadow-xl overflow-hidden">
+    <div className="fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-xs flex items-center justify-center p-3 sm:p-4">
+      <div className="bg-white border border-slate-200 rounded-xl w-full max-w-2xl max-h-[94vh] sm:max-h-[90vh] flex flex-col shadow-xl overflow-hidden">
         {/* Header */}
-        <div className="p-5 border-b border-slate-200 flex items-center justify-between bg-white">
+        <div className="p-4 sm:p-5 border-b border-slate-200 flex items-center justify-between bg-white">
           <div>
             <h3 className="text-base font-bold text-slate-900">
               AI Engine & Architecture Specifications
@@ -37,18 +37,18 @@ export default function ApiKeyModal({ isOpen, onClose, apiKey, onSaveApiKey }) {
           <button
             type="button"
             onClick={onClose}
-            className="text-slate-400 hover:text-slate-700 p-1 rounded-lg"
+            className="text-slate-400 hover:text-slate-700 p-1.5 rounded-lg min-h-[36px]"
           >
             ✕
           </button>
         </div>
 
         {/* Tab switch */}
-        <div className="flex border-b border-slate-200 bg-slate-50 px-5 text-xs">
+        <div className="flex border-b border-slate-200 bg-slate-50 px-3 sm:px-5 text-xs overflow-x-auto scrollbar-none">
           <button
             type="button"
             onClick={() => setActiveTab('settings')}
-            className={`py-2.5 px-4 font-semibold border-b-2 transition-all ${
+            className={`py-2.5 px-3 sm:px-4 font-semibold border-b-2 whitespace-nowrap transition-all ${
               activeTab === 'settings'
                 ? 'border-slate-900 text-slate-900'
                 : 'border-transparent text-slate-500 hover:text-slate-800'

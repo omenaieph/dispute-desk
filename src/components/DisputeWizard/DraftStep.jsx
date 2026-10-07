@@ -88,12 +88,12 @@ export default function DraftStep({
         </div>
 
         {/* Tone Selector */}
-        <div className="flex items-center bg-slate-100 p-1 rounded-lg border border-slate-200 text-xs">
-          <span className="text-slate-500 px-2 font-medium">Tone:</span>
+        <div className="flex items-center bg-slate-100 p-1 rounded-lg border border-slate-200 text-xs overflow-x-auto scrollbar-none max-w-full">
+          <span className="text-slate-500 px-2 font-medium shrink-0">Tone:</span>
           <button
             type="button"
             onClick={() => setTone('polite')}
-            className={`px-3 py-1.5 rounded-md font-semibold transition-all ${
+            className={`px-3 py-1.5 rounded-md font-semibold shrink-0 whitespace-nowrap transition-all ${
               tone === 'polite'
                 ? 'bg-white text-slate-900 shadow-2xs'
                 : 'text-slate-600 hover:text-slate-900'
@@ -104,7 +104,7 @@ export default function DraftStep({
           <button
             type="button"
             onClick={() => setTone('firm')}
-            className={`px-3 py-1.5 rounded-md font-semibold transition-all ${
+            className={`px-3 py-1.5 rounded-md font-semibold shrink-0 whitespace-nowrap transition-all ${
               tone === 'firm'
                 ? 'bg-white text-slate-900 shadow-2xs'
                 : 'text-slate-600 hover:text-slate-900'
@@ -115,7 +115,7 @@ export default function DraftStep({
           <button
             type="button"
             onClick={() => setTone('final_notice')}
-            className={`px-3 py-1.5 rounded-md font-semibold transition-all ${
+            className={`px-3 py-1.5 rounded-md font-semibold shrink-0 whitespace-nowrap transition-all ${
               tone === 'final_notice'
                 ? 'bg-rose-600 text-white shadow-2xs'
                 : 'text-slate-600 hover:text-slate-900'
@@ -183,8 +183,8 @@ export default function DraftStep({
       {/* Official Complaint Letterhead Card */}
       <div className="bg-white border border-slate-200 rounded-xl overflow-hidden shadow-xs">
         {/* Subject Header */}
-        <div className="px-5 py-3.5 bg-slate-50 border-b border-slate-200 flex items-center space-x-2">
-          <span className="text-xs font-bold text-slate-500 uppercase tracking-wider flex-shrink-0">
+        <div className="px-4 sm:px-5 py-3.5 bg-slate-50 border-b border-slate-200 flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-2">
+          <span className="text-xs font-bold text-slate-500 uppercase tracking-wider shrink-0">
             Subject:
           </span>
           <input
@@ -196,23 +196,23 @@ export default function DraftStep({
         </div>
 
         {/* Letter Body */}
-        <div className="p-5">
+        <div className="p-3.5 sm:p-5">
           <textarea
             rows={14}
             value={complaint.body}
             onChange={(e) => setComplaint({ ...complaint, body: e.target.value })}
-            className="w-full bg-slate-50/50 border border-slate-200 rounded-lg p-4 text-xs font-mono text-slate-800 leading-relaxed focus:outline-none focus:ring-1 focus:ring-slate-400 focus:bg-white resize-y"
+            className="w-full bg-slate-50/50 border border-slate-200 rounded-lg p-3 sm:p-4 text-xs font-mono text-slate-800 leading-relaxed focus:outline-none focus:ring-1 focus:ring-slate-400 focus:bg-white resize-y"
           />
         </div>
 
         {/* Action Bar */}
-        <div className="px-5 py-4 bg-slate-50 border-t border-slate-200 flex flex-wrap items-center justify-between gap-3">
+        <div className="px-4 sm:px-5 py-4 bg-slate-50 border-t border-slate-200 flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3">
           <div className="flex flex-wrap items-center gap-2">
             {/* Copy */}
             <button
               type="button"
               onClick={handleCopy}
-              className="px-3 py-2 rounded-lg text-xs font-semibold bg-white hover:bg-slate-100 text-slate-700 border border-slate-300 transition-colors flex items-center space-x-1.5 shadow-2xs"
+              className="flex-1 sm:flex-none justify-center px-3 py-2.5 rounded-lg text-xs font-semibold bg-white hover:bg-slate-100 text-slate-700 border border-slate-300 transition-colors flex items-center space-x-1.5 shadow-2xs min-h-[40px]"
             >
               {copied ? (
                 <>
@@ -231,7 +231,7 @@ export default function DraftStep({
             <button
               type="button"
               onClick={handleOpenEmail}
-              className="px-3 py-2 rounded-lg text-xs font-semibold bg-white hover:bg-slate-100 text-slate-700 border border-slate-300 transition-colors flex items-center space-x-1.5 shadow-2xs"
+              className="flex-1 sm:flex-none justify-center px-3 py-2.5 rounded-lg text-xs font-semibold bg-white hover:bg-slate-100 text-slate-700 border border-slate-300 transition-colors flex items-center space-x-1.5 shadow-2xs min-h-[40px]"
             >
               <Mail className="w-3.5 h-3.5 text-slate-500" />
               <span>Open in Email App</span>
@@ -242,7 +242,7 @@ export default function DraftStep({
               type="button"
               onClick={handleDownloadPDF}
               disabled={isExportingPDF}
-              className="px-3 py-2 rounded-lg text-xs font-semibold bg-white hover:bg-slate-100 text-slate-700 border border-slate-300 transition-colors flex items-center space-x-1.5 shadow-2xs"
+              className="w-full sm:w-auto justify-center px-3 py-2.5 rounded-lg text-xs font-semibold bg-white hover:bg-slate-100 text-slate-700 border border-slate-300 transition-colors flex items-center space-x-1.5 shadow-2xs min-h-[40px]"
             >
               <Download className="w-3.5 h-3.5 text-slate-500" />
               <span>{isExportingPDF ? "Exporting PDF..." : "Download Complaint PDF"}</span>
@@ -253,7 +253,7 @@ export default function DraftStep({
           <button
             type="button"
             onClick={handleMarkAndCelebrate}
-            className="w-full sm:w-auto px-5 py-2.5 rounded-lg text-xs sm:text-sm font-semibold bg-emerald-700 hover:bg-emerald-800 text-white transition-colors shadow-xs flex items-center justify-center space-x-2"
+            className="w-full sm:w-auto px-5 py-3 rounded-lg text-xs sm:text-sm font-semibold bg-emerald-700 hover:bg-emerald-800 text-white transition-colors shadow-xs flex items-center justify-center space-x-2 min-h-[48px]"
           >
             <Send className="w-4 h-4" />
             <span>I've Sent This Email — Start 48h Countdown</span>
@@ -266,7 +266,7 @@ export default function DraftStep({
         <button
           type="button"
           onClick={onBack}
-          className="px-4 py-2 rounded-lg text-xs font-semibold bg-white hover:bg-slate-50 text-slate-700 border border-slate-300 transition-colors flex items-center space-x-1.5 shadow-2xs"
+          className="px-4 py-2.5 rounded-lg text-xs font-semibold bg-white hover:bg-slate-50 text-slate-700 border border-slate-300 transition-colors flex items-center space-x-1.5 shadow-2xs min-h-[44px]"
         >
           <ArrowLeft className="w-3.5 h-3.5" />
           <span>Back to Edit Details</span>

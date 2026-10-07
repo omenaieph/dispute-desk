@@ -22,7 +22,7 @@ export default function BentoGrid({ onStartDispute }) {
         {/* Bento Grid Layout */}
         <div className="grid grid-cols-1 md:grid-cols-12 gap-5">
           {/* Card 1: Receipt Reader (7 cols) */}
-          <div className="md:col-span-7 bg-slate-50 border border-slate-200 rounded-2xl p-6 flex flex-col justify-between shadow-2xs hover:border-slate-300 transition-all">
+          <div className="md:col-span-7 bg-slate-50 border border-slate-200 rounded-2xl p-4 sm:p-6 flex flex-col justify-between shadow-2xs hover:border-slate-300 transition-all">
             <div>
               <div className="w-9 h-9 rounded-lg bg-emerald-100 text-emerald-800 flex items-center justify-center mb-3">
                 <ScanLine className="w-5 h-5 stroke-[2.2]" />
@@ -45,7 +45,7 @@ export default function BentoGrid({ onStartDispute }) {
                 <span className="text-slate-400 block text-[9px]">POS SLIPS</span>
                 <span className="font-bold text-slate-800">STAN & RRN Code</span>
               </div>
-              <div className="p-2 bg-slate-50 rounded border border-slate-200">
+              <div className="p-2 bg-slate-50 rounded border border-slate-200 col-span-2 sm:col-span-1">
                 <span className="text-slate-400 block text-[9px]">SOUTH AFRICA</span>
                 <span className="font-bold text-slate-800">RTC Clearing Ref</span>
               </div>
@@ -53,7 +53,7 @@ export default function BentoGrid({ onStartDispute }) {
           </div>
 
           {/* Card 2: Live SLA Engine (5 cols) */}
-          <div className="md:col-span-5 bg-slate-50 border border-slate-200 rounded-2xl p-6 flex flex-col justify-between shadow-2xs hover:border-slate-300 transition-all">
+          <div className="md:col-span-5 bg-slate-50 border border-slate-200 rounded-2xl p-4 sm:p-6 flex flex-col justify-between shadow-2xs hover:border-slate-300 transition-all">
             <div>
               <div className="w-9 h-9 rounded-lg bg-sky-100 text-sky-800 flex items-center justify-center mb-3">
                 <Clock className="w-5 h-5 stroke-[2.2]" />
@@ -83,7 +83,7 @@ export default function BentoGrid({ onStartDispute }) {
           </div>
 
           {/* Card 3: Ombudsman Pipeline (5 cols) */}
-          <div className="md:col-span-5 bg-slate-50 border border-slate-200 rounded-2xl p-6 flex flex-col justify-between shadow-2xs hover:border-slate-300 transition-all">
+          <div className="md:col-span-5 bg-slate-50 border border-slate-200 rounded-2xl p-4 sm:p-6 flex flex-col justify-between shadow-2xs hover:border-slate-300 transition-all">
             <div>
               <div className="w-9 h-9 rounded-lg bg-amber-100 text-amber-800 flex items-center justify-center mb-3">
                 <ShieldAlert className="w-5 h-5 stroke-[2.2]" />
@@ -96,20 +96,20 @@ export default function BentoGrid({ onStartDispute }) {
               </p>
             </div>
 
-            <div className="mt-4 p-3 bg-white rounded-xl border border-slate-200/80 space-y-1.5 text-[11px] font-mono">
-              <div className="flex justify-between text-slate-700">
-                <span>🇳🇬 Central Bank of Nigeria:</span>
-                <strong className="text-emerald-700">cpd@cbn.gov.ng</strong>
+            <div className="mt-4 p-3 bg-white rounded-xl border border-slate-200/80 space-y-2 text-[11px] font-mono">
+              <div className="flex flex-col sm:flex-row sm:justify-between text-slate-700 gap-0.5">
+                <span className="text-slate-500">🇳🇬 Central Bank:</span>
+                <strong className="text-emerald-700 break-all">cpd@cbn.gov.ng</strong>
               </div>
-              <div className="flex justify-between text-slate-700">
-                <span>🇿🇦 Banking Ombud:</span>
-                <strong className="text-emerald-700">info@nfosa.co.za</strong>
+              <div className="flex flex-col sm:flex-row sm:justify-between text-slate-700 gap-0.5">
+                <span className="text-slate-500">🇿🇦 Banking Ombud:</span>
+                <strong className="text-emerald-700 break-all">info@nfosa.co.za</strong>
               </div>
             </div>
           </div>
 
           {/* Card 4: Client-side Privacy Vault (7 cols) */}
-          <div className="md:col-span-7 bg-slate-50 border border-slate-200 rounded-2xl p-6 flex flex-col justify-between shadow-2xs hover:border-slate-300 transition-all">
+          <div className="md:col-span-7 bg-slate-50 border border-slate-200 rounded-2xl p-4 sm:p-6 flex flex-col justify-between shadow-2xs hover:border-slate-300 transition-all">
             <div>
               <div className="w-9 h-9 rounded-lg bg-slate-200 text-slate-800 flex items-center justify-center mb-3">
                 <Lock className="w-5 h-5 stroke-[2.2]" />
@@ -123,19 +123,19 @@ export default function BentoGrid({ onStartDispute }) {
             </div>
 
             {/* Interactive Masking Toggle */}
-            <div className="mt-4 p-3 bg-white rounded-xl border border-slate-200/80 flex items-center justify-between text-xs">
+            <div className="mt-4 p-3 bg-white rounded-xl border border-slate-200/80 flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-xs">
               <div>
                 <span className="text-[10px] text-slate-400 uppercase tracking-wider block">
                   How your account looks to others:
                 </span>
-                <span className="font-mono font-bold text-slate-900 text-sm">
+                <span className="font-mono font-bold text-slate-900 text-sm break-all">
                   {maskedExample ? "Account ending ***4192 (Protected)" : "012849104192 (Raw Number)"}
                 </span>
               </div>
               <button
                 type="button"
                 onClick={() => setMaskedExample(!maskedExample)}
-                className="px-2.5 py-1 rounded bg-slate-100 hover:bg-slate-200 text-slate-700 font-semibold text-[11px] border border-slate-200"
+                className="self-start sm:self-auto px-2.5 py-1.5 rounded bg-slate-100 hover:bg-slate-200 text-slate-700 font-semibold text-[11px] border border-slate-200 min-h-[36px]"
               >
                 {maskedExample ? "View Raw Example" : "Mask Details"}
               </button>
