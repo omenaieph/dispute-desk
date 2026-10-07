@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
-import { CheckCircle2, AlertTriangle, ArrowRight, ArrowLeft, RefreshCw, Eye, Edit3, ShieldAlert } from 'lucide-react';
-import { PROVIDERS } from '../../data/providers';
+import { AlertCircle, ArrowRight, ArrowLeft, CheckCircle2 } from 'lucide-react';
 import ReceiptPreviewCard from '../ReceiptPreviewCard';
 
 export default function ExtractionStep({
@@ -14,13 +13,11 @@ export default function ExtractionStep({
   const currentReceipt = receipts[currentReceiptIndex] || receipts[0];
   const extracted = currentReceipt?.extractedData || {};
   const confidence = extracted?.confidence || {};
-  const [showVisualModal, setShowVisualModal] = useState(false);
 
   const handleChange = (field, value) => {
     const updatedExtracted = {
       ...extracted,
       [field]: value,
-      // If manually edited, mark confidence as 1.0 verified!
       confidence: {
         ...(extracted.confidence || {}),
         [field]: 1.0
@@ -39,31 +36,31 @@ export default function ExtractionStep({
       {/* Step Header */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
         <div>
-          <div className="inline-flex items-center space-x-1.5 px-2.5 py-0.5 rounded-full text-xs font-semibold bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 mb-2">
+          <div className="inline-flex items-center space-x-1.5 px-2.5 py-0.5 rounded-full text-xs font-semibold bg-slate-100 text-slate-700 border border-slate-200 mb-2">
             <span>Step 2 of 4</span>
             <span>•</span>
-            <span>Extraction Verification</span>
+            <span>Verify Details</span>
           </div>
-          <h2 className="text-xl sm:text-2xl font-bold text-white">
+          <h2 className="text-xl sm:text-2xl font-bold text-slate-900 tracking-tight">
             Verify Extracted Transaction Details
           </h2>
-          <p className="text-sm text-slate-400 mt-1">
-            Review the data extracted by Claude Vision. Fields with lower confidence are highlighted in amber for your confirmation.
+          <p className="text-sm text-slate-600 mt-1">
+            Ensure the session ID and transaction amount match your receipt. Any edits will update the formal complaint automatically.
           </p>
         </div>
 
-        {/* Multi-receipt switch tabs if multiple receipts */}
+        {/* Multi-receipt tabs if multiple receipts */}
         {receipts.length > 1 && (
-          <div className="flex items-center space-x-1 bg-slate-900 p-1 rounded-xl border border-slate-800">
+          <div className="flex items-center space-x-1 bg-slate-100 p-1 rounded-lg border border-slate-200">
             {receipts.map((r, idx) => (
               <button
                 key={idx}
                 type="button"
                 onClick={() => setCurrentReceiptIndex(idx)}
-                className={`px-3 py-1.5 rounded-lg text-xs font-semibold transition-all ${
+                className={`px-3 py-1.5 rounded-md text-xs font-semibold transition-all ${
                   idx === currentReceiptIndex
-                    ? 'bg-emerald-500 text-slate-950 shadow'
-                    : 'text-slate-400 hover:text-slate-200'
+                    ? 'bg-white text-slate-900 shadow-2xs'
+                    : 'text-slate-600 hover:text-slate-900'
                 }`}
               >
                 Receipt #{idx + 1}
@@ -74,15 +71,15 @@ export default function ExtractionStep({
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
-        {/* Left Column: Visual Receipt Cross-Reference */}
+        {/* Left Column: Authentic Receipt Card */}
         <div className="lg:col-span-5 order-2 lg:order-1">
           <div className="sticky top-24 space-y-3">
             <div className="flex items-center justify-between">
-              <span className="text-xs font-bold text-slate-300 uppercase tracking-wider">
+              <span className="text-xs font-bold text-slate-700 uppercase tracking-wider">
                 Receipt Cross-Reference
               </span>
-              <span className="text-[11px] text-emerald-400 font-medium">
-                Claude Vision Verified
+              <span className="text-[11px] text-emerald-700 font-semibold flex items-center">
+                <CheckCircle2 className="w-3.5 h-3.5 mr-1" /> Parsed & Verified
               </span>
             </div>
 
@@ -91,24 +88,24 @@ export default function ExtractionStep({
               extractedData={extracted}
             />
 
-            <div className="text-[11px] text-slate-400 text-center bg-slate-900/60 p-2 rounded-xl border border-slate-800">
-              💡 Any edits you make on the right will be used directly in your official complaint letter.
-            </div>
+            <p className="text-[11px] text-slate-500 text-center bg-slate-100/70 p-2.5 rounded-lg border border-slate-200">
+              💡 Correct any blurred or missing fields on the right before generating your complaint.
+            </p>
           </div>
         </div>
 
-        {/* Right Column: Editable Fields */}
+        {/* Right Column: Clean Form Fields */}
         <div className="lg:col-span-7 order-1 lg:order-2 space-y-4">
-          <div className="bg-slate-900/90 border border-slate-800 rounded-2xl p-5 space-y-4 shadow-xl">
+          <div className="bg-white border border-slate-200 rounded-xl p-5 sm:p-6 space-y-4 shadow-2xs">
             {/* Institution / Provider */}
             <div>
               <div className="flex items-center justify-between mb-1.5">
-                <label className="text-xs font-semibold text-slate-300">
-                  Financial Provider / Bank <span className="text-rose-400">*</span>
+                <label className="text-xs font-semibold text-slate-700">
+                  Financial Provider / Bank <span className="text-rose-500">*</span>
                 </label>
                 {isLowConfidence('provider') && (
-                  <span className="text-[10px] text-amber-400 flex items-center bg-amber-500/10 px-1.5 py-0.5 rounded border border-amber-500/20">
-                    <AlertTriangle className="w-3 h-3 mr-1" /> Low Confidence ({Math.round(confidence.provider * 100)}%)
+                  <span className="text-[11px] text-amber-800 flex items-center bg-amber-50 px-2 py-0.5 rounded border border-amber-200">
+                    <AlertCircle className="w-3 h-3 mr-1 text-amber-600" /> Review Provider
                   </span>
                 )}
               </div>
@@ -117,22 +114,22 @@ export default function ExtractionStep({
                 value={extracted.provider || ""}
                 onChange={(e) => handleChange('provider', e.target.value)}
                 placeholder="e.g. OPay Nigeria, GTBank, Capitec"
-                className={`w-full px-3.5 py-2.5 rounded-xl bg-slate-950 border text-sm text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-emerald-500/50 ${
-                  isLowConfidence('provider') ? 'border-amber-500/60' : 'border-slate-800'
+                className={`w-full px-3 py-2 rounded-lg bg-white border text-sm text-slate-900 placeholder-slate-400 focus:outline-none focus:ring-1 focus:ring-slate-900 focus:border-slate-900 ${
+                  isLowConfidence('provider') ? 'border-amber-400 bg-amber-50/20' : 'border-slate-300'
                 }`}
               />
             </div>
 
-            {/* Amount & Currency Grid */}
+            {/* Amount & Currency */}
             <div className="grid grid-cols-3 gap-3">
               <div className="col-span-2">
                 <div className="flex items-center justify-between mb-1.5">
-                  <label className="text-xs font-semibold text-slate-300">
-                    Amount <span className="text-rose-400">*</span>
+                  <label className="text-xs font-semibold text-slate-700">
+                    Disputed Amount <span className="text-rose-500">*</span>
                   </label>
                   {isLowConfidence('amount') && (
-                    <span className="text-[10px] text-amber-400 flex items-center bg-amber-500/10 px-1.5 py-0.5 rounded border border-amber-500/20">
-                      <AlertTriangle className="w-3 h-3 mr-1" /> Review
+                    <span className="text-[11px] text-amber-800 flex items-center bg-amber-50 px-2 py-0.5 rounded border border-amber-200">
+                      <AlertCircle className="w-3 h-3 mr-1 text-amber-600" /> Review
                     </span>
                   )}
                 </div>
@@ -141,20 +138,20 @@ export default function ExtractionStep({
                   value={extracted.amount || ""}
                   onChange={(e) => handleChange('amount', e.target.value)}
                   placeholder="e.g. 45,000.00"
-                  className={`w-full px-3.5 py-2.5 rounded-xl bg-slate-950 border text-sm text-white font-mono placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-emerald-500/50 ${
-                    isLowConfidence('amount') ? 'border-amber-500/60' : 'border-slate-800'
+                  className={`w-full px-3 py-2 rounded-lg bg-white border text-sm text-slate-900 font-mono font-semibold placeholder-slate-400 focus:outline-none focus:ring-1 focus:ring-slate-900 focus:border-slate-900 ${
+                    isLowConfidence('amount') ? 'border-amber-400 bg-amber-50/20' : 'border-slate-300'
                   }`}
                 />
               </div>
 
               <div>
-                <label className="text-xs font-semibold text-slate-300 block mb-1.5">
+                <label className="text-xs font-semibold text-slate-700 block mb-1.5">
                   Currency
                 </label>
                 <select
                   value={extracted.currency || "NGN"}
                   onChange={(e) => handleChange('currency', e.target.value)}
-                  className="w-full px-3.5 py-2.5 rounded-xl bg-slate-950 border border-slate-800 text-sm text-white focus:outline-none focus:ring-2 focus:ring-emerald-500/50 font-mono"
+                  className="w-full px-3 py-2 rounded-lg bg-white border border-slate-300 text-sm text-slate-900 focus:outline-none focus:ring-1 focus:ring-slate-900 focus:border-slate-900 font-mono font-medium"
                 >
                   <option value="NGN">NGN (₦)</option>
                   <option value="ZAR">ZAR (R)</option>
@@ -163,16 +160,16 @@ export default function ExtractionStep({
               </div>
             </div>
 
-            {/* Reference / Session ID (Crucial for African Fintech) */}
+            {/* Session ID / RRN / Reference */}
             <div>
               <div className="flex items-center justify-between mb-1.5">
-                <label className="text-xs font-semibold text-slate-300 flex items-center">
-                  <span>Reference / NIP Session ID / RRN</span>
-                  <span className="text-rose-400 ml-1">*</span>
+                <label className="text-xs font-semibold text-slate-700 flex items-center">
+                  <span>Reference / Session ID / RRN</span>
+                  <span className="text-rose-500 ml-1">*</span>
                 </label>
                 {isLowConfidence('reference') && (
-                  <span className="text-[10px] text-amber-400 flex items-center bg-amber-500/10 px-1.5 py-0.5 rounded border border-amber-500/20">
-                    <AlertTriangle className="w-3 h-3 mr-1" /> Review Ref
+                  <span className="text-[11px] text-amber-800 flex items-center bg-amber-50 px-2 py-0.5 rounded border border-amber-200">
+                    <AlertCircle className="w-3 h-3 mr-1 text-amber-600" /> Verify Reference
                   </span>
                 )}
               </div>
@@ -181,32 +178,32 @@ export default function ExtractionStep({
                 value={extracted.reference || ""}
                 onChange={(e) => handleChange('reference', e.target.value)}
                 placeholder="e.g. 100004241006143218009214"
-                className={`w-full px-3.5 py-2.5 rounded-xl bg-slate-950 border text-sm text-emerald-400 font-mono placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-emerald-500/50 ${
-                  isLowConfidence('reference') ? 'border-amber-500/60' : 'border-slate-800'
+                className={`w-full px-3 py-2 rounded-lg bg-white border text-sm text-slate-900 font-mono font-medium placeholder-slate-400 focus:outline-none focus:ring-1 focus:ring-slate-900 focus:border-slate-900 ${
+                  isLowConfidence('reference') ? 'border-amber-400 bg-amber-50/20' : 'border-slate-300'
                 }`}
               />
-              <p className="text-[11px] text-slate-400 mt-1">
-                The session ID or RRN is required by banking switches to track interbank settlement.
+              <p className="text-[11px] text-slate-500 mt-1">
+                The interbank switch (NIBSS or BankservAfrica) requires this exact ID to locate your transaction logs.
               </p>
             </div>
 
-            {/* Transaction Type & Date Grid */}
+            {/* Transaction Type & Date */}
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
               <div>
-                <label className="text-xs font-semibold text-slate-300 block mb-1.5">
+                <label className="text-xs font-semibold text-slate-700 block mb-1.5">
                   Transaction Type / Channel
                 </label>
                 <input
                   type="text"
                   value={extracted.type || ""}
                   onChange={(e) => handleChange('type', e.target.value)}
-                  placeholder="e.g. NIP Transfer, POS, Web Checkout"
-                  className="w-full px-3.5 py-2.5 rounded-xl bg-slate-950 border border-slate-800 text-sm text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-emerald-500/50"
+                  placeholder="e.g. NIP Transfer, POS Purchase"
+                  className="w-full px-3 py-2 rounded-lg bg-white border border-slate-300 text-sm text-slate-900 placeholder-slate-400 focus:outline-none focus:ring-1 focus:ring-slate-900 focus:border-slate-900"
                 />
               </div>
 
               <div>
-                <label className="text-xs font-semibold text-slate-300 block mb-1.5">
+                <label className="text-xs font-semibold text-slate-700 block mb-1.5">
                   Transaction Date & Time
                 </label>
                 <input
@@ -214,21 +211,21 @@ export default function ExtractionStep({
                   value={extracted.datetime || ""}
                   onChange={(e) => handleChange('datetime', e.target.value)}
                   placeholder="YYYY-MM-DD HH:MM:SS"
-                  className="w-full px-3.5 py-2.5 rounded-xl bg-slate-950 border border-slate-800 text-sm text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-emerald-500/50 font-mono"
+                  className="w-full px-3 py-2 rounded-lg bg-white border border-slate-300 text-sm text-slate-900 placeholder-slate-400 focus:outline-none focus:ring-1 focus:ring-slate-900 focus:border-slate-900 font-mono"
                 />
               </div>
             </div>
 
-            {/* Recipient & Masked Sender Account */}
+            {/* Recipient & Masked Account */}
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
               <div>
                 <div className="flex items-center justify-between mb-1.5">
-                  <label className="text-xs font-semibold text-slate-300">
+                  <label className="text-xs font-semibold text-slate-700">
                     Recipient / Beneficiary / Merchant
                   </label>
                   {isLowConfidence('recipient') && (
-                    <span className="text-[10px] text-amber-400 flex items-center bg-amber-500/10 px-1.5 py-0.5 rounded border border-amber-500/20">
-                      <AlertTriangle className="w-3 h-3 mr-1" /> Review
+                    <span className="text-[11px] text-amber-800 flex items-center bg-amber-50 px-2 py-0.5 rounded border border-amber-200">
+                      <AlertCircle className="w-3 h-3 mr-1 text-amber-600" /> Review
                     </span>
                   )}
                 </div>
@@ -237,14 +234,14 @@ export default function ExtractionStep({
                   value={extracted.recipient || ""}
                   onChange={(e) => handleChange('recipient', e.target.value)}
                   placeholder="e.g. Chukwuemeka Obi (GTBank)"
-                  className={`w-full px-3.5 py-2.5 rounded-xl bg-slate-950 border text-sm text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-emerald-500/50 ${
-                    isLowConfidence('recipient') ? 'border-amber-500/60' : 'border-slate-800'
+                  className={`w-full px-3 py-2 rounded-lg bg-white border text-sm text-slate-900 placeholder-slate-400 focus:outline-none focus:ring-1 focus:ring-slate-900 focus:border-slate-900 ${
+                    isLowConfidence('recipient') ? 'border-amber-400 bg-amber-50/20' : 'border-slate-300'
                   }`}
                 />
               </div>
 
               <div>
-                <label className="text-xs font-semibold text-slate-300 block mb-1.5">
+                <label className="text-xs font-semibold text-slate-700 block mb-1.5">
                   Sender Account / Card (Masked)
                 </label>
                 <input
@@ -252,41 +249,41 @@ export default function ExtractionStep({
                   value={extracted.senderAccount || ""}
                   onChange={(e) => handleChange('senderAccount', e.target.value)}
                   placeholder="e.g. ending ***4192"
-                  className="w-full px-3.5 py-2.5 rounded-xl bg-slate-950 border border-slate-800 text-sm text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-emerald-500/50 font-mono"
+                  className="w-full px-3 py-2 rounded-lg bg-white border border-slate-300 text-sm text-slate-900 placeholder-slate-400 focus:outline-none focus:ring-1 focus:ring-slate-900 focus:border-slate-900 font-mono"
                 />
               </div>
             </div>
 
             {/* Status */}
             <div>
-              <label className="text-xs font-semibold text-slate-300 block mb-1.5">
-                Receipt Indicated Status
+              <label className="text-xs font-semibold text-slate-700 block mb-1.5">
+                Receipt Reported Status
               </label>
               <input
                 type="text"
                 value={extracted.status || ""}
                 onChange={(e) => handleChange('status', e.target.value)}
                 placeholder="e.g. Successful Debit / Beneficiary Not Credited"
-                className="w-full px-3.5 py-2.5 rounded-xl bg-slate-950 border border-slate-800 text-sm text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-emerald-500/50"
+                className="w-full px-3 py-2 rounded-lg bg-white border border-slate-300 text-sm text-slate-900 placeholder-slate-400 focus:outline-none focus:ring-1 focus:ring-slate-900 focus:border-slate-900"
               />
             </div>
           </div>
 
-          {/* Navigation action buttons */}
+          {/* Action Row */}
           <div className="flex items-center justify-between pt-2">
             <button
               type="button"
               onClick={onBack}
-              className="px-4 py-2.5 rounded-xl text-xs font-semibold bg-slate-800 hover:bg-slate-700 text-slate-300 transition-colors flex items-center space-x-1.5"
+              className="px-4 py-2 rounded-lg text-xs font-semibold bg-white hover:bg-slate-50 text-slate-700 border border-slate-300 transition-colors flex items-center space-x-1.5 shadow-2xs"
             >
               <ArrowLeft className="w-3.5 h-3.5" />
-              <span>Back to Receipts</span>
+              <span>Back to Upload</span>
             </button>
 
             <button
               type="button"
               onClick={onProceed}
-              className="px-6 py-2.5 rounded-xl text-xs sm:text-sm font-bold bg-emerald-500 hover:bg-emerald-400 text-slate-950 transition-all shadow-lg shadow-emerald-500/20 flex items-center space-x-2"
+              className="px-6 py-2.5 rounded-lg text-xs sm:text-sm font-semibold bg-slate-900 hover:bg-slate-800 text-white transition-colors shadow-xs flex items-center space-x-2"
             >
               <span>Next: Select Issue Type</span>
               <ArrowRight className="w-4 h-4" />

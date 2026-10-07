@@ -1,5 +1,5 @@
 import React, { useRef, useState } from 'react';
-import { Upload, FileText, Image as ImageIcon, Sparkles, Shield, AlertCircle, Plus, Trash2, ArrowRight } from 'lucide-react';
+import { Upload, FileText, Lock, Plus, Trash2, ArrowRight, Loader2 } from 'lucide-react';
 import { SAMPLE_RECEIPTS } from '../../data/sampleReceipts';
 
 export default function UploadStep({
@@ -46,30 +46,30 @@ export default function UploadStep({
   return (
     <div className="space-y-6">
       {/* Step Header */}
-      <div className="text-center sm:text-left">
-        <div className="inline-flex items-center space-x-1.5 px-2.5 py-0.5 rounded-full text-xs font-semibold bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 mb-2">
+      <div>
+        <div className="inline-flex items-center space-x-1.5 px-2.5 py-0.5 rounded-full text-xs font-semibold bg-slate-100 text-slate-700 border border-slate-200 mb-2">
           <span>Step 1 of 4</span>
           <span>•</span>
           <span>Receipt Intake</span>
         </div>
-        <h2 className="text-xl sm:text-2xl font-bold text-white">
+        <h2 className="text-xl sm:text-2xl font-bold text-slate-900 tracking-tight">
           Upload Transaction Receipt or Debit Alert
         </h2>
-        <p className="text-sm text-slate-400 mt-1">
-          Upload a screenshot, photo, or PDF of a receipt or bank statement. Claude Vision will extract all references and session IDs.
+        <p className="text-sm text-slate-600 mt-1">
+          Upload a screenshot, photo, or PDF from your mobile banking app. We'll automatically identify the provider, session ID, and amount.
         </p>
       </div>
 
-      {/* Upload Zone */}
+      {/* Upload Box */}
       <div
         onDragEnter={handleDrag}
         onDragLeave={handleDrag}
         onDragOver={handleDrag}
         onDrop={handleDrop}
-        className={`relative border-2 border-dashed rounded-2xl p-6 sm:p-8 text-center transition-all ${
+        className={`relative border-2 border-dashed rounded-xl p-8 sm:p-10 text-center transition-all ${
           dragActive
-            ? 'border-emerald-400 bg-emerald-500/10 scale-[1.01]'
-            : 'border-slate-700/80 bg-slate-900/50 hover:border-slate-600 hover:bg-slate-900/80'
+            ? 'border-emerald-600 bg-emerald-50/50'
+            : 'border-slate-300 bg-slate-50/60 hover:bg-slate-50 hover:border-slate-400'
         }`}
       >
         <input
@@ -81,50 +81,50 @@ export default function UploadStep({
           className="hidden"
         />
 
-        <div className="max-w-md mx-auto space-y-4">
-          <div className="w-14 h-14 mx-auto rounded-2xl bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center text-emerald-400">
+        <div className="max-w-md mx-auto space-y-3">
+          <div className="w-12 h-12 mx-auto rounded-xl bg-white border border-slate-200 shadow-2xs flex items-center justify-center text-slate-700">
             {isExtracting ? (
-              <Sparkles className="w-7 h-7 animate-spin text-emerald-400" />
+              <Loader2 className="w-6 h-6 animate-spin text-emerald-600" />
             ) : (
-              <Upload className="w-7 h-7" />
+              <Upload className="w-6 h-6 text-slate-600" />
             )}
           </div>
 
           <div>
-            <p className="text-base font-semibold text-white">
-              {isExtracting ? "Analyzing with Claude Vision..." : "Drag and drop receipts here"}
+            <p className="text-sm font-semibold text-slate-900">
+              {isExtracting ? "Extracting transaction forensics..." : "Drop your receipt file here, or browse"}
             </p>
-            <p className="text-xs text-slate-400 mt-1">
-              Supports PNG, JPG, WebP, or PDF receipts from mobile banking apps
+            <p className="text-xs text-slate-500 mt-0.5">
+              Supports PNG, JPG, or PDF debit alerts from all banks and fintech apps
             </p>
           </div>
 
-          <div className="flex flex-wrap items-center justify-center gap-2 pt-1">
+          <div className="pt-1">
             <button
               type="button"
               disabled={isExtracting}
               onClick={() => fileInputRef.current?.click()}
-              className="px-4 py-2 rounded-xl text-xs font-bold bg-emerald-500 hover:bg-emerald-400 text-slate-950 transition-all shadow-md shadow-emerald-500/20 disabled:opacity-50"
+              className="px-4 py-2 rounded-lg text-xs font-semibold bg-slate-900 hover:bg-slate-800 text-white transition-colors shadow-2xs disabled:opacity-50"
             >
-              Browse Files
+              Select File from Device
             </button>
           </div>
         </div>
       </div>
 
-      {/* Attached Receipts Multi-list */}
+      {/* Attached Receipts List */}
       {uploadedReceipts.length > 0 && (
-        <div className="bg-slate-900/80 border border-slate-800 rounded-xl p-4">
+        <div className="bg-white border border-slate-200 rounded-xl p-4 shadow-2xs">
           <div className="flex items-center justify-between mb-3">
-            <span className="text-xs font-bold text-slate-300 uppercase tracking-wider">
+            <span className="text-xs font-bold text-slate-700 uppercase tracking-wider">
               Attached Receipts ({uploadedReceipts.length})
             </span>
             <button
               type="button"
               onClick={() => fileInputRef.current?.click()}
-              className="text-xs text-emerald-400 hover:text-emerald-300 font-semibold flex items-center"
+              className="text-xs text-emerald-700 hover:text-emerald-800 font-semibold flex items-center"
             >
-              <Plus className="w-3.5 h-3.5 mr-1" /> Add Another Receipt
+              <Plus className="w-3.5 h-3.5 mr-1" /> Add Additional Receipt
             </button>
           </div>
 
@@ -132,18 +132,18 @@ export default function UploadStep({
             {uploadedReceipts.map((receipt, index) => (
               <div
                 key={receipt.id || index}
-                className="flex items-center justify-between p-3 rounded-lg bg-slate-950/80 border border-slate-800 text-xs"
+                className="flex items-center justify-between p-3 rounded-lg bg-slate-50 border border-slate-200 text-xs"
               >
                 <div className="flex items-center space-x-3 overflow-hidden">
-                  <div className="w-8 h-8 rounded-lg bg-slate-800 flex items-center justify-center text-slate-300 flex-shrink-0">
-                    <FileText className="w-4 h-4 text-emerald-400" />
+                  <div className="w-8 h-8 rounded-lg bg-white border border-slate-200 flex items-center justify-center text-slate-600 flex-shrink-0">
+                    <FileText className="w-4 h-4 text-emerald-700" />
                   </div>
                   <div className="truncate">
-                    <p className="font-semibold text-white truncate">
+                    <p className="font-semibold text-slate-900 truncate">
                       {receipt.name || receipt.title || `Receipt #${index + 1}`}
                     </p>
-                    <p className="text-[11px] text-slate-400">
-                      {receipt.extractedData?.provider || "Ready for analysis"} • {receipt.extractedData?.currency || "NGN"} {receipt.extractedData?.amount || ""}
+                    <p className="text-[11px] text-slate-500">
+                      {receipt.extractedData?.provider || "Extracted"} • {receipt.extractedData?.currency || "NGN"} {receipt.extractedData?.amount || ""}
                     </p>
                   </div>
                 </div>
@@ -151,7 +151,7 @@ export default function UploadStep({
                 <button
                   type="button"
                   onClick={() => onRemoveReceipt(index)}
-                  className="p-1.5 text-slate-400 hover:text-rose-400 transition-colors ml-2"
+                  className="p-1.5 text-slate-400 hover:text-rose-600 transition-colors ml-2"
                   title="Remove"
                 >
                   <Trash2 className="w-4 h-4" />
@@ -162,49 +162,45 @@ export default function UploadStep({
         </div>
       )}
 
-      {/* Reviewer Sample Gallery */}
-      <div className="bg-slate-900/40 border border-slate-800/80 rounded-2xl p-4">
-        <div className="flex items-center justify-between mb-3">
-          <div className="flex items-center space-x-2">
-            <Sparkles className="w-4 h-4 text-emerald-400" />
-            <h3 className="text-xs font-bold text-slate-200 uppercase tracking-wider">
-              Reviewer Sample Receipts (Test Instantly)
-            </h3>
-          </div>
-          <span className="text-[11px] text-slate-400">Click to auto-populate</span>
+      {/* Example Cases Gallery */}
+      <div className="bg-white border border-slate-200 rounded-xl p-4 shadow-2xs">
+        <div className="flex items-center justify-between mb-2.5">
+          <span className="text-xs font-bold text-slate-700 uppercase tracking-wider">
+            Quick Test Examples
+          </span>
+          <span className="text-[11px] text-slate-500">Click to preview extraction</span>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
           {filteredSamples.map((sample) => (
             <button
               key={sample.id}
               type="button"
               onClick={() => onSelectSample(sample)}
-              className="text-left p-3 rounded-xl bg-slate-950/70 hover:bg-slate-800/80 border border-slate-800 hover:border-emerald-500/40 transition-all flex items-start justify-between group"
+              className="text-left p-2.5 rounded-lg bg-slate-50 hover:bg-slate-100/80 border border-slate-200 hover:border-slate-300 transition-all flex items-center justify-between group"
             >
               <div>
                 <div className="flex items-center space-x-2">
-                  <span className="text-xs font-bold text-white group-hover:text-emerald-300">
+                  <span className="text-xs font-bold text-slate-900">
                     {sample.extractedData.provider}
                   </span>
-                  <span className="text-[10px] px-1.5 py-0.2 bg-emerald-500/10 text-emerald-400 rounded">
+                  <span className="text-[10px] px-1.5 py-0.2 bg-white text-slate-700 rounded border border-slate-200 font-mono">
                     {sample.extractedData.currency === 'NGN' ? '₦' : 'R'}{sample.extractedData.amount}
                   </span>
                 </div>
-                <p className="text-[11px] text-slate-400 mt-0.5 line-clamp-1">{sample.title}</p>
-                <p className="text-[10px] text-slate-400 mt-0.5 font-mono">Ref: {sample.extractedData.reference.slice(0, 16)}...</p>
+                <p className="text-[11px] text-slate-500 line-clamp-1 mt-0.5">{sample.title}</p>
               </div>
-              <ArrowRight className="w-3.5 h-3.5 text-slate-400 group-hover:text-emerald-400 transition-colors flex-shrink-0 mt-1 ml-2" />
+              <ArrowRight className="w-3.5 h-3.5 text-slate-400 group-hover:text-slate-900 transition-colors flex-shrink-0 ml-2" />
             </button>
           ))}
         </div>
       </div>
 
-      {/* Privacy Guarantee Note */}
-      <div className="p-3.5 rounded-xl bg-slate-900/60 border border-emerald-500/20 flex items-start space-x-3 text-xs text-slate-300">
-        <Shield className="w-4 h-4 text-emerald-400 flex-shrink-0 mt-0.5" />
+      {/* Privacy Line */}
+      <div className="p-3 rounded-lg bg-slate-100/70 border border-slate-200 flex items-start space-x-2.5 text-xs text-slate-600">
+        <Lock className="w-4 h-4 text-slate-500 flex-shrink-0 mt-0.5" />
         <div>
-          <span className="font-semibold text-emerald-400">Strict Privacy Assurance:</span> Receipts are parsed client-side / in-memory. No financial account numbers or personal cards are stored on external servers. All accounts are masked to the last 4 digits.
+          <span className="font-semibold text-slate-800">Client-Side Privacy Guarantee:</span> Receipts are processed in-memory. No personal account numbers or PANs are stored on remote servers. All account numbers are masked to the last 4 digits.
         </div>
       </div>
 
@@ -215,9 +211,9 @@ export default function UploadStep({
             type="button"
             onClick={onProceed}
             disabled={isExtracting}
-            className="w-full sm:w-auto px-6 py-3 rounded-xl text-sm font-bold bg-emerald-500 hover:bg-emerald-400 text-slate-950 transition-all shadow-lg shadow-emerald-500/25 flex items-center justify-center space-x-2"
+            className="w-full sm:w-auto px-6 py-2.5 rounded-lg text-sm font-semibold bg-slate-900 hover:bg-slate-800 text-white transition-colors shadow-xs flex items-center justify-center space-x-2"
           >
-            <span>Confirm Extracted Details</span>
+            <span>Confirm Extracted Fields</span>
             <ArrowRight className="w-4 h-4" />
           </button>
         </div>

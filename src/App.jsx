@@ -6,25 +6,23 @@ import DisputeTracker from './components/DisputeTracker';
 import ProviderDirectoryModal from './components/ProviderDirectoryModal';
 import ApiKeyModal from './components/ApiKeyModal';
 import { getStoredDisputes, getStoredSettings, saveSettings } from './utils/storage';
-import { ShieldCheck, Heart, Sparkles, Scale, ExternalLink } from 'lucide-react';
+import { Shield } from 'lucide-react';
 
 export default function App() {
-  const [activeTab, setActiveTab] = useState('wizard'); // 'wizard' | 'tracker'
-  const [selectedCountry, setSelectedCountry] = useState('NG'); // 'NG' | 'ZA'
+  const [activeTab, setActiveTab] = useState('wizard');
+  const [selectedCountry, setSelectedCountry] = useState('NG');
   const [disputes, setDisputes] = useState(() => getStoredDisputes());
   const [settings, setSettings] = useState(() => getStoredSettings());
   const [isSettingsOpen, setIsSettingsOpen] = useState(false);
   const [isDirectoryOpen, setIsDirectoryOpen] = useState(false);
   const [initialSample, setInitialSample] = useState(null);
 
-  // Synchronize country from settings if saved
   useEffect(() => {
     if (settings.country) {
       setSelectedCountry(settings.country);
     }
   }, [settings.country]);
 
-  // Compute counts for Header badges
   const now = Date.now();
   const overdueCount = disputes.filter((d) => {
     if (d.status === 'resolved' || !d.deadlineAt) return false;
@@ -55,7 +53,7 @@ export default function App() {
   };
 
   return (
-    <div className="min-h-screen bg-[#090d16] text-slate-100 flex flex-col font-sans selection:bg-emerald-500 selection:text-slate-950">
+    <div className="min-h-screen bg-[#f8fafc] text-slate-900 flex flex-col font-sans">
       {/* Top Navbar */}
       <Header
         activeTab={activeTab}
@@ -73,13 +71,13 @@ export default function App() {
       />
 
       <main className="flex-1">
-        {/* Hero Section */}
+        {/* Editorial Hero */}
         {activeTab === 'wizard' && (
           <Hero
             onSelectSample={handleSelectSample}
             onStartBlank={() => {
               setInitialSample(null);
-              window.scrollTo({ top: 400, behavior: 'smooth' });
+              window.scrollTo({ top: 350, behavior: 'smooth' });
             }}
             selectedCountry={selectedCountry}
           />
@@ -121,44 +119,44 @@ export default function App() {
         onSaveApiKey={handleSaveApiKey}
       />
 
-      {/* Footer */}
-      <footer className="border-t border-slate-800/80 bg-slate-950 py-8 text-xs text-slate-400">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4">
+      {/* Institutional Clean Footer */}
+      <footer className="border-t border-slate-200 bg-white py-8 text-xs text-slate-500">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4">
           <div className="flex items-center space-x-2">
-            <div className="w-6 h-6 rounded-lg bg-emerald-500/20 text-emerald-400 flex items-center justify-center font-bold text-xs">
+            <div className="w-5 h-5 rounded bg-slate-900 text-white flex items-center justify-center font-bold text-[10px]">
               DD
             </div>
-            <span className="font-bold text-slate-200">Dispute Desk</span>
+            <span className="font-bold text-slate-900">Dispute Desk</span>
             <span>—</span>
-            <span>Turn failed fintech transactions into resolved refunds under 60 seconds.</span>
+            <span>Turn failed African fintech transactions into resolved refunds under 60 seconds.</span>
           </div>
 
           <div className="flex items-center space-x-4">
             <button
               type="button"
               onClick={() => setIsDirectoryOpen(true)}
-              className="hover:text-emerald-400 transition-colors"
+              className="hover:text-slate-900 transition-colors"
             >
               Provider Directory
             </button>
             <button
               type="button"
               onClick={() => setIsSettingsOpen(true)}
-              className="hover:text-emerald-400 transition-colors"
+              className="hover:text-slate-900 transition-colors"
             >
-              Claude AI Specs
+              AI Engine Specs
             </button>
-            <span className="text-slate-600">|</span>
-            <span className="text-emerald-400 font-semibold">Claude Startups Demo</span>
+            <span className="text-slate-300">|</span>
+            <span className="text-slate-700 font-semibold">Claude Startups</span>
           </div>
         </div>
 
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-4 pt-4 border-t border-slate-900 flex flex-col sm:flex-row items-center justify-between gap-2 text-[11px] text-slate-400">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 mt-4 pt-4 border-t border-slate-100 flex flex-col sm:flex-row items-center justify-between gap-2 text-[11px] text-slate-400">
           <p>
-            Operating in accordance with Central Bank of Nigeria (CBN) Consumer Protection Regulations & South African National Financial Ombud Scheme guidelines.
+            Complies with Central Bank of Nigeria Consumer Protection Guidelines & SA National Financial Ombud Scheme standards.
           </p>
-          <p className="text-slate-400">
-            Client-side forensic parsing · Zero remote server storage · Account masking active
+          <p>
+            Client-side parsing · Sensitive account numbers masked to last 4 digits · Zero remote database storage
           </p>
         </div>
       </footer>

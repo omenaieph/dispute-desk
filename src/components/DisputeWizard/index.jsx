@@ -4,9 +4,10 @@ import ExtractionStep from './ExtractionStep';
 import IssueStep from './IssueStep';
 import DraftStep from './DraftStep';
 import { ISSUE_TYPES } from '../../data/sampleReceipts';
-import { findProvider, PROVIDERS } from '../../data/providers';
+import { findProvider } from '../../data/providers';
 import { extractReceiptWithClaude, generateLocalComplaint } from '../../utils/claudeService';
 import { saveDispute, getUserProfile, saveUserProfile } from '../../utils/storage';
+import { Check } from 'lucide-react';
 
 export default function DisputeWizard({
   selectedCountry,
@@ -25,14 +26,12 @@ export default function DisputeWizard({
   const [isExtracting, setIsExtracting] = useState(false);
   const [complaint, setComplaint] = useState({ subject: "", body: "" });
 
-  // Load sample if passed from Hero or button
   useEffect(() => {
     if (initialSample) {
       handleSelectSample(initialSample);
     }
   }, [initialSample]);
 
-  // When sample is selected
   const handleSelectSample = (sample) => {
     const receiptItem = {
       id: sample.id,
@@ -48,11 +47,9 @@ export default function DisputeWizard({
     if (sample.narrative) {
       setExtraNotes(sample.narrative);
     }
-    // Proceed to Step 2
     setCurrentStep(2);
   };
 
-  // Add uploaded file
   const handleAddReceipt = async (file) => {
     setIsExtracting(true);
     try {
@@ -91,7 +88,6 @@ export default function DisputeWizard({
     });
   };
 
-  // Compute matched provider
   const primaryTx = uploadedReceipts[0]?.extractedData || {};
   const matchedProvider = findProvider(primaryTx.providerId || primaryTx.provider) || {
     id: "custom",
@@ -102,7 +98,6 @@ export default function DisputeWizard({
     slaLabel: "48 Hours"
   };
 
-  // Whenever we reach Step 4 or tone changes, recompute complaint draft
   useEffect(() => {
     if (currentStep === 4 && uploadedReceipts.length > 0) {
       const transactions = uploadedReceipts.map((r) => r.extractedData);
@@ -120,7 +115,6 @@ export default function DisputeWizard({
     }
   }, [currentStep, tone, uploadedReceipts, selectedIssue, extraNotes, userProfile, matchedProvider.id]);
 
-  // Handle Mark as Sent
   const handleMarkAsSent = () => {
     saveUserProfile(userProfile);
 
@@ -153,49 +147,62 @@ export default function DisputeWizard({
     if (onNavigateToTracker) onNavigateToTracker();
   };
 
-  return (
-    <div className="max-w-4xl mx-auto px-4 py-8">
-      {/* Step Progress Tracker */}
-      <div className="mb-8">
-        <div className="flex items-center justify-between max-w-2xl mx-auto relative">
-          <div className="absolute top-1/2 left-0 right-0 h-0.5 bg-slate-800 -translate-y-1/2 z-0" />
-          <div
-            className="absolute top-1/2 left-0 h-0.5 bg-emerald-500 -translate-y-1/2 z-0 transition-all duration-300"
-            style={{ width: `${((currentStep - 1) / 3) * 100}%` }}
-          />
+  const steps = [
+    { num: 1, label: "Receipt Intake" },
+    { num: 2, label: "Verify Details" },
+    { num: 3, label: "Dispute Issue" },
+    { num: 4, label: "Dispatch Letter" }
+  ];
 
-          {[
-            { step: 1, label: "Upload" },
-            { step: 2, label: "Verify" },
-            { step: 3, label: "Issue" },
-            { step: 4, label: "Dispatch" }
-          ].map((item) => (
-            <div key={item.step} className="relative z-10 flex flex-col items-center">
+  return (
+    <div className="max-w-4xl mx-auto px-4 sm:px-6 py-8">
+      {/* Clean Stepper Navigation */}
+      <div className="mb-8">
+        <div className="grid grid-cols-4 gap-2 border-b border-slate-200 pb-4">
+          {steps.map((s) => {
+            const isCurrent = currentStep === s.num;
+            const isCompleted = currentStep > s.num;
+            return (
               <button
+                key={s.num}
                 type="button"
                 onClick={() => {
-                  if (item.step < currentStep || (uploadedReceipts.length > 0 && item.step <= 3)) {
-                    setCurrentStep(item.step);
+                  if (s.num < currentStep || (uploadedReceipts.length > 0 && s.num <= 3)) {
+                    setCurrentStep(s.num);
                   }
                 }}
-                disabled={item.step > currentStep && uploadedReceipts.length === 0}
-                className={`w-9 h-9 rounded-full flex items-center justify-center text-xs font-bold transition-all ${
-                  currentStep === item.step
-                    ? 'bg-emerald-500 text-slate-950 ring-4 ring-emerald-500/20 shadow-lg shadow-emerald-500/30'
-                    : currentStep > item.step
-                    ? 'bg-emerald-500/20 text-emerald-400 border border-emerald-500/40'
-                    : 'bg-slate-900 text-slate-500 border border-slate-800'
+                disabled={s.num > currentStep && uploadedReceipts.length === 0}
+                className={`text-left group transition-all select-none ${
+                  s.num > currentStep && uploadedReceipts.length === 0 ? 'cursor-not-allowed opacity-50' : 'cursor-pointer'
                 }`}
               >
-                {item.step}
+                <div className="flex items-center space-x-2">
+                  <span className={`w-5 h-5 rounded-full flex items-center justify-center text-[11px] font-bold transition-all ${
+                    isCurrent
+                      ? 'bg-slate-900 text-white'
+                      : isCompleted
+                      ? 'bg-emerald-100 text-emerald-800'
+                      : 'bg-slate-100 text-slate-500'
+                  }`}>
+                    {isCompleted ? <Check className="w-3 h-3 stroke-[3]" /> : s.num}
+                  </span>
+                  <span className={`text-xs font-semibold hidden sm:inline ${
+                    isCurrent ? 'text-slate-900' : isCompleted ? 'text-slate-700' : 'text-slate-400'
+                  }`}>
+                    {s.label}
+                  </span>
+                </div>
+                {/* Thin progress bar line */}
+                <div className={`mt-2 h-0.5 rounded-full transition-all ${
+                  isCurrent
+                    ? 'bg-slate-900'
+                    : isCompleted
+                    ? 'bg-emerald-600'
+                    : 'bg-slate-200'
+                }`} />
               </button>
-              <span className={`text-[11px] mt-1.5 font-medium ${
-                currentStep === item.step ? 'text-emerald-400 font-semibold' : 'text-slate-400'
-              }`}>
-                {item.label}
-              </span>
-            </div>
-          ))}
+            );
+          })}
         </div>
       </div>
 
