@@ -2,7 +2,15 @@
 
 > **One-liner:** Turn a failed or missing African fintech transaction into a firm, correctly addressed complaint in under 60 seconds, then follow it through to resolution.
 
-Built for the **Claude Startups** application.
+---
+
+## 🏢 Company & Founder
+
+- **Company:** Dispute Desk
+- **Founder:** Ephraim Omenai ([ephraim@mydisputedesk.app](mailto:ephraim@mydisputedesk.app))
+- **Founded:** September 2026
+- **Operating Markets:** Nigeria & South Africa
+- **Mission:** Empowering African consumers to resolve failed debits, missing interbank transfers, and unreversed card transactions by combining AI forensic receipt parsing with statutory banking regulation enforcement (CBN & NFOSA).
 
 ---
 

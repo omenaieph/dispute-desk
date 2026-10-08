@@ -20,7 +20,7 @@ export default function Hero({ onSelectSample, onStartBlank, selectedCountry }) 
 
         {/* Clean Editorial Title */}
         <h1 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-slate-900 tracking-tight leading-[1.15] max-w-3xl mx-auto">
-          Turn failed transactions into <span className="text-emerald-700">resolved refunds</span> in under 60 seconds.
+          Turn failed transactions into <span className="text-emerald-700">a ready complaint</span> in 60 seconds.
         </h1>
 
         {/* Subhead */}

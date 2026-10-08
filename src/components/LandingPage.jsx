@@ -121,7 +121,7 @@ export default function LandingPage({ onStartDispute, onSelectSample, onOpenDire
               </span>
               <span className="text-slate-900"> into </span>
               <span className="bg-gradient-to-r from-emerald-600 via-teal-600 to-emerald-700 bg-clip-text text-transparent font-black">
-                refunds
+                a ready complaint
               </span>
               <span className="text-slate-900"> in </span>
               <span className="inline-flex items-center text-slate-900 font-extrabold">
@@ -132,7 +132,7 @@ export default function LandingPage({ onStartDispute, onSelectSample, onOpenDire
 
             {/* Subhead */}
             <p className="mt-4 text-base sm:text-lg text-slate-600 leading-relaxed max-w-2xl mx-auto font-normal">
-              Sent money and the recipient never got it? Debited twice at a POS supermarket? Upload your receipt. We find your hidden tracking number, email the exact team at your bank, and start an official countdown for your refund.
+              Sent money and the recipient never got it? Debited twice at a POS supermarket? Upload your receipt. We find your hidden tracking number, email the exact team at your bank, and track your bank's response window.
             </p>
 
             {/* CTAs */}
