@@ -174,7 +174,7 @@ export default function App() {
 
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 mt-4 pt-4 border-t border-slate-100 flex flex-col sm:flex-row items-center justify-between gap-2 text-[11px] text-slate-400 text-center sm:text-left">
           <p>
-            Founded by <span className="text-slate-600 font-medium">Ephraim Omenai</span> · Contact: <a href="mailto:ephraim@mydisputedesk.app" className="text-slate-600 hover:text-slate-900 underline font-medium">ephraim@mydisputedesk.app</a> · Nigeria & South Africa
+            Founded by <span className="text-slate-600 font-medium">Ephraim Omenai</span> · Lagos, Nigeria · Contact: <a href="mailto:ephraim@mydisputedesk.app" className="text-slate-600 hover:text-slate-900 underline font-medium">ephraim@mydisputedesk.app</a> · Serving Nigeria &amp; South Africa
           </p>
           <p>
             Referenced against Central Bank of Nigeria (CBN) Consumer Protection Framework & SA National Financial Ombud Scheme (NFOSA, nfosa.co.za) guidance.

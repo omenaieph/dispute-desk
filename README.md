@@ -9,6 +9,7 @@
 - **Company:** Dispute Desk
 - **Founder:** Ephraim Omenai ([ephraim@mydisputedesk.app](mailto:ephraim@mydisputedesk.app))
 - **Founded:** September 2026
+- **Location:** Lagos, Nigeria
 - **Operating Markets:** Nigeria & South Africa
 - **Mission:** Empowering African consumers to resolve failed debits, missing interbank transfers, and unreversed card transactions by combining AI forensic receipt parsing with statutory banking regulation enforcement (CBN & NFOSA).
 
