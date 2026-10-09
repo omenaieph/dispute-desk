@@ -6,7 +6,8 @@ import {
   ChevronDown,
   Building,
   Shield,
-  FileText
+  FileText,
+  Sparkles
 } from 'lucide-react';
 import { PROVIDERS } from '../data/providers';
 import { SAMPLE_RECEIPTS } from '../data/sampleReceipts';
@@ -94,12 +95,21 @@ export default function LandingPage({ onStartDispute, onSelectSample, onOpenDire
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-3xl mx-auto">
             {/* Mission & Claude Indicator */}
-            <div className="mb-5 flex justify-center">
-              <div className="inline-flex items-center space-x-2 px-3.5 py-1 rounded-full text-xs font-semibold bg-emerald-50 text-emerald-850 border border-emerald-200 shadow-2xs">
-                <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
-                <span>Advocate for Failed African Fintech Debits</span>
-                <span className="text-slate-300">•</span>
-                <span className="text-emerald-700 font-medium">Powered by Claude</span>
+            <div className="mb-5 flex justify-center px-2">
+              <div className="inline-flex items-center gap-1.5 sm:gap-2 px-3 sm:px-3.5 py-1.5 rounded-full text-[11px] sm:text-xs font-semibold bg-emerald-50 text-slate-800 border border-emerald-200/90 shadow-2xs whitespace-nowrap max-w-full">
+                <span className="relative flex h-2 w-2 shrink-0">
+                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                  <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+                </span>
+                <span className="text-slate-800 font-bold shrink-0">
+                  <span className="sm:hidden">Fintech Dispute Advocate</span>
+                  <span className="hidden sm:inline">Advocate for Failed African Fintech Debits</span>
+                </span>
+                <span className="text-emerald-300 shrink-0">•</span>
+                <span className="inline-flex items-center text-emerald-700 font-medium shrink-0">
+                  <Sparkles className="w-3 h-3 mr-1 text-emerald-600 shrink-0" />
+                  <span>Powered by Claude</span>
+                </span>
               </div>
             </div>
 
