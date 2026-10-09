@@ -26,6 +26,9 @@ export default function Header({
   const handleNavClick = (tab) => {
     setActiveTab(tab);
     setIsMobileMenuOpen(false);
+    window.scrollTo(0, 0);
+    document.documentElement.scrollTop = 0;
+    document.body.scrollTop = 0;
   };
 
   const handleOpenDirectory = () => {
@@ -102,7 +105,7 @@ export default function Header({
               <div className="flex items-center space-x-2">
                 <button
                   type="button"
-                  onClick={() => setActiveTab('tracker')}
+                  onClick={() => handleNavClick('tracker')}
                   className="relative px-3 py-1.5 rounded-lg text-xs font-semibold text-slate-700 hover:text-slate-900 hover:bg-slate-50 transition-colors flex items-center space-x-1.5"
                   title={`Tracker (${disputeCounts.total} cases)`}
                 >
@@ -115,7 +118,7 @@ export default function Header({
 
                 <button
                   type="button"
-                  onClick={() => setActiveTab('wizard')}
+                  onClick={() => handleNavClick('wizard')}
                   className="flex items-center space-x-1.5 px-3.5 py-1.5 rounded-lg text-xs font-bold bg-slate-900 hover:bg-slate-800 text-white transition-colors shadow-xs"
                 >
                   <span>Start Dispute</span>
@@ -126,7 +129,7 @@ export default function Header({
               <div className="flex items-center space-x-1.5">
                 <button
                   type="button"
-                  onClick={() => setActiveTab('landing')}
+                  onClick={() => handleNavClick('landing')}
                   className="px-2.5 py-1.5 rounded-lg text-xs font-semibold text-slate-600 hover:text-slate-900 hover:bg-slate-50 border border-slate-200 transition-colors flex items-center space-x-1"
                   title="Return to Landing Page"
                 >
@@ -136,7 +139,7 @@ export default function Header({
 
                 <button
                   type="button"
-                  onClick={() => setActiveTab('wizard')}
+                  onClick={() => handleNavClick('wizard')}
                   className={`flex items-center space-x-1 px-3 py-1.5 rounded-lg text-xs font-semibold transition-all ${
                     activeTab === 'wizard'
                       ? 'bg-slate-900 text-white shadow-2xs'
@@ -150,7 +153,7 @@ export default function Header({
 
                 <button
                   type="button"
-                  onClick={() => setActiveTab('tracker')}
+                  onClick={() => handleNavClick('tracker')}
                   className={`relative flex items-center space-x-1 px-3 py-1.5 rounded-lg text-xs font-semibold transition-all ${
                     activeTab === 'tracker'
                       ? 'bg-slate-900 text-white shadow-2xs'

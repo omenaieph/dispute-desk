@@ -34,17 +34,35 @@ export default function App() {
     resolved: disputes.filter((d) => d.status === 'resolved').length
   };
 
+  // Automatically reset scroll position to top whenever navigating to any page view
+  useEffect(() => {
+    const resetScroll = () => {
+      window.scrollTo(0, 0);
+      document.documentElement.scrollTop = 0;
+      document.body.scrollTop = 0;
+    };
+
+    resetScroll();
+    const rafId = requestAnimationFrame(resetScroll);
+    const timeoutId = setTimeout(resetScroll, 30);
+
+    return () => {
+      cancelAnimationFrame(rafId);
+      clearTimeout(timeoutId);
+    };
+  }, [activeTab]);
+
   const handleStartDispute = () => {
     setInitialSample(null);
     setActiveTab('wizard');
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    window.scrollTo(0, 0);
   };
 
   const handleSelectSample = (sample) => {
     setSelectedCountry(sample.country);
     setInitialSample(sample);
     setActiveTab('wizard');
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    window.scrollTo(0, 0);
   };
 
   const handleSaveApiKey = (key) => {
@@ -64,7 +82,7 @@ export default function App() {
         activeTab={activeTab}
         setActiveTab={(tab) => {
           setActiveTab(tab);
-          window.scrollTo({ top: 0, behavior: 'smooth' });
+          window.scrollTo(0, 0);
         }}
         selectedCountry={selectedCountry}
         setSelectedCountry={(c) => {
@@ -147,7 +165,7 @@ export default function App() {
               type="button"
               onClick={() => {
                 setActiveTab('landing');
-                window.scrollTo({ top: 0, behavior: 'smooth' });
+                window.scrollTo(0, 0);
               }}
               className="hover:text-slate-900 transition-colors"
             >

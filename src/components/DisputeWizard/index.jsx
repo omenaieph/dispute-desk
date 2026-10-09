@@ -32,6 +32,18 @@ export default function DisputeWizard({
     }
   }, [initialSample]);
 
+  // Automatically reset scroll to top on wizard step changes
+  useEffect(() => {
+    const resetScroll = () => {
+      window.scrollTo(0, 0);
+      document.documentElement.scrollTop = 0;
+      document.body.scrollTop = 0;
+    };
+    resetScroll();
+    const rafId = requestAnimationFrame(resetScroll);
+    return () => cancelAnimationFrame(rafId);
+  }, [currentStep]);
+
   const handleSelectSample = (sample) => {
     const receiptItem = {
       id: sample.id,
