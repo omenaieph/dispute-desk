@@ -15,7 +15,7 @@ import {
   Building,
   Plus
 } from 'lucide-react';
-import { saveDispute, deleteDispute } from '../utils/storage';
+import { saveDispute, deleteDispute, SEED_DISPUTES } from '../utils/storage';
 import { REGULATORY_AUTHORITIES } from '../data/providers';
 import { generateDisputePDF } from '../utils/pdfGenerator';
 import confetti from 'canvas-confetti';
@@ -27,6 +27,11 @@ export default function DisputeTracker({ disputes, setDisputes, onStartNewDisput
   const [copied, setCopied] = useState(false);
   const [resolutionNote, setResolutionNote] = useState("");
   const [currentTime, setCurrentTime] = useState(Date.now());
+
+  const handleLoadSampleForDemo = () => {
+    SEED_DISPUTES.forEach((d) => saveDispute(d));
+    setDisputes(SEED_DISPUTES);
+  };
 
   useEffect(() => {
     const interval = setInterval(() => setCurrentTime(Date.now()), 10000);
@@ -287,7 +292,33 @@ ${dispute.userName}`;
       </div>
 
       {/* List of Disputes */}
-      {filteredDisputes.length === 0 ? (
+      {disputes.length === 0 ? (
+        <div className="text-center py-16 bg-white border border-slate-200 rounded-xl p-6 sm:p-8 shadow-2xs">
+          <div className="w-12 h-12 rounded-full bg-slate-100 text-slate-500 flex items-center justify-center mx-auto mb-3">
+            <Clock className="w-6 h-6" />
+          </div>
+          <h3 className="text-base font-bold text-slate-900">No complaints lodged yet</h3>
+          <p className="text-xs text-slate-500 mt-1 max-w-md mx-auto leading-relaxed">
+            Your complaints and bank resolution countdown timers will appear here once you file a dispute.
+          </p>
+          <div className="mt-5 flex flex-col sm:flex-row items-center justify-center gap-2.5">
+            <button
+              type="button"
+              onClick={onStartNewDispute}
+              className="w-full sm:w-auto px-5 py-2.5 rounded-lg text-xs font-semibold bg-slate-900 hover:bg-slate-800 text-white shadow-xs transition-colors"
+            >
+              Start a Free Dispute
+            </button>
+            <button
+              type="button"
+              onClick={handleLoadSampleForDemo}
+              className="w-full sm:w-auto px-4 py-2.5 rounded-lg text-xs font-semibold bg-white hover:bg-slate-50 text-slate-700 border border-slate-200 transition-colors"
+            >
+              Load Sample Case to Explore
+            </button>
+          </div>
+        </div>
+      ) : filteredDisputes.length === 0 ? (
         <div className="text-center py-16 bg-white border border-slate-200 rounded-xl p-6 shadow-2xs">
           <Clock className="w-10 h-10 text-slate-400 mx-auto mb-2" />
           <h3 className="text-sm font-bold text-slate-800">No disputes in this view</h3>

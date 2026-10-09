@@ -7,7 +7,7 @@ const STORAGE_KEYS = {
 };
 
 // Seed sample disputes so reviewers can instantly inspect the tracker and countdowns
-const SEED_DISPUTES = [
+export const SEED_DISPUTES = [
   {
     id: "dd-case-89210",
     createdAt: new Date(Date.now() - 36 * 3600 * 1000).toISOString(), // 36 hours ago
@@ -104,13 +104,23 @@ export function getStoredDisputes() {
   try {
     const raw = localStorage.getItem(STORAGE_KEYS.DISPUTES);
     if (!raw) {
-      localStorage.setItem(STORAGE_KEYS.DISPUTES, JSON.stringify(SEED_DISPUTES));
-      return SEED_DISPUTES;
+      return [];
     }
-    return JSON.parse(raw);
+    const parsed = JSON.parse(raw);
+    // If the only disputes are the legacy seed cases, clear them so users start fresh
+    if (
+      Array.isArray(parsed) &&
+      parsed.length === 2 &&
+      parsed.some((d) => d.id === "dd-case-89210") &&
+      parsed.some((d) => d.id === "dd-case-74190")
+    ) {
+      localStorage.setItem(STORAGE_KEYS.DISPUTES, JSON.stringify([]));
+      return [];
+    }
+    return Array.isArray(parsed) ? parsed : [];
   } catch (err) {
     console.error("Error reading disputes from localStorage", err);
-    return SEED_DISPUTES;
+    return [];
   }
 }
 
